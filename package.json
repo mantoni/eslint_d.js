@@ -1,12 +1,26 @@
 {
   "name": "eslint_d",
   "version": "0.0.0",
-  "description": "",
+  "description": "Makes eslint the fastest linter on the planet",
   "bin": "bin/eslint_d.js",
-  "keywords": ["eslint"],
+  "keywords": ["eslint", "lint"],
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de/)",
-  "license": "MIT",
+  "homepage": "https://github.com/mantoni/eslint_d.js",
+  "scripts": {
+    "test": "eslint **/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mantoni/eslint_d.js.git"
+  },
   "dependencies": {
     "eslint": "^1.4.2"
-  }
+  },
+  "files": [
+    "bin",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "MIT"
 }
