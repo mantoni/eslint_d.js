@@ -5,8 +5,17 @@ var net = require('net');
 var fs = require('fs');
 var eslint = require('eslint');
 
-var engine = new eslint.CLIEngine();
-var formatter = engine.getFormatter('compact');
+var engines = {};
+
+function getEngine(cwd) {
+  var engine = engines[cwd];
+  if (!engine) {
+    engine = new eslint.CLIEngine();
+    engines[cwd] = engine;
+  }
+  return engine;
+}
+
 
 var server = net.createServer({
   allowHalfOpen: true
@@ -16,7 +25,12 @@ var server = net.createServer({
     data += chunk;
   });
   con.on('end', function () {
-    var report = engine.executeOnFiles([data]);
+    var parts = data.split(' ');
+    var cwd = parts[0];
+    process.chdir(cwd);
+    var engine = getEngine(cwd);
+    var report = engine.executeOnFiles(parts.slice(1));
+    var formatter = engine.getFormatter('compact');
     con.write(formatter(report.results));
     con.end();
   });
