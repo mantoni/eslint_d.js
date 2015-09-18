@@ -31,6 +31,9 @@ server.listen(function () {
 process.on('exit', function () {
   fs.unlinkSync(portFile);
 });
+process.on('SIGTERM', function () {
+  process.exit();
+});
 process.on('SIGINT', function () {
   process.exit();
 });
