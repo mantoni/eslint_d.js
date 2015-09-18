@@ -5,7 +5,7 @@
 
 Makes [eslint][] the fastest linter on the planet.
 
-## But eslint is pretty fast already
+## "But eslint is pretty fast already, right?"
 
 Yes, it's actually super fast. But the node.js startup time and loading all the
 required modules slows down linting times for a single file to ~700
