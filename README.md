@@ -18,7 +18,7 @@ you.
 
 This will install the `eslint_d` command globally: 
 
-```
+```bash
 $ npm install -g eslint_d
 ```
 
@@ -26,7 +26,7 @@ $ npm install -g eslint_d
 
 To start the server and lint a file, just run:
 
-```
+```bash
 $ eslint_d lint file.js
 ```
 
@@ -37,7 +37,7 @@ is linted. Subsequent invocations are super fast.
 
 Controll the server like this:
 
-```
+```bash
 $ eslint_d <command>
 ```
 
@@ -73,7 +73,7 @@ If you're really into performance and want the lowest possible latency, talk to
 the `eslint_d` server with netcat. This will also eliminate the node.js startup
 time.
 
-```
+```bash
 $ echo '. file.js' | nc localhost `cat ~/.eslint_d_port`
 ```
 
