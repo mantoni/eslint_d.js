@@ -47,9 +47,11 @@ Available commands:
 - `stop`: stop the server
 - `status`: print out whether the server is currently running
 - `restart`: restart the server
-- `lint <file1> <file2> ...`: lint one or more files. The `eslint` engine will
-  be created in the current directory. If the server is not yet running, it is
-  started.
+- `[options] file.js [file.js] [dir]`: invoke `eslint` with the given options.
+  The `eslint` engine will be created in the current directory. If the server
+  is not yet running, it is started.
+
+Type `eslint_d --help` to see the supported `eslint` options.
 
 `eslint_d` will select a free port automatically and store the port number is
 `~/.eslint_d_port`.
@@ -81,7 +83,7 @@ This runs `eslint` in under `50ms`!
 
 ## Compatibility
 
-- `1.0.0`: eslint 1.4+
+- `1.0.0`, `2.0.0`: eslint 1.4+
 
 ## License
 
