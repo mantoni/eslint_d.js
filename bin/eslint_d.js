@@ -12,18 +12,18 @@ if (cmd === 'start') {
 
 } else {
 
-  var commands = ['stop', 'status', 'restart', 'lint'];
-  if (commands.indexOf(cmd) === -1) {
-    process.stdout.write('Usage: eslint_d [start|stop|status|restart|lint]\n');
-    return;
-  }
-
   var client = require('../lib/client');
   if (cmd === 'restart') {
     client.stop(function () {
       process.nextTick(start);
     });
   } else {
-    client[cmd](process.argv.slice(3));
+    var commands = ['stop', 'status', 'restart'];
+    if (commands.indexOf(cmd) === -1) {
+      client.lint(process.argv.slice(2));
+    } else {
+      client[cmd](process.argv.slice(3));
+    }
   }
+
 }
