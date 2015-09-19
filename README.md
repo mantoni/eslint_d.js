@@ -58,7 +58,10 @@ Available commands:
 
 If you're a vim user and have the syntastic plugin installed, download
 `plugins/eslint_d.vim` and save it in
-`~/.vim/bundle/syntastic/syntax_checkers/javascript/`.
+`~/.vim/bundle/syntastic/syntax_checkers/javascript/`. Then make sure this
+is in your `.vimrc`:
+
+`let g:syntastic_javascript_checkers = ['eslint_d']`
 
 If you're using `eslint_d` in any other editor, please tell me!
 
