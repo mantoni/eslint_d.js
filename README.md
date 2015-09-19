@@ -56,10 +56,10 @@ Available commands:
 
 ## Editor integration
 
-If you're a vim user and have the syntastic plugin installed, download
-`plugins/eslint_d.vim` and save it in
-`~/.vim/bundle/syntastic/syntax_checkers/javascript/`. Then make sure this
-is in your `.vimrc`:
+- __Sublime__: [SublimeLinter-eslint][]
+- __Vim__: Install the [syntastic][] plugin, download `plugins/eslint_d.vim`
+  and save it in `~/.vim/bundle/syntastic/syntax_checkers/javascript/`. Then
+  make sure this is in your `.vimrc`:
 
 ```vim
 let g:syntastic_javascript_checkers = ['eslint_d']
@@ -90,3 +90,5 @@ MIT
 [SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [License]: http://img.shields.io/npm/l/eslint_d.svg
 [eslint]: http://eslint.org
+[SublimeLinter-eslint]: https://github.com/roadhump/SublimeLinter-eslint
+[syntastic]: https://github.com/scrooloose/syntastic
