@@ -31,7 +31,7 @@ $ eslint_d lint file.js
 ```
 
 On the initial call, the `eslint_d` server is launched and then the given file
-is linted. Subsequent invokations are super fast.
+is linted. Subsequent invocations are super fast.
 
 ## Commands
 
