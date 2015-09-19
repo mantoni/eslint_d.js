@@ -14,7 +14,8 @@
     "url": "https://github.com/mantoni/eslint_d.js.git"
   },
   "dependencies": {
-    "eslint": "^1.4.2"
+    "eslint": "^1.4.2",
+    "optionator": "^0.6.0"
   },
   "files": [
     "bin",
