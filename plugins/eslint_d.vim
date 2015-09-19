@@ -21,7 +21,7 @@ function! SyntaxCheckers_javascript_eslint_d_IsAvailable() dict
 endfunction
 
 function! SyntaxCheckers_javascript_eslint_d_GetLocList() dict
-    let makeprg = self.makeprgBuild({'fname_before': 'lint'})
+    let makeprg = self.makeprgBuild({'fname_before': '--format compact'})
 
     let errorformat =
         \ '%E%f: line %l\, col %c\, Error - %m,' .
