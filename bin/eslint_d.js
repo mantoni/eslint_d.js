@@ -16,6 +16,11 @@ if (cmd === 'start') {
     require('eslint/package.json').version,
     require('../package.json').version);
 
+} else if (cmd === '-h' || cmd === '--help') {
+
+  var options = require('../lib/options');
+  console.log(options.generateHelp());
+
 } else {
 
   var client = require('../lib/client');
