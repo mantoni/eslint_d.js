@@ -92,5 +92,5 @@ MIT
 [SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [License]: http://img.shields.io/npm/l/eslint_d.svg
 [eslint]: http://eslint.org
-[SublimeLinter-eslint]: https://github.com/roadhump/SublimeLinter-eslint
+[SublimeLinter-eslint]: https://github.com/roadhump/SublimeLinter-contrib-eslint_d
 [syntastic]: https://github.com/scrooloose/syntastic
