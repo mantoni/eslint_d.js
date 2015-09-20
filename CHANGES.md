@@ -1,5 +1,14 @@
 # Changes
 
+## 2.1.0
+
+Make `eslint_d` work out of the box in vim with the syntastic eslint checker.
+
+- Add `--version` and `-v` options
+- Do not start server when called with `-h` or `--help`
+- Downgrade `optionator` to align with eslint
+- Update instructions for vim integration
+
 ## 2.0.0
 
 This realease support (almost) all `eslint` options. Check `eslint_d --help`.
