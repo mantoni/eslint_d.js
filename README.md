@@ -27,7 +27,7 @@ $ npm install -g eslint_d
 To start the server and lint a file, just run:
 
 ```bash
-$ eslint_d lint file.js
+$ eslint_d file.js
 ```
 
 On the initial call, the `eslint_d` server is launched and then the given file
