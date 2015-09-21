@@ -67,6 +67,8 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 ```
 
+Atom users will not gain any performance from this module as it already avoids starting a new node instance and uses the API directly (see [this AtomLinter issue](https://github.com/AtomLinter/linter-eslint/issues/215)).
+
 If you're using `eslint_d` in any other editor, please tell me!
 
 ## Moar speed
