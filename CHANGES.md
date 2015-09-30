@@ -1,5 +1,15 @@
 # Changes
 
+## 2.1.1
+
+Fixes [issue #8][] on Windows when launching in a `cmd` shell where `eslint_d`
+was hanging indefinitely.
+
+- Update Sublime linter URL to it's new home
+- Add note for Atom users
+
+[issue #8]: https://github.com/mantoni/eslint_d.js/issues/8
+
 ## 2.1.0
 
 Make `eslint_d` work out of the box in vim with the syntastic eslint checker.
