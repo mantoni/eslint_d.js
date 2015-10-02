@@ -1,5 +1,12 @@
 # Changes
 
+## 2.1.2
+
+Fixes [issue #9][] with space-containing config path or other shell parameters
+that need escaping.
+
+[issue #9]: https://github.com/mantoni/eslint_d.js/issues/9
+
 ## 2.1.1
 
 Fixes [issue #8][] on Windows when launching in a `cmd` shell where `eslint_d`
