@@ -1,5 +1,14 @@
 # Changes
 
+## 2.2.0
+
+Resolves the `eslint` module for each working directory separately. This allows
+multiple versions of eslint to co-exist. This is required to support local
+plugins like the `babel-eslint` parser (see [issue #10][]). If no local eslint
+install is found, the one that was installed with `eslint_d` is used.
+
+[issue #10]: https://github.com/mantoni/eslint_d.js/issues/10
+
 ## 2.1.2
 
 Fixes [issue #9][] with space-containing config path or other shell parameters
