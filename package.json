@@ -3,7 +3,10 @@
   "version": "2.1.2",
   "description": "Makes eslint the fastest linter on the planet",
   "bin": "bin/eslint_d.js",
-  "keywords": ["eslint", "lint"],
+  "keywords": [
+    "eslint",
+    "lint"
+  ],
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de/)",
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
@@ -15,7 +18,8 @@
   },
   "dependencies": {
     "eslint": "^1.4.2",
-    "optionator": "^0.5.0"
+    "optionator": "^0.5.0",
+    "resolve": "^1.1.6"
   },
   "files": [
     "bin",
