@@ -1,5 +1,13 @@
 # Changes
 
+## 2.3.0
+
+Richard Herrera implemented a missing eslint feature to [lint text provided via
+stdin][]. This also fixes [issue #13][].
+
+[lint text provided on stdin]: https://github.com/mantoni/eslint_d.js/pull/15
+[issue #13]: https://github.com/mantoni/eslint_d.js/issues/13
+
 ## 2.2.0
 
 Resolves the `eslint` module for each working directory separately. This allows
