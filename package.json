@@ -8,6 +8,9 @@
     "lint"
   ],
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de/)",
+  "contributors": [
+    "Richard Herrera <rich@doctyper.com>"
+  ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
     "test": "eslint **/*.js"
