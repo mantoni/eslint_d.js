@@ -31,7 +31,16 @@ if (cmd === 'start') {
   } else {
     var commands = ['stop', 'status', 'restart'];
     if (commands.indexOf(cmd) === -1) {
-      client.lint(process.argv.slice(2));
+      var concat = require('concat-stream');
+      var useStdIn = (process.argv.indexOf('--stdin') > -1);
+
+      if (useStdIn) {
+        process.stdin.pipe(concat({ encoding: 'string' }, function (text) {
+          client.lint(process.argv.slice(2), text);
+        }));
+      } else {
+        client.lint(process.argv.slice(2));
+      }
     } else {
       client[cmd](process.argv.slice(3));
     }
