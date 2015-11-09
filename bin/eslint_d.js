@@ -34,10 +34,16 @@ if (cmd === 'start') {
       var useStdIn = (process.argv.indexOf('--stdin') > -1);
 
       if (useStdIn) {
-        var concat = require('concat-stream');
-        process.stdin.pipe(concat({ encoding: 'string' }, function (text) {
+        var text = '';
+        process.stdin.setEncoding('utf8');
+
+        process.stdin.on('data', function (chunk) {
+          text += chunk;
+        });
+
+        process.stdin.on('end', function () {
           client.lint(process.argv.slice(2), text);
-        }));
+        });
       } else {
         client.lint(process.argv.slice(2));
       }
