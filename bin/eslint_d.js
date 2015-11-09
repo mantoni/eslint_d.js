@@ -34,15 +34,14 @@ if (cmd === 'start') {
       var useStdIn = (process.argv.indexOf('--stdin') > -1);
 
       if (useStdIn) {
-        var chunks = [];
+        var text = '';
         process.stdin.setEncoding('utf8');
 
         process.stdin.on('data', function (chunk) {
-          chunks.push(chunk.toString());
-        })
+          text += chunk;
+        });
 
         process.stdin.on('end', function () {
-          var text = chunks.join('');
           client.lint(process.argv.slice(2), text);
         });
       } else {
