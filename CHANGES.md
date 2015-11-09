@@ -1,5 +1,9 @@
 # Changes
 
+## 2.3.1
+
+- Remove `concat-stream` dependency and micro optimizations (Richard Herrera)
+
 ## 2.3.0
 
 Richard Herrera implemented a missing eslint feature to [lint text provided via
