@@ -83,6 +83,13 @@ $ echo '. file.js' | nc localhost `cat ~/.eslint_d_port`
 
 This runs `eslint` in under `50ms`!
 
+**Tip** For additional speed, did you know that you can lint only files that have changed ? This is a feature of normal `eslint`, but it also
+works from `eslint_d`. Run :
+
+```bash
+$ eslint_d . --cache
+```
+
 ## Compatibility
 
 - `1.0.0`, `2.0.0`: eslint 1.4+
