@@ -1,5 +1,12 @@
 # Changes
 
+## 2.3.2
+
+Fixes an error in case no local eslint module can be found (Kevin Yue)
+
+- [Issue #17](https://github.com/mantoni/eslint_d.js/issues/17)
+- [Pull request #18](https://github.com/mantoni/eslint_d.js/pull/18)
+
 ## 2.3.1
 
 - Remove `concat-stream` dependency and micro optimizations (Richard Herrera)
