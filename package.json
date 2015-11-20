@@ -9,7 +9,8 @@
   ],
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de/)",
   "contributors": [
-    "Richard Herrera <rich@doctyper.com>"
+    "Richard Herrera <rich@doctyper.com>",
+    "Kevin Yue <yuezk001@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
