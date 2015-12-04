@@ -69,6 +69,13 @@ let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 Atom users will not gain any performance from this module as it already avoids starting a new node instance and uses the API directly (see [this AtomLinter issue](https://github.com/AtomLinter/linter-eslint/issues/215)).
 
+- __Webstorm__: Configure your IDE to point to the eslint_d package instead of ESLint.
+
+In the ESLint configuration dialog, under 'ESLint package', select your eslint_d package. 
+
+If you get the error "../bin/eslint.js" file not found, you are using an outdated version of eslint_d.
+
+
 If you're using `eslint_d` in any other editor, please tell me!
 
 ## Moar speed
