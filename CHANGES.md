@@ -1,5 +1,14 @@
 # Changes
 
+## 2.4.0
+
+Roger Zurawicki [figured out][pull #24] how to make `eslint_d` work in WebStore.
+
+- Add information about `--cache` in the readme (netei)
+- Add symlink to `eslint.js` for WebStorm compat (Roger Zurawicki)
+
+[pull #24]: https://github.com/mantoni/eslint_d.js/pull/24
+
 ## 2.3.2
 
 Fixes an error in case no local eslint module can be found (Kevin Yue)
