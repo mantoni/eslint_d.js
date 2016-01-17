@@ -58,7 +58,7 @@ Type `eslint_d --help` to see the supported `eslint` options.
 
 ## Editor integration
 
-- __Sublime__: [SublimeLinter-eslint][]
+- __Sublime__: Check out [SublimeLinter-contrib-eslint\_d][SublimeLinter].
 - __Vim__: Install the [syntastic][] plugin, then make sure this is in your
   `.vimrc`:
 
@@ -67,14 +67,12 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 ```
 
-Atom users will not gain any performance from this module as it already avoids starting a new node instance and uses the API directly (see [this AtomLinter issue](https://github.com/AtomLinter/linter-eslint/issues/215)).
-
-- __Webstorm__: Configure your IDE to point to the eslint_d package instead of ESLint.
-
-In the ESLint configuration dialog, under 'ESLint package', select your eslint_d package. 
-
-If you get the error "../bin/eslint.js" file not found, you are using an outdated version of eslint_d.
-
+- __Webstorm__: Configure your IDE to point to the `eslint_d` package instead
+  of `eslint`. In the ESLint configuration dialog, under 'ESLint package',
+  select your `eslint_d` package.
+- __Atom__: You will not gain any performance from this module as it already
+  avoids starting a new node instance and uses the API directly (see [this
+  AtomLinter issue](https://github.com/AtomLinter/linter-eslint/issues/215)).
 
 If you're using `eslint_d` in any other editor, please tell me!
 
@@ -90,8 +88,9 @@ $ echo '. file.js' | nc localhost `cat ~/.eslint_d_port`
 
 This runs `eslint` in under `50ms`!
 
-**Tip** For additional speed, did you know that you can lint only files that have changed ? This is a feature of normal `eslint`, but it also
-works from `eslint_d`. Run :
+**Tip** For additional speed, did you know that you can lint only files that
+have changed? This is a feature of normal `eslint`, but it also works from
+`eslint_d`. Run:
 
 ```bash
 $ eslint_d . --cache
@@ -108,5 +107,5 @@ MIT
 [SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [License]: http://img.shields.io/npm/l/eslint_d.svg
 [eslint]: http://eslint.org
-[SublimeLinter-eslint]: https://github.com/roadhump/SublimeLinter-contrib-eslint_d
+[SublimeLinter]: https://github.com/roadhump/SublimeLinter-contrib-eslint_d
 [syntastic]: https://github.com/scrooloose/syntastic
