@@ -1,5 +1,12 @@
 # Changes
 
+## 2.5.0
+
+- Support color and the `--no-color` option (fixes [issue #7][])
+- Improve formatting in "Editor integration" documentation
+
+[issue #7]: https://github.com/mantoni/eslint_d.js/issues/7
+
 ## 2.4.0
 
 Roger Zurawicki [figured out][pull #24] how to make `eslint_d` work in WebStore.
