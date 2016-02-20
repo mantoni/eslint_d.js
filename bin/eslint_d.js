@@ -32,6 +32,11 @@ if (cmd === 'start') {
     var commands = ['stop', 'status', 'restart'];
     if (commands.indexOf(cmd) === -1) {
       var useStdIn = (process.argv.indexOf('--stdin') > -1);
+      var args = process.argv.slice(2);
+
+      if (!require('supports-color')) {
+        args.unshift('--no-color');
+      }
 
       if (useStdIn) {
         var text = '';
@@ -42,10 +47,10 @@ if (cmd === 'start') {
         });
 
         process.stdin.on('end', function () {
-          client.lint(process.argv.slice(2), text);
+          client.lint(args, text);
         });
       } else {
-        client.lint(process.argv.slice(2));
+        client.lint(args);
       }
     } else {
       client[cmd](process.argv.slice(3));

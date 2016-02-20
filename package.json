@@ -15,16 +15,18 @@
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
-    "test": "eslint **/*.js"
+    "test": "eslint ."
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mantoni/eslint_d.js.git"
   },
   "dependencies": {
+    "chalk": "^1.1.1",
     "eslint": "^1.4.2",
-    "optionator": "^0.5.0",
-    "resolve": "^1.1.6"
+    "optionator": "^0.6.0",
+    "resolve": "^1.1.6",
+    "supports-color": "^2.0.0"
   },
   "files": [
     "bin",
