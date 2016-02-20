@@ -9,7 +9,7 @@
 
 ## 2.4.0
 
-Roger Zurawicki [figured out][pull #24] how to make `eslint_d` work in WebStore.
+Roger Zurawicki [figured out][pull #24] how to make `eslint_d` work in WebStorm.
 
 - Add information about `--cache` in the readme (netei)
 - Add symlink to `eslint.js` for WebStorm compat (Roger Zurawicki)

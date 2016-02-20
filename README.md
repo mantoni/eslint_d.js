@@ -67,7 +67,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 ```
 
-- __Webstorm__: Configure your IDE to point to the `eslint_d` package instead
+- __WebStorm__: Configure your IDE to point to the `eslint_d` package instead
   of `eslint`. In the ESLint configuration dialog, under 'ESLint package',
   select your `eslint_d` package.
 - __Atom__: You will not gain any performance from this module as it already
