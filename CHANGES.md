@@ -1,5 +1,10 @@
 # Changes
 
+## 2.5.1
+
+- Fix `--fix`
+- Fix color for local eslint
+
 ## 2.5.0
 
 - Support color and the `--no-color` option (fixes [issue #7][])
