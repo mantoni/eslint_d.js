@@ -23,10 +23,10 @@
   },
   "dependencies": {
     "chalk": "^1.1.1",
-    "eslint": "^1.4.2",
-    "optionator": "^0.6.0",
-    "resolve": "^1.1.6",
-    "supports-color": "^2.0.0"
+    "eslint": "^2.2.0",
+    "optionator": "^0.8.1",
+    "resolve": "^1.1.7",
+    "supports-color": "^3.1.2"
   },
   "files": [
     "bin",
