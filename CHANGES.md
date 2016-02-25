@@ -1,5 +1,17 @@
 # Changes
 
+## 3.0.0
+
+jpsc got the [eslint 2 upgrade][pull #30] started. `eslint_d` will now use
+eslint 2.2+ if no local install of eslint is found.
+
+Also in this release:
+
+- Support `--inline-config` and `--cache-location` options
+- Pass `cwd` through to eslint.
+
+[pull #30]: https://github.com/mantoni/eslint_d.js/pull/30
+
 ## 2.5.1
 
 - Fix `--fix`

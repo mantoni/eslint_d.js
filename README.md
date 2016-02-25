@@ -35,7 +35,7 @@ is linted. Subsequent invocations are super fast.
 
 ## Commands
 
-Controll the server like this:
+Control the server like this:
 
 ```bash
 $ eslint_d <command>
@@ -98,6 +98,7 @@ $ eslint_d . --cache
 
 ## Compatibility
 
+- `3.0.0`: eslint 2.2+
 - `1.0.0`, `2.0.0`: eslint 1.4+
 
 ## License
