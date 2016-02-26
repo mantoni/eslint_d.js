@@ -53,7 +53,7 @@ Available commands:
 
 Type `eslint_d --help` to see the supported `eslint` options.
 
-`eslint_d` will select a free port automatically and store the port number is
+`eslint_d` will select a free port automatically and store the port number in
 `~/.eslint_d_port`.
 
 ## Editor integration
