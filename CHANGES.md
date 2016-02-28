@@ -1,5 +1,12 @@
 # Changes
 
+## 3.0.1
+
+A [fix was provided by ruanyl][pull #33] to resolve `chalk` relative from the
+actually resolved eslint module.
+
+[pull #33]: https://github.com/mantoni/eslint_d.js/pull/33
+
 ## 3.0.0
 
 jpsc got the [eslint 2 upgrade][pull #30] started. `eslint_d` will now use
