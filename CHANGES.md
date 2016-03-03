@@ -1,5 +1,9 @@
 # Changes
 
+## 3.1.0
+
+The `eslint_d` command will now exit with code 1 if errors where reported.
+
 ## 3.0.1
 
 A [fix was provided by ruanyl][pull #33] to resolve `chalk` relative from the
