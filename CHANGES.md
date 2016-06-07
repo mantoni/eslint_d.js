@@ -1,5 +1,14 @@
 # Changes
 
+## 3.1.1
+
+As per a [recent change in eslint][bda5de5] the default parser `espree` [was
+removed][pull 43]. The `eslint` dependency was bumped to `2.10.2` which
+introduced the change.
+
+[bda5de5]: https://github.com/eslint/eslint/commit/bda5de5
+[pull 43]: https://github.com/mantoni/eslint_d.js/pull/43
+
 ## 3.1.0
 
 The `eslint_d` command will now exit with code 1 if errors where reported.
