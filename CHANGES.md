@@ -1,5 +1,9 @@
 # Changes
 
+## 4.0.0
+
+Use ESLint 3.
+
 ## 3.1.1
 
 As per a [recent change in eslint][bda5de5] the default parser `espree` [was

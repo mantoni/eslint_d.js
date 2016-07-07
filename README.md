@@ -98,6 +98,7 @@ $ eslint_d . --cache
 
 ## Compatibility
 
+- `4.0.0`: eslint 3.0+
 - `3.0.0`: eslint 2.2+
 - `1.0.0`, `2.0.0`: eslint 1.4+
 
