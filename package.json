@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "chalk": "^1.1.1",
-    "eslint": "^2.10.2",
+    "eslint": "^3.0.0",
     "optionator": "^0.8.1",
     "resolve": "^1.1.7",
     "supports-color": "^3.1.2"
