@@ -53,8 +53,8 @@ Available commands:
 
 Type `eslint_d --help` to see the supported `eslint` options.
 
-`eslint_d` will select a free port automatically and store the port number in
-`~/.eslint_d_port`.
+`eslint_d` will select a free port automatically and store the port number
+along with an access token in `~/.eslint_d`.
 
 ## Editor integration
 
@@ -83,7 +83,9 @@ the `eslint_d` server with netcat. This will also eliminate the node.js startup
 time.
 
 ```bash
-$ echo '. file.js' | nc localhost `cat ~/.eslint_d_port`
+$ PORT=`cat ~/.eslint_d | cut -d" " -f1`
+$ TOKEN=`cat ~/.eslint_d | cut -d" " -f2`
+$ echo "$TOKEN $PWD file.js" | nc localhost $PORT
 ```
 
 This runs `eslint` in under `50ms`!
