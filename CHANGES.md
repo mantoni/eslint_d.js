@@ -2,13 +2,13 @@
 
 ## 4.0.1
 
-Fixes a security issue that was [noticed by Andri Möll][issue #45]. Thanks for
+Fixes a security issue that was [noticed by Andri Möll][issue 45]. Thanks for
 reporting! To avoid CSRF attacks, this [introduces a security token][pull 46]
 that must be sent by clients on each request. This change also binds the daemon
 explicitly to `127.0.0.1` instead of implicitly listening on all network
 interfaces.
 
-[pull 45]: https://github.com/mantoni/eslint_d.js/issues/45
+[issue 45]: https://github.com/mantoni/eslint_d.js/issues/45
 [pull 46]: https://github.com/mantoni/eslint_d.js/pull/46
 
 ## 4.0.0
