@@ -15,6 +15,10 @@ interfaces.
 
 Use ESLint 3.
 
+## 3.1.2
+
+Back-ported the security fix from `v4.0.1`.
+
 ## 3.1.1
 
 As per a [recent change in eslint][bda5de5] the default parser `espree` [was
