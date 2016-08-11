@@ -98,6 +98,12 @@ have changed? This is a feature of normal `eslint`, but it also works from
 $ eslint_d . --cache
 ```
 
+## Refresh `.eslintrc`
+
+`eslint_d` runs serperate instances of eslint each working directory, (see [here](https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220)) for more details.
+
+However should the `.eslintrc` change after the server has already been started, you can manually reload the configuration by running `eslint_d restart` in the *working directory*.
+
 ## Compatibility
 
 - `4.0.0`: eslint 3.0+
