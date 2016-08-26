@@ -62,10 +62,10 @@ along with an access token in `~/.eslint_d`.
 - __Vim__: Install the [syntastic][] plugin, then make sure this is in your
   `.vimrc`:
 
-```vim
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-```
+    ```vim
+    let g:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_javascript_eslint_exec = 'eslint_d'
+    ```
 
 - __WebStorm__: Configure your IDE to point to the `eslint_d` package instead
   of `eslint`. In the ESLint configuration dialog, under 'ESLint package',
@@ -73,6 +73,12 @@ let g:syntastic_javascript_eslint_exec = 'eslint_d'
 - __Atom__: You will not gain any performance from this module as it already
   avoids starting a new node instance and uses the API directly (see [this
   AtomLinter issue](https://github.com/AtomLinter/linter-eslint/issues/215)).
+- __Emacs__: Use [flycheck](http://www.flycheck.org/) with the `javascript-eslint` 
+  checker:
+
+    ```elisp
+    (setq flycheck-javascript-eslint-executable "eslint_d")
+    ```
 
 If you're using `eslint_d` in any other editor, please tell me!
 
