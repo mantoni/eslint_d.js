@@ -1,5 +1,12 @@
 # Changes
 
+## 4.1.0
+
+Support for `--print-config` was [added by Aaron Jensen][pull 51]. He also
+added instructions for Emacs users.
+
+[pull 51]: https://github.com/mantoni/eslint_d.js/pull/51
+
 ## 4.0.1
 
 Fixes a security issue that was [noticed by Andri Möll][issue 45]. Thanks for
