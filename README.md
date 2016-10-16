@@ -58,6 +58,8 @@ along with an access token in `~/.eslint_d`.
 
 ## Editor integration
 
+### Linting
+
 - __Sublime__: Check out [SublimeLinter-contrib-eslint\_d][SublimeLinter].
 - __Vim__: Install the [syntastic][] plugin, then make sure this is in your
   `.vimrc`:
@@ -81,6 +83,42 @@ along with an access token in `~/.eslint_d`.
     ```
 
 If you're using `eslint_d` in any other editor, please tell me!
+
+### Automatic Fixing
+
+`eslint_d` has an additional flag that `eslint` does not have, `--fix-to-stdout`
+which prints the fixed file to stdout. This allows editors to add before save
+hooks to automatically fix a file prior to saving. It must be used with
+`--stdin`.
+
+- __Emacs__: Add this to your `init.el`, be sure to add hooks for the actual
+  major modes you use:
+
+    ```elisp
+    (defun eslint-fix ()
+      (interactive)
+      (setq temp-point (point))
+      (shell-command-on-region
+       ;; Region
+       (point-min)
+       (point-max)
+       ;; Command
+       "eslint_d --stdin --fix-to-stdout"
+       ;; Output to current buffer
+       t
+       ;; Replace buffer
+       t
+       ;; Error buffer name
+       "*eslint-fix error*"
+       ;; Display error buffer
+       t)
+      ;; Refresh syntax highlighting
+      (font-lock-fontify-buffer)
+      (goto-char temp-point))
+
+    (add-hook 'js-mode-hook
+              (lambda () (add-hook 'before-save-hook #'eslint-fix)))
+    ```
 
 ## Moar speed
 
