@@ -1,5 +1,19 @@
 # Changes
 
+## 4.2.0
+
+An exciting new feature comes to eslint_d, the first one that is not part of
+eslint itself. [Aaron Jensen implemented][pull 53] `--fix-to-stdout` which
+allows to integrated `eslint --fix` into your editor as a save action 🎉
+
+Currently, this feature only works with `--stdin` and you can test it like this:
+
+```
+$ cat ./some/file.js | eslint_d --fix-to-stdout --stdin
+```
+
+[pull 53]: https://github.com/mantoni/eslint_d.js/pull/53
+
 ## 4.1.0
 
 Support for `--print-config` was [added by Aaron Jensen][pull 51]. He also
