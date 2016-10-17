@@ -97,27 +97,27 @@ hooks to automatically fix a file prior to saving. It must be used with
     ```elisp
     (defun eslint-fix ()
       (interactive)
-      (setq temp-point (point))
-      (shell-command-on-region
-       ;; Region
-       (point-min)
-       (point-max)
-       ;; Command
-       "eslint_d --stdin --fix-to-stdout"
-       ;; Output to current buffer
-       t
-       ;; Replace buffer
-       t
-       ;; Error buffer name
-       "*eslint-fix error*"
-       ;; Display error buffer
-       t)
-      ;; Refresh syntax highlighting
-      (font-lock-fontify-buffer)
-      (goto-char temp-point))
+      (let ((current-point (point)))
+        (shell-command-on-region
+         ;; Region
+         (point-min)
+         (point-max)
+         ;; Command
+         "eslint_d --stdin --fix-to-stdout"
+         ;; Output to current buffer
+         t
+         ;; Replace buffer
+         t
+         ;; Error buffer name
+         "*eslint-fix error*"
+         ;; Display error buffer
+         t)
+        ;; Refresh syntax highlighting
+        (font-lock-fontify-buffer)
+        (goto-char current-point)))
 
     (add-hook 'js-mode-hook
-              (lambda () (add-hook 'before-save-hook #'eslint-fix)))
+              (lambda () (add-hook 'before-save-hook #'eslint-fix nil t)))
     ```
 
 ## Moar speed
