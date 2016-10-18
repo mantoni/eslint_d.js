@@ -92,29 +92,43 @@ hooks to automatically fix a file prior to saving. It must be used with
 `--stdin`.
 
 - __Emacs__: Add this to your `init.el`, be sure to add hooks for the actual
-  major modes you use:
+  major modes you use. If you're using along with flycheck, you can replace
+  `"eslint_d"` below with `flycheck-javascript-eslint-executable`:
 
     ```elisp
     (defun eslint-fix ()
       (interactive)
-      (let ((current-point (point)))
-        (shell-command-on-region
-         ;; Region
-         (point-min)
-         (point-max)
-         ;; Command
-         "eslint_d --stdin --fix-to-stdout"
-         ;; Output to current buffer
-         t
-         ;; Replace buffer
-         t
-         ;; Error buffer name
-         "*eslint-fix error*"
-         ;; Display error buffer
-         t)
-        ;; Refresh syntax highlighting
-        (font-lock-fontify-buffer)
-        (goto-char current-point)))
+      (let ((current-point (point))
+            (line (count-screen-lines (window-start) (point)))
+            (command (concat
+                      "eslint_d"
+                      " --stdin"
+                      " --fix-to-stdout"
+                      " --stdin-filename " buffer-file-name))
+            (buffer (current-buffer))
+            (text (buffer-substring-no-properties (point-min) (point-max))))
+        (with-temp-buffer
+          (insert text)
+          (when (eq 0
+                    (shell-command-on-region
+                     ;; Region
+                     (point-min)
+                     (point-max)
+                     ;; Command
+                     command
+                     ;; Output to current buffer
+                     t
+                     ;; Replace buffer
+                     t
+                     ;; Error buffer name
+                     "*eslint-fix error*"))
+            (let ((fixed-text (buffer-substring-no-properties (point-min) (point-max))))
+              (with-current-buffer buffer
+                (delete-region (point-min) (point-max))
+                (insert fixed-text)
+                ;; Restore point and scroll position
+                (goto-char current-point)
+                (recenter (- line 1))))))))
 
     (add-hook 'js-mode-hook
               (lambda () (add-hook 'before-save-hook #'eslint-fix nil t)))
