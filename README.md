@@ -33,6 +33,25 @@ $ eslint_d file.js
 On the initial call, the `eslint_d` server is launched and then the given file
 is linted. Subsequent invocations are super fast.
 
+## How does this work?
+
+The first time you use `eslint_d`, a little server is started in the background
+and bound to a random port. The port number is stored along with [a
+token][change401] in `~/.eslint_d`. You can then run `eslint_d` commands the
+same way you would use `eslint` and it will delegate to the background server.
+It will load a [separate instance][change220] of eslint for each working
+directory to make sure settings are kept local. If eslint is found in the
+current working directories `node_modules` folder, then this version of eslint
+is going to be used. Otherwise, the version of eslint that ships with
+`eslint_d` is used as a fallback.
+
+However, the performance gain comes at a small price: Changes in the eslint
+settings are only picked up after a server restart, so you will have to
+remember to run `eslint_d restart` after tweaking this rule or installing that
+plugin. Also, when you have a lot of projects that use eslint, it might use
+quite a bit of ram for cached instances. All memory can be freed up by running
+`eslint_d stop` or `eslint_d restart`.
+
 ## Commands
 
 Control the server like this:
@@ -156,12 +175,6 @@ have changed? This is a feature of normal `eslint`, but it also works from
 $ eslint_d . --cache
 ```
 
-## Refresh `.eslintrc`
-
-`eslint_d` runs serperate instances of eslint each working directory, (see [here](https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220)) for more details.
-
-However should the `.eslintrc` change after the server has already been started, you can manually reload the configuration by running `eslint_d restart` in the *working directory*.
-
 ## Compatibility
 
 - `4.0.0`: eslint 3.0+
@@ -177,3 +190,5 @@ MIT
 [eslint]: http://eslint.org
 [SublimeLinter]: https://github.com/roadhump/SublimeLinter-contrib-eslint_d
 [syntastic]: https://github.com/scrooloose/syntastic
+[change220]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220
+[change401]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#401
