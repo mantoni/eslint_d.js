@@ -1,5 +1,11 @@
 # Changes
 
+## 4.2.1
+
+Fixes [`--fix-to-stdout` when used with an empty file][pull 59].
+
+[pull 59]: https://github.com/mantoni/eslint_d.js/pull/59
+
 ## 4.2.0
 
 An exciting new feature comes to eslint_d, the first one that is not part of
