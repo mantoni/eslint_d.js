@@ -1,8 +1,12 @@
 # Changes
 
+## 4.2.2
+
+Fix `--fix-to-stdout` when used with an ignored file.
+
 ## 4.2.1
 
-Fixes [`--fix-to-stdout` when used with an empty file][pull 59].
+Fix [`--fix-to-stdout` when used with an empty file][pull 59].
 
 [pull 59]: https://github.com/mantoni/eslint_d.js/pull/59
 
