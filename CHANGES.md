@@ -1,5 +1,9 @@
 # Changes
 
+## 4.2.3
+
+Exit with status 1 when an error occurs. Fixes [#63](https://github.com/mantoni/eslint_d.js/issues/63).
+
 ## 4.2.2
 
 Fix `--fix-to-stdout` when used with an ignored file.
