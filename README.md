@@ -94,8 +94,8 @@ along with an access token in `~/.eslint_d`.
 - __Atom__: You will not gain any performance from this module as it already
   avoids starting a new node instance and uses the API directly (see [this
   AtomLinter issue](https://github.com/AtomLinter/linter-eslint/issues/215)).
-- __Emacs__: Use [flycheck](http://www.flycheck.org/) with the `javascript-eslint` 
-  checker:
+- __Emacs__: Use [flycheck](http://www.flycheck.org/) with the
+  `javascript-eslint` checker:
 
     ```elisp
     (setq flycheck-javascript-eslint-executable "eslint_d")
@@ -105,10 +105,10 @@ If you're using `eslint_d` in any other editor, please tell me!
 
 ### Automatic Fixing
 
-`eslint_d` has an additional flag that `eslint` does not have, `--fix-to-stdout`
-which prints the fixed file to stdout. This allows editors to add before save
-hooks to automatically fix a file prior to saving. It must be used with
-`--stdin`.
+`eslint_d` has an additional flag that `eslint` does not have,
+`--fix-to-stdout` which prints the fixed file to stdout. This allows editors to
+add before save hooks to automatically fix a file prior to saving. It must be
+used with `--stdin`.
 
 - __Emacs__: See [eslintd-fix](https://github.com/aaronjensen/eslintd-fix)
 
