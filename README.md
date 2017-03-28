@@ -110,6 +110,16 @@ If you're using `eslint_d` in any other editor, please tell me!
 add before save hooks to automatically fix a file prior to saving. It must be
 used with `--stdin`.
 
+- __Vim__: Add this to your `.vimrc` to lint the current buffer or visual
+  selection on `<leader>f`:
+
+    ```vim
+    " Autofix entire buffer with eslint_d:
+    nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
+    " Autofix visual selection with eslint_d:
+    vnoremap <leader>f :!eslint_d --stdin --fix-to-stdout<CR>gv
+    ```
+
 - __Emacs__: See [eslintd-fix](https://github.com/aaronjensen/eslintd-fix)
 
 ## Moar speed
