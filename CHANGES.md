@@ -1,8 +1,14 @@
 # Changes
 
+## 4.2.5
+
+Add `.vimrc` example for buffer auto-fixing to README.
+
 ## 4.2.4
 
-Exit with status 1 when an error occurs. Fixes [#63](https://github.com/mantoni/eslint_d.js/issues/63).
+Exit with status 1 when an error occurs. Fixes [#63][issue 63].
+
+[issue 63]: https://github.com/mantoni/eslint_d.js/issues/63
 
 ## 4.2.2
 
