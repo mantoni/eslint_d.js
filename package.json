@@ -19,7 +19,9 @@
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
-    "test": "eslint ."
+    "lint": "eslint bin lib",
+    "pretest": "npm run lint",
+    "test": "./test.sh"
   },
   "repository": {
     "type": "git",
