@@ -1,5 +1,13 @@
 # Changes
 
+## 5.0.0
+
+- Eslint 4 (#71) (Simen Bekkhus)
+- Update readme with eslint 4 (#72) (Simen Bekkhus)
+- Use [@studio/changes][] for release and remove `Makefile`
+
+[@studio/changes]: https://github.com/javascript-studio/studio-changes
+
 ## 4.2.5
 
 Add `.vimrc` example for buffer auto-fixing to README.
