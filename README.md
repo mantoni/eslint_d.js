@@ -134,6 +134,12 @@ $ TOKEN=`cat ~/.eslint_d | cut -d" " -f2`
 $ echo "$TOKEN $PWD file.js" | nc localhost $PORT
 ```
 
+Or if you want to work with stdin:
+
+```bash
+$ echo "$TOKEN $PWD --stdin" | cat - file.js | nc localhost $PORT
+```
+
 This runs `eslint` in under `50ms`!
 
 **Tip** For additional speed, did you know that you can lint only files that
