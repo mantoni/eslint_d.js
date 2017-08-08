@@ -16,7 +16,8 @@
     "ruanyl <ruanyu1@gmail.com>",
     "Nick Hwang <nhwang@hubspot.com>",
     "Aaron Jensen <aaronjensen@gmail.com>",
-    "Simen Bekkhus <sbekkhus91@gmail.com>"
+    "Simen Bekkhus <sbekkhus91@gmail.com>",
+    "Caleb Eby <calebeby@users.noreply.github.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
