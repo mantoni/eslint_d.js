@@ -1,5 +1,10 @@
 # Changes
 
+## 5.1.0
+
+- Allow using the `--stdin` flag with netcat (#74) (Caleb Eby)
+- Refactor `portfile.read` to a single async fs call
+
 ## 5.0.0
 
 - Eslint 4 (#71) (Simen Bekkhus)
