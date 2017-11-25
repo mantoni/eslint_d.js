@@ -1,5 +1,13 @@
 # Changes
 
+## 5.2.0
+
+- Fix lint errors (Aaron Jensen)
+- Force all open connections to close when the server is stopped (#79) (Aaron Jensen)
+
+    > This is a less graceful approach to stopping the server, but it allows for
+    > editors to hold a connection open to make for an even faster response time.
+
 ## 5.1.0
 
 - Allow using the `--stdin` flag with netcat (#74) (Caleb Eby)
