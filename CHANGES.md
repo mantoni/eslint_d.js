@@ -2,11 +2,15 @@
 
 ## 5.2.0
 
-- Fix lint errors (Aaron Jensen)
 - Force all open connections to close when the server is stopped (#79) (Aaron Jensen)
 
     > This is a less graceful approach to stopping the server, but it allows for
     > editors to hold a connection open to make for an even faster response time.
+
+   This was primarily implemented to allow [eslintd-fix][] to hold a connection
+   open to reduce latency when a fix is performed.
+
+[eslintd-fix]: https://github.com/aaronjensen/eslintd-fix
 
 ## 5.1.0
 
