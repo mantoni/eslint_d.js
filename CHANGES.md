@@ -1,5 +1,9 @@
 # Changes
 
+## 5.2.1
+
+- fix(launcher): passthrough environment variables (#81) (Huáng Jùnliàng)
+
 ## 5.2.0
 
 - Force all open connections to close when the server is stopped (#79) (Aaron Jensen)
