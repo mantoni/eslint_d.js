@@ -1,5 +1,14 @@
 # Changes
 
+## 5.2.2
+
+- Connect to 127.0.0.1 instead of localhost (#84) (Joseph Frazier)
+
+    > If `localhost` doesn't resolve to `127.0.0.1`, the client cannot connect
+    > to the server. This issue arose in
+    > https://github.com/josephfrazier/prettier_d/pull/7, and I ported the
+    > changes from there.
+
 ## 5.2.1
 
 - fix(launcher): passthrough environment variables (#81) (Huáng Jùnliàng)
