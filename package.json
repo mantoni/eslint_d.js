@@ -18,7 +18,8 @@
     "Aaron Jensen <aaronjensen@gmail.com>",
     "Simen Bekkhus <sbekkhus91@gmail.com>",
     "Caleb Eby <calebeby@users.noreply.github.com>",
-    "Huáng Jùnliàng <JLHwung@users.noreply.github.com>"
+    "Huáng Jùnliàng <JLHwung@users.noreply.github.com>",
+    "Joseph Frazier <1212jtraceur@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
