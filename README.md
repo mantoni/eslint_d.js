@@ -7,7 +7,7 @@ Makes [eslint][] the fastest linter on the planet.
 
 ## "But eslint is pretty fast already, right?"
 
-Yes, it's actually super fast. But the node.js startup time and loading all the
+Yes, it's really fast. But the node.js startup time and loading all the
 required modules slows down linting times for a single file to ~700
 milliseconds. `eslint_d` reduces this overhead by running a server in the
 background. It brings the linting time down to ~160 milliseconds. If you want
@@ -16,7 +16,7 @@ you.
 
 ## Install
 
-This will install the `eslint_d` command globally: 
+This will install the `eslint_d` command globally:
 
 ```bash
 $ npm install -g eslint_d
@@ -45,12 +45,12 @@ current working directories `node_modules` folder, then this version of eslint
 is going to be used. Otherwise, the version of eslint that ships with
 `eslint_d` is used as a fallback.
 
-However, the performance gain comes at a small price: Changes in the eslint
-settings are only picked up after a server restart, so you will have to
-remember to run `eslint_d restart` after tweaking this rule or installing that
-plugin. Also, when you have a lot of projects that use eslint, it might use
-quite a bit of ram for cached instances. All memory can be freed up by running
-`eslint_d stop` or `eslint_d restart`.
+Note that the performance gain comes at a small price: Some changes are only
+picked up after a server restart, so you will have to remember to run `eslint_d
+restart` after installing a plugin.
+
+To keep the memory footprint low, `eslint_d` keeps only the last 10 used
+instances in the internal [nanolru][] cache.
 
 ## Commands
 
@@ -101,7 +101,7 @@ along with an access token in `~/.eslint_d`.
     (setq flycheck-javascript-eslint-executable "eslint_d")
     ```
 
-If you're using `eslint_d` in any other editor, please tell me!
+If you're using `eslint_d` in any other editor, please let us know!
 
 ### Automatic Fixing
 
@@ -168,3 +168,4 @@ MIT
 [syntastic]: https://github.com/scrooloose/syntastic
 [change220]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220
 [change401]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#401
+[nanolru]: https://github.com/s3ththompson/nanolru
