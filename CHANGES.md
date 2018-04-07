@@ -1,5 +1,14 @@
 # Changes
 
+## 5.3.0
+
+- Use nanolru to limit the number of cached instances
+
+    > This also enhances the status command to show the number of cached
+    > instances.
+
+- Document cache eviction and link to nanolru
+
 ## 5.2.2
 
 - Connect to 127.0.0.1 instead of localhost (#84) (Joseph Frazier)
