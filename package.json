@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "chalk": "^1.1.1",
-    "eslint": "^4.0.0",
+    "eslint": "^4.19.1",
     "nanolru": "^1.0.0",
     "optionator": "^0.8.1",
     "resolve": "^1.1.7",
