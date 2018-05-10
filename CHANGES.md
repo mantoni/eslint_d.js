@@ -1,5 +1,9 @@
 # Changes
 
+## 5.3.1
+
+- Fix vulnerabilities by updating eslint
+
 ## 5.3.0
 
 - Use nanolru to limit the number of cached instances
