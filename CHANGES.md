@@ -1,5 +1,9 @@
 # Changes
 
+## 6.0.0
+
+- Upgrade to eslint 5 (Aaron Jensen)
+
 ## 5.3.1
 
 - Fix vulnerabilities by updating eslint
