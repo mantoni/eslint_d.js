@@ -37,7 +37,7 @@ if (cmd === 'start') {
       // If color is not supported, pass the `--no-color` switch to eslint. We
       // enforce color support in the daemon with `FORCE_COLOR=1` (see
       // `launcher.js`).
-      if (!require('supports-color')) {
+      if (!require('supports-color').stdout) {
         args.unshift('--no-color');
       }
 

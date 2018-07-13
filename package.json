@@ -37,7 +37,7 @@
     "nanolru": "^1.0.0",
     "optionator": "^0.8.1",
     "resolve": "^1.1.7",
-    "supports-color": "^3.1.2"
+    "supports-color": "^5.4.0"
   },
   "files": [
     "bin",
