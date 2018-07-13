@@ -2,7 +2,10 @@
   "name": "eslint_d",
   "version": "6.0.1",
   "description": "Makes eslint the fastest linter on the planet",
-  "bin": "bin/eslint_d.js",
+  "bin": {
+    "eslint_d": "bin/eslint_d.sh",
+    "eslint_d_server": "bin/eslint_d.js"
+  },
   "keywords": [
     "eslint",
     "lint"
