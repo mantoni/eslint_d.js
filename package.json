@@ -25,7 +25,7 @@
   "scripts": {
     "test": "eslint .",
     "preversion": "npm test",
-    "version": "changes",
+    "version": "changes --commits",
     "postversion": "git push --follow-tags && npm publish"
   },
   "repository": {
@@ -47,6 +47,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@studio/changes": "^1.3.0"
+    "@studio/changes": "^1.5.2"
   }
 }
