@@ -34,6 +34,9 @@ if (cmd === 'start') {
       var useStdIn = (process.argv.indexOf('--stdin') > -1);
       var args = process.argv.slice(2);
 
+      // If color is not supported, pass the `--no-color` switch to eslint. We
+      // enforce color support in the daemon with `FORCE_COLOR=1` (see
+      // `launcher.js`).
       if (!require('supports-color')) {
         args.unshift('--no-color');
       }
