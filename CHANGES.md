@@ -1,5 +1,20 @@
 # Changes
 
+## 6.0.1
+
+- [`acfe398`](https://github.com/mantoni/eslint_d.js/commit/acfe3986d3e7cc523fd4fbfab05e73f52fcd6338)
+  Fix color support (#88)
+- [`6851625`](https://github.com/mantoni/eslint_d.js/commit/6851625d2e767cb4d73a8d0f8eab54281d59bf7b)
+  Upgrade supports-color to v5
+- [`23cb9c2`](https://github.com/mantoni/eslint_d.js/commit/23cb9c248004c190e32bcdd291a14c737b5a74b5)
+  Remove direct chalk dependency
+
+    > Chalk is required relative to eslint, so the direct dependency is not
+    > being used.
+
+- [`745e013`](https://github.com/mantoni/eslint_d.js/commit/745e013387beaf08dd0a98ab1cf84ed028aed329)
+  Add commit hashes in changelog
+
 ## 6.0.0
 
 - Upgrade to eslint 5 (Aaron Jensen)
