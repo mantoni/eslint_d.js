@@ -1,5 +1,6 @@
 # eslint\_d
 
+[![Build Status]](https://travis-ci.org/mantoni/eslint_d.js)
 [![SemVer]](http://semver.org)
 [![License]](https://github.com/mantoni/eslint\_d.js/blob/master/LICENSE)
 
@@ -152,16 +153,18 @@ $ eslint_d . --cache
 
 ## Compatibility
 
+- `7.0.0`: eslint 5.0+, node 6, 8 and 10
 - `6.0.0`: eslint 5.0+
 - `5.0.0`: eslint 4.0+
 - `4.0.0`: eslint 3.0+
 - `3.0.0`: eslint 2.2+
-- `1.0.0`, `2.0.0`: eslint 1.4+
+- `1.0.0`, `2.0.0`: eslint 1.4+, node 4 (and probably older)
 
 ## License
 
 MIT
 
+[Build Status]: http://img.shields.io/travis/mantoni/eslint_d.js.svg
 [SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [License]: http://img.shields.io/npm/l/eslint_d.svg
 [eslint]: http://eslint.org
