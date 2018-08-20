@@ -164,10 +164,10 @@ $ eslint_d . --cache
 
 MIT
 
-[Build Status]: http://img.shields.io/travis/mantoni/eslint_d.js.svg
-[SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
-[License]: http://img.shields.io/npm/l/eslint_d.svg
-[eslint]: http://eslint.org
+[Build Status]: https://img.shields.io/travis/mantoni/eslint_d.js/master.svg
+[SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
+[License]: https://img.shields.io/npm/l/eslint_d.svg
+[eslint]: https://eslint.org
 [SublimeLinter]: https://github.com/roadhump/SublimeLinter-contrib-eslint_d
 [syntastic]: https://github.com/scrooloose/syntastic
 [change220]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220
