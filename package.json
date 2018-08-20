@@ -26,7 +26,10 @@
     "extends": "@studio"
   },
   "scripts": {
-    "test": "eslint .",
+    "test": "mocha",
+    "watch": "mocha --watch",
+    "lint": "eslint .",
+    "posttest": "npm run lint",
     "preversion": "npm test",
     "version": "changes --commits",
     "postversion": "git push --follow-tags && npm publish"
@@ -50,7 +53,9 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@sinonjs/referee-sinon": "^4.1.0",
     "@studio/changes": "^1.5.2",
-    "@studio/eslint-config": "^1.0.2"
+    "@studio/eslint-config": "^1.0.2",
+    "mocha": "^5.2.0"
   }
 }
