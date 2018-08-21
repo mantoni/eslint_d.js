@@ -5,6 +5,7 @@ const net = require('net');
 const crypto = require('crypto');
 const EventEmitter = require('events');
 const { assert, refute, sinon } = require('@sinonjs/referee-sinon');
+const out = require('../lib/out');
 const client = require('../lib/client');
 const portfile = require('../lib/portfile');
 const launcher = require('../lib/launcher');
@@ -17,7 +18,7 @@ describe('client', () => {
   beforeEach(() => {
     socket = new EventEmitter();
     socket.end = sinon.fake();
-    sinon.replace(process.stdout, 'write', sinon.fake());
+    sinon.replace(out, 'write', sinon.fake());
   });
 
   afterEach(() => {
@@ -30,7 +31,7 @@ describe('client', () => {
 
     client[method](...args);
 
-    assert.calledOnceWith(process.stdout.write, 'Not running\n');
+    assert.calledOnceWith(out.write, 'Not running\n');
     refute.defined(process.exitCode);
   }
 
@@ -44,7 +45,7 @@ describe('client', () => {
 
     socket.emit('error', new Error());
 
-    assert.calledOnceWith(process.stdout.write, 'Could not connect\n');
+    assert.calledOnceWith(out.write, 'Could not connect\n');
     assert.equals(process.exitCode, 1);
   }
 
@@ -69,8 +70,8 @@ describe('client', () => {
 
       socket.emit('data', 'Some response');
       socket.emit('end');
-      assert.calledWith(process.stdout.write, 'Some response');
-      assert.calledWith(process.stdout.write, '\n');
+      assert.calledWith(out.write, 'Some response');
+      assert.calledWith(out.write, '\n');
       refute.defined(process.exitCode);
     });
 
@@ -95,7 +96,7 @@ describe('client', () => {
       net.connect.firstCall.callback();
 
       assert.calledOnceWith(socket.end, `${token} stop`);
-      refute.called(process.stdout.write);
+      refute.called(out.write);
       refute.called(callback);
 
       socket.end.firstCall.callback();
@@ -137,7 +138,7 @@ describe('client', () => {
 
       socket.emit('data', 'Some response');
       socket.emit('end');
-      assert.calledOnceWith(process.stdout.write, 'Some response');
+      assert.calledOnceWith(out.write, 'Some response');
       refute.defined(process.exitCode);
     }
 
@@ -153,7 +154,7 @@ describe('client', () => {
       socket.emit('data', 'Some response\n# exit 1');
       socket.emit('end');
 
-      assert.calledOnceWith(process.stdout.write, 'Some response\n');
+      assert.calledOnceWith(out.write, 'Some response\n');
       assert.equals(process.exitCode, 1);
     });
 
@@ -165,8 +166,8 @@ describe('client', () => {
       socket.emit('data', 'eslint');
       socket.emit('end');
 
-      assert.calledWith(process.stdout.write, 'Some response\n');
-      assert.calledWith(process.stdout.write, 'from eslint');
+      assert.calledWith(out.write, 'Some response\n');
+      assert.calledWith(out.write, 'from eslint');
       refute.defined(process.exitCode);
     });
 
@@ -196,7 +197,7 @@ describe('client', () => {
 
       launcher.launch.firstCall.callback('Could not connect');
 
-      assert.calledOnceWith(process.stdout.write, 'Could not connect\n');
+      assert.calledOnceWith(out.write, 'Could not connect\n');
       assert.equals(process.exitCode, 1);
     });
 
@@ -209,7 +210,7 @@ describe('client', () => {
       socket.emit('error', new Error());
 
       refute.called(launcher.launch);
-      assert.calledOnceWith(process.stdout.write, 'Could not connect\n');
+      assert.calledOnceWith(out.write, 'Could not connect\n');
       assert.equals(process.exitCode, 1);
     });
 

@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const EventEmitter = require('events');
 const child_process = require('child_process');
 const { assert, refute, sinon } = require('@sinonjs/referee-sinon');
+const out = require('../lib/out');
 const launcher = require('../lib/launcher');
 const portfile = require('../lib/portfile');
 
@@ -107,13 +108,13 @@ describe('launcher', () => {
 
   it('prints message and does not invoke callback if already running', () => {
     sinon.replace(portfile, 'read', sinon.fake.yields({ port: 7654, token }));
-    sinon.replace(process.stdout, 'write', sinon.fake());
+    sinon.replace(out, 'write', sinon.fake());
     const connect = sinon.replace(net, 'connect', sinon.fake.returns(socket));
 
     launcher.launch(callback);
     connect.firstCall.callback();
 
-    assert.calledOnceWith(process.stdout.write, 'Already running\n');
+    assert.calledOnceWith(out.write, 'Already running\n');
     refute.called(callback);
   });
 
