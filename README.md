@@ -153,10 +153,10 @@ $ eslint_d . --cache
 
 ## Compatibility
 
-- `7.0.0`: eslint 5.0+, node 6, 8 and 10
-- `6.0.0`: eslint 5.0+
+- `7.0.0`: eslint 5.4+, node 6, 8 and 10
+- `6.0.0`: eslint 5.0+, node 6+ (eslint dropped node 4)
 - `5.0.0`: eslint 4.0+
-- `4.0.0`: eslint 3.0+
+- `4.0.0`: eslint 3.0+, node 4+ (eslint dropped node 0.10 and 0.12)
 - `3.0.0`: eslint 2.2+
 - `1.0.0`, `2.0.0`: eslint 1.4+, node 4 (and probably older)
 
