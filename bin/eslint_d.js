@@ -31,17 +31,9 @@ if (cmd === 'start') {
   } else {
     const commands = ['stop', 'status', 'restart'];
     if (commands.indexOf(cmd) === -1) {
-      const useStdIn = (process.argv.indexOf('--stdin') > -1);
       const args = process.argv.slice(2);
 
-      // If color is not supported, pass the `--no-color` switch to eslint. We
-      // enforce color support in the daemon with `FORCE_COLOR=1` (see
-      // `launcher.js`).
-      if (!require('supports-color').stdout) {
-        args.unshift('--no-color');
-      }
-
-      if (useStdIn) {
+      if (args.indexOf('--stdin') > -1) {
         let text = '';
         process.stdin.setEncoding('utf8');
         process.stdin.on('data', (chunk) => {

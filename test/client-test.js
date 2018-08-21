@@ -4,6 +4,7 @@
 const net = require('net');
 const crypto = require('crypto');
 const EventEmitter = require('events');
+const supports_color = require('supports-color');
 const { assert, refute, sinon } = require('@sinonjs/referee-sinon');
 const out = require('../lib/out');
 const client = require('../lib/client');
@@ -11,6 +12,16 @@ const portfile = require('../lib/portfile');
 const launcher = require('../lib/launcher');
 
 const token = crypto.randomBytes(8).toString('hex');
+
+function enableColor() {
+  const replacement = typeof supports_color.stdout === 'boolean' ? true : {};
+  sinon.replace(supports_color, 'stdout', replacement);
+}
+
+function disableColor() {
+  const replacement = typeof supports_color.stdout === 'boolean' ? false : null;
+  sinon.replace(supports_color, 'stdout', replacement);
+}
 
 describe('client', () => {
   let socket;
@@ -143,6 +154,8 @@ describe('client', () => {
     }
 
     it('sends token and { cwd, args, text } to server', () => {
+      enableColor();
+
       lint();
 
       verifyLinting();
@@ -185,6 +198,7 @@ describe('client', () => {
     });
 
     it('send token and json to server once launched successfully', () => {
+      enableColor();
       launch();
 
       launcher.launch.firstCall.callback(null, socket, token);
@@ -212,6 +226,19 @@ describe('client', () => {
       refute.called(launcher.launch);
       assert.calledOnceWith(out.write, 'Could not connect\n');
       assert.equals(process.exitCode, 1);
+    });
+
+    it('adds --no-color option if stdout does not support colors', () => {
+      disableColor();
+
+      lint();
+
+      const json = JSON.stringify({
+        cwd,
+        args: ['--no-color', '--some', '-t'],
+        text
+      });
+      assert.calledOnceWith(socket.end, `${token} ${json}`);
     });
 
   });
