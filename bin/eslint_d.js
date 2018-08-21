@@ -2,7 +2,7 @@
 'use strict';
 
 function start() {
-  require('../lib/launcher')();
+  require('../lib/launcher').launch();
 }
 
 const cmd = process.argv[2];

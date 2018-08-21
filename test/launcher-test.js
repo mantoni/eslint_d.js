@@ -29,13 +29,14 @@ describe('launcher', () => {
 
   afterEach(() => {
     sinon.restore();
+    delete process.exitCode;
   });
 
   it('launches child process', () => {
     sinon.replace(portfile, 'read', sinon.fake.yields(null));
     const callback = sinon.spy();
 
-    launcher(callback);
+    launcher.launch(callback);
 
     assert.calledOnceWith(child_process.spawn, 'node', [server], {
       detached: true,
@@ -52,7 +53,7 @@ describe('launcher', () => {
   function launch() {
     sinon.stub(portfile, 'read').yields(null);
 
-    launcher(callback);
+    launcher.launch(callback);
 
     portfile.read.yields({ port: 7654, token });
     return sinon.replace(net, 'connect', sinon.fake.returns(socket));
@@ -67,20 +68,19 @@ describe('launcher', () => {
     refute.called(callback);
   });
 
-  it('yields null once connected', () => {
+  it('yields (null, socket, token) once connected', () => {
     const connect = launch();
     clock.tick(100);
 
     connect.firstCall.callback();
 
-    assert.calledOnce(socket.end);
-    assert.calledOnce(callback);
+    assert.calledOnceWith(callback, null, socket, token);
   });
 
   it('retries every 100 milliseconds if port file is still missing', () => {
     sinon.replace(portfile, 'read', sinon.fake.yields(null));
 
-    launcher(callback);
+    launcher.launch(callback);
     clock.tick(100);
     clock.tick(100);
 
@@ -110,7 +110,7 @@ describe('launcher', () => {
     sinon.replace(process.stdout, 'write', sinon.fake());
     const connect = sinon.replace(net, 'connect', sinon.fake.returns(socket));
 
-    launcher(callback);
+    launcher.launch(callback);
     connect.firstCall.callback();
 
     assert.calledOnceWith(process.stdout.write, 'Already running\n');
