@@ -60,6 +60,33 @@ describe('client', () => {
     assert.equals(process.exitCode, 1);
   }
 
+  describe('start', () => {
+
+    it('invokes launcher', () => {
+      sinon.replace(launcher, 'launch', sinon.fake());
+
+      client.start();
+
+      assert.calledOnce(launcher.launch);
+      refute.called(out.write);
+    });
+
+    it('prints "Could not connect" if connection fails', () => {
+      verifyCouldNotConnect('start');
+    });
+
+    it('prints "Already running" if connection succeeds', () => {
+      sinon.replace(portfile, 'read', sinon.fake.yields({ port: 4321, token }));
+      sinon.replace(net, 'connect', sinon.fake.returns(socket));
+
+      client.start();
+      net.connect.firstCall.callback();
+
+      assert.calledOnceWith(out.write, 'Already running\n');
+    });
+
+  });
+
   describe('status', () => {
 
     it('prints "Not running" if portfile cannot be read', () => {
@@ -95,6 +122,22 @@ describe('client', () => {
 
     it('prints "Could not connect" if connection fails', () => {
       verifyCouldNotConnect('stop');
+    });
+
+    it('still invokes callback if "Not running"', () => {
+      const callback = sinon.fake();
+
+      verifyNotRunning('stop', callback);
+
+      assert.calledOnce(callback);
+    });
+
+    it('does not invoke callback if "Could not connect"', () => {
+      const callback = sinon.fake();
+
+      verifyCouldNotConnect('stop', callback);
+
+      refute.called(callback);
     });
 
     it('sends token and "stop" command to server', () => {
@@ -150,6 +193,36 @@ describe('client', () => {
       refute.exception(() => {
         socket.end.firstCall.callback();
       });
+    });
+
+  });
+
+  describe('restart', () => {
+
+    it('invokes stop and start', (done) => {
+      sinon.replace(client, 'stop', sinon.fake.yields());
+      sinon.replace(client, 'start', sinon.fake());
+
+      client.restart();
+
+      setTimeout(() => {
+        assert.calledOnce(client.stop);
+        assert.calledOnce(client.start);
+        assert.callOrder(client.stop, client.start);
+        done();
+      }, 1);
+    });
+
+    it('does not invoke start if stop does not yield', (done) => {
+      sinon.replace(client, 'stop', sinon.fake());
+      sinon.replace(client, 'start', sinon.fake());
+
+      client.restart();
+
+      setTimeout(() => {
+        refute.called(client.start);
+        done();
+      }, 1);
     });
 
   });
