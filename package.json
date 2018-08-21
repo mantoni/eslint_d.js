@@ -22,8 +22,14 @@
     "Joseph Frazier <1212jtraceur@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
+  "eslintConfig": {
+    "extends": "@studio"
+  },
   "scripts": {
-    "test": "eslint .",
+    "test": "mocha",
+    "watch": "mocha --watch",
+    "lint": "eslint .",
+    "posttest": "npm run lint",
     "preversion": "npm test",
     "version": "changes --commits",
     "postversion": "git push --follow-tags && npm publish"
@@ -33,11 +39,11 @@
     "url": "https://github.com/mantoni/eslint_d.js.git"
   },
   "dependencies": {
-    "eslint": "^5.0.1",
+    "eslint": "^5.4.0",
     "nanolru": "^1.0.0",
     "optionator": "^0.8.1",
-    "resolve": "^1.1.7",
-    "supports-color": "^5.4.0"
+    "resolve": "^1.8.1",
+    "supports-color": "^5.5.0"
   },
   "files": [
     "bin",
@@ -47,6 +53,9 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@studio/changes": "^1.5.2"
+    "@sinonjs/referee-sinon": "^4.1.0",
+    "@studio/changes": "^1.6.0",
+    "@studio/eslint-config": "^1.0.2",
+    "mocha": "^5.2.0"
   }
 }

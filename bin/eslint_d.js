@@ -2,10 +2,10 @@
 'use strict';
 
 function start() {
-  require('../lib/launcher')();
+  require('../lib/launcher').launch();
 }
 
-var cmd = process.argv[2];
+const cmd = process.argv[2];
 if (cmd === 'start') {
 
   start();
@@ -18,38 +18,28 @@ if (cmd === 'start') {
 
 } else if (cmd === '-h' || cmd === '--help') {
 
-  var options = require('../lib/options');
+  const options = require('../lib/options');
   console.log(options.generateHelp());
 
 } else {
 
-  var client = require('../lib/client');
+  const client = require('../lib/client');
   if (cmd === 'restart') {
-    client.stop(function () {
+    client.stop(() => {
       process.nextTick(start);
     });
   } else {
-    var commands = ['stop', 'status', 'restart'];
+    const commands = ['stop', 'status', 'restart'];
     if (commands.indexOf(cmd) === -1) {
-      var useStdIn = (process.argv.indexOf('--stdin') > -1);
-      var args = process.argv.slice(2);
+      const args = process.argv.slice(2);
 
-      // If color is not supported, pass the `--no-color` switch to eslint. We
-      // enforce color support in the daemon with `FORCE_COLOR=1` (see
-      // `launcher.js`).
-      if (!require('supports-color').stdout) {
-        args.unshift('--no-color');
-      }
-
-      if (useStdIn) {
-        var text = '';
+      if (args.indexOf('--stdin') > -1) {
+        let text = '';
         process.stdin.setEncoding('utf8');
-
-        process.stdin.on('data', function (chunk) {
+        process.stdin.on('data', (chunk) => {
           text += chunk;
         });
-
-        process.stdin.on('end', function () {
+        process.stdin.on('end', () => {
           client.lint(args, text);
         });
       } else {
