@@ -116,6 +116,20 @@ describe('client', () => {
       refute.defined(process.exitCode);
     });
 
+    it('writes server output back to connection', () => {
+      sinon.replace(portfile, 'read', sinon.fake.yields({ port: 4321, token }));
+      sinon.replace(net, 'connect', sinon.fake.returns(socket));
+
+      client.stop();
+      net.connect.firstCall.callback();
+
+      socket.emit('data', 'Some response');
+      socket.emit('end');
+      assert.calledWith(out.write, 'Some response');
+      assert.calledWith(out.write, '\n');
+      refute.defined(process.exitCode);
+    });
+
     it('does not fail if no callback was given', () => {
       sinon.replace(portfile, 'read', sinon.fake.yields({ port: 4321, token }));
       sinon.replace(net, 'connect', sinon.fake.returns(socket));
