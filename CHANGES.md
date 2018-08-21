@@ -1,5 +1,61 @@
 # Changes
 
+## 7.0.0
+
+### Highlights:
+
+- The source level of this module was [changed to ES 6][pull 91]
+- Node support is now explicitly stated to be Node 6, 8 and 10
+- The [new unit test suite][pull 91] is executed on [Travis][travis] with all
+  supported Node versions
+- `eslint_d` now ships with eslint `^5.4.0`.
+
+### Commits:
+
+- [`312c35e`](https://github.com/mantoni/eslint_d.js/commit/312c35ee7a76bd199feae2910fc7df25d008e532)
+  Move start and restart to client
+- [`42bbb54`](https://github.com/mantoni/eslint_d.js/commit/42bbb54343817dc76faa6ace8745e6eb34791f4f)
+  Fix superfluous newline on socket "end" event
+- [`64c1d6d`](https://github.com/mantoni/eslint_d.js/commit/64c1d6d67d03938c36d4749b5d217712982987b1)
+  Refactor `client.js`
+- [`685fcf0`](https://github.com/mantoni/eslint_d.js/commit/685fcf05d7779fbc359233e6bae5f65b09a1dfc0)
+  Refactor `server.js`
+- [`88cb781`](https://github.com/mantoni/eslint_d.js/commit/88cb78197ccbe56869ff4a2c8f7f1e8526d343ca)
+  Remove unnecessary try-catch
+- [`afefb2f`](https://github.com/mantoni/eslint_d.js/commit/afefb2f1e29803f683b3bf5c360ec0241b1a3a01)
+  Extract `resolveModules` helper
+- [`4c70735`](https://github.com/mantoni/eslint_d.js/commit/4c707356d0b2a93e4d5595bf2cf125f0d8682792)
+  Consolidate `connect` logic
+- [`d979eca`](https://github.com/mantoni/eslint_d.js/commit/d979ecaae1f577a1518020da81d7188968a9b0f7)
+  Improve compatibility notes in readme
+- [`a55d177`](https://github.com/mantoni/eslint_d.js/commit/a55d177a5c772018818d74237bb5641a2daff819)
+  Update dependencies
+- [`240732c`](https://github.com/mantoni/eslint_d.js/commit/240732c2dfce8dada22404cdac013fded22b103a)
+  Move `--no-color` handling into client.js
+- [`017e78f`](https://github.com/mantoni/eslint_d.js/commit/017e78f2b9bbd39c7397e966113fe55d78b5c709)
+  Add tests for `linter.js`
+- [`97f1e10`](https://github.com/mantoni/eslint_d.js/commit/97f1e10662501b744c2bc7d099e566fef3462843)
+  Add tests for `server.js`
+- [`b7739ec`](https://github.com/mantoni/eslint_d.js/commit/b7739ecaaddda3b23308ea910cab32f1ad4521e7)
+  Refactor `daemon.js` out of `server.js`
+- [`d793f4c`](https://github.com/mantoni/eslint_d.js/commit/d793f4cbb823a9c1babf9f0c07155e917de623c2)
+  Do not call `process.stdout.write` directly
+- [`451978d`](https://github.com/mantoni/eslint_d.js/commit/451978d8ca4a003b1ec84f149b0625936f8c403b)
+  Add tests for `client.js`
+- [`907847c`](https://github.com/mantoni/eslint_d.js/commit/907847c9da8ad7dc059dc059a8ba072bd7d69fd0)
+  Use https links and point build badge to master
+- [`0518785`](https://github.com/mantoni/eslint_d.js/commit/0518785f88e5c16b8955c29b25f84c668801d53b)
+  Add tests for `launcher.js`
+- [`33eb49b`](https://github.com/mantoni/eslint_d.js/commit/33eb49bd0371b40d86637378cc0e81f0fed8e324)
+  Add tests for `portfile.js`
+- [`05e990d`](https://github.com/mantoni/eslint_d.js/commit/05e990de1cce0072af57b16b01cd2c49b2b4fa9f)
+  Add travis config, build badge
+- [`d25082a`](https://github.com/mantoni/eslint_d.js/commit/d25082aba33e75a9ace3d036dd9b506cbd4b39ac)
+  Switch eslint config to `@studio/eslint-config`
+
+[pull 91]: https://github.com/mantoni/eslint_d.js/pull/91
+[travis]: https://travis-ci.org/mantoni/eslint_d.js
+
 ## 6.0.1
 
 - [`acfe398`](https://github.com/mantoni/eslint_d.js/commit/acfe3986d3e7cc523fd4fbfab05e73f52fcd6338)
