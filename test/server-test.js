@@ -202,8 +202,17 @@ describe('server', () => {
 
       request(connection, `${token} ${JSON.stringify(json)}`);
 
-      assert.calledOnceWith(connection.write, 'Error: Whatever\n# exit 1');
-      assert.calledOnce(connection.end);
+      assert.calledOnceWith(connection.end, 'Error: Whatever\n# exit 1');
+    });
+
+    it('does not throw if connection died after exception from linter', () => {
+      sinon.replace(linter, 'lint', sinon.fake.throws(new Error('Whatever')));
+      connection.end = sinon.fake.throws(new Error('Oh dear!'));
+      start();
+
+      refute.exception(() => {
+        request(connection, `${token} ${JSON.stringify(json)}`);
+      });
     });
 
   });
