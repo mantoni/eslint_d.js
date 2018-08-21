@@ -10,7 +10,7 @@ const out = require('../lib/out');
 const launcher = require('../lib/launcher');
 const portfile = require('../lib/portfile');
 
-const server = require.resolve('../lib/server');
+const daemon = require.resolve('../lib/daemon');
 const token = crypto.randomBytes(8).toString('hex');
 
 describe('launcher', () => {
@@ -39,7 +39,7 @@ describe('launcher', () => {
 
     launcher.launch(callback);
 
-    assert.calledOnceWith(child_process.spawn, 'node', [server], {
+    assert.calledOnceWith(child_process.spawn, 'node', [daemon], {
       detached: true,
       env: sinon.match({
         FORCE_COLOR: 1
