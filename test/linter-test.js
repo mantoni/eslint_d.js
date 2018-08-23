@@ -2,6 +2,7 @@
 'use strict';
 
 const path = require('path');
+const resolve = require('resolve');
 const { assert, refute, sinon } = require('@sinonjs/referee-sinon');
 const linter = require('../lib/linter');
 
@@ -19,17 +20,71 @@ describe('linter', () => {
 
   describe('instance caching', () => {
 
+    beforeEach(() => {
+      sinon.spy(resolve, 'sync');
+    });
+
     it('reuses instance from cache', () => {
-      linter.lint(cwd, ['--stdin'], '\'use strict\';');
+      linter.lint(cwd, ['--stdin'], '\'use strict\';', 1234);
+      const cache1 = linter.cache.get(cwd);
+      linter.lint(cwd, ['--stdin'], '\'use strict\';', 1234);
+      const cache2 = linter.cache.get(cwd);
 
       assert.equals(linter.cache.length, 1);
+      assert.same(cache1, cache2, 'Cache recreated');
+      assert.same(cache1.eslint, cache2.eslint);
+      assert.calledTwice(resolve.sync);
+      assert.calledWithMatch(resolve.sync, 'eslint', { basedir: cwd });
+      assert.calledWith(resolve.sync, 'chalk');
     });
 
     it('uses new instance for different directory', () => {
+      const cwd2 = path.join(cwd, 'test');
       linter.lint(cwd, ['--stdin'], '\'use strict\';');
-      linter.lint(path.join(cwd, 'test'), ['--stdin'], '\'use strict\';');
+      linter.lint(cwd2, ['--stdin'], '\'use strict\';');
 
       assert.equals(linter.cache.length, 2);
+      assert.callCount(resolve.sync, 4);
+      assert.calledWithMatch(resolve.sync, 'eslint', { basedir: cwd });
+      assert.calledWithMatch(resolve.sync, 'eslint', { basedir: cwd2 });
+    });
+
+    it('creates new instance if mtime is larger than first call', () => {
+      const now = Date.now();
+      const clock = sinon.useFakeTimers(now);
+      linter.lint(cwd, ['--stdin'], '\'use strict\';', now - 1000);
+      const cache1 = linter.cache.get(cwd);
+
+      clock.tick(1000);
+      linter.lint(cwd, ['--stdin'], '\'use strict\';', now + 500);
+      const cache2 = linter.cache.get(cwd);
+
+      assert.equals(linter.cache.length, 1);
+      refute.same(cache1, cache2);
+      refute.same(cache1.eslint, cache2.eslint, 'require.cache cleared');
+      assert.callCount(resolve.sync, 4);
+    });
+
+    it('does not create new instance if mtime is lower than last call', () => {
+      const now = Date.now();
+      const clock = sinon.useFakeTimers(now);
+      linter.lint(cwd, ['--stdin'], '\'use strict\';', now - 1000);
+      const cache1 = linter.cache.get(cwd);
+
+      clock.tick(1000);
+      linter.lint(cwd, ['--stdin'], '\'use strict\';', now - 1000);
+      const cache2 = linter.cache.get(cwd);
+
+      clock.tick(1000);
+      // Newer than initial timestamp, but older than last run. Verifies the
+      // timestamp in the cache was renewed.
+      linter.lint(cwd, ['--stdin'], '\'use strict\';', now + 500);
+      const cache3 = linter.cache.get(cwd);
+
+      assert.equals(linter.cache.length, 1);
+      assert.same(cache1, cache2);
+      assert.same(cache2, cache3);
+      assert.callCount(resolve.sync, 2);
     });
 
   });

@@ -1,6 +1,7 @@
 /*eslint-env mocha*/
 'use strict';
 
+const fs = require('fs');
 const net = require('net');
 const crypto = require('crypto');
 const EventEmitter = require('events');
@@ -75,6 +76,7 @@ describe('server', () => {
   });
 
   it('closes connection without writing anything for empty request', () => {
+    sinon.replace(fs, 'stat', sinon.fake());
     start();
 
     request(connection);
@@ -84,6 +86,10 @@ describe('server', () => {
   });
 
   describe('stop', () => {
+
+    beforeEach(() => {
+      sinon.replace(fs, 'stat', sinon.fake());
+    });
 
     it('closes connection and server for "stop" command', () => {
       start();
@@ -139,9 +145,22 @@ describe('server', () => {
       refute.called(net_server.close);
     });
 
+    it('stops server without waiting for stat calls', () => {
+      start();
+
+      request(connection, `${token} stop`);
+
+      assert.calledOnce(net_server.close);
+      assert.calledOnce(connection.end);
+    });
+
   });
 
   describe('status', () => {
+
+    beforeEach(() => {
+      sinon.replace(fs, 'stat', sinon.fake());
+    });
 
     it('prints linter status and closes connection', () => {
       sinon.replace(linter, 'getStatus', sinon.fake.returns('Oh, hi!\n'));
@@ -164,6 +183,16 @@ describe('server', () => {
       refute.called(linter.getStatus);
     });
 
+    it('gets "status" without waiting for stat calls', () => {
+      sinon.replace(linter, 'getStatus', sinon.fake.returns('Yes yo!'));
+      start();
+
+      request(connection, `${token} status`);
+
+      assert.calledOnce(linter.getStatus);
+      assert.calledOnceWith(connection.end, 'Yes yo!');
+    });
+
   });
 
   describe('lint', () => {
@@ -174,6 +203,7 @@ describe('server', () => {
     };
 
     it('invokes linter with JSON arguments', () => {
+      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
       sinon.replace(linter, 'lint', sinon.fake.returns('Oh, hi!\n'));
       start();
 
@@ -185,6 +215,7 @@ describe('server', () => {
     });
 
     it('invokes linter with plain text arguments', () => {
+      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
       sinon.replace(linter, 'lint', sinon.fake.returns('Oh, hi!\n'));
       start();
 
@@ -197,6 +228,7 @@ describe('server', () => {
     });
 
     it('handles exception from linter', () => {
+      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
       sinon.replace(linter, 'lint', sinon.fake.throws(new Error('Whatever')));
       start();
 
@@ -206,6 +238,7 @@ describe('server', () => {
     });
 
     it('does not throw if connection died after exception from linter', () => {
+      sinon.replace(fs, 'stat', sinon.fake.yields(new Error()));
       sinon.replace(linter, 'lint', sinon.fake.throws(new Error('Whatever')));
       connection.end = sinon.fake.throws(new Error('Oh dear!'));
       start();
@@ -213,8 +246,53 @@ describe('server', () => {
       refute.exception(() => {
         request(connection, `${token} ${JSON.stringify(json)}`);
       });
+      assert.calledOnce(connection.end); // Verify actually called
     });
 
+    it('stats common package manager files on connect', () => {
+      sinon.replace(fs, 'stat', sinon.fake());
+      sinon.replace(linter, 'lint', sinon.fake());
+      start();
+
+      request(connection, `${token} ${JSON.stringify(json)}`);
+
+      assert.calledWith(fs.stat, 'package.json');
+      assert.calledWith(fs.stat, 'package-lock.json');
+      assert.calledWith(fs.stat, 'npm-shrinkwrap.json');
+      assert.calledWith(fs.stat, 'yarn.lock');
+    });
+
+    it('does not lint until stat calls yield', () => {
+      sinon.replace(fs, 'stat', sinon.fake());
+      sinon.replace(linter, 'lint', sinon.fake());
+      start();
+
+      request(connection, `${token} ${JSON.stringify(json)}`);
+
+      refute.called(linter.lint);
+
+      fs.stat.getCall(0).callback(new Error());
+      fs.stat.getCall(1).callback(new Error());
+      fs.stat.getCall(2).callback(new Error());
+      fs.stat.getCall(3).callback(new Error());
+
+      assert.calledOnce(linter.lint);
+    });
+
+    it('passes largest mtime value to linter', () => {
+      sinon.replace(fs, 'stat', sinon.fake());
+      sinon.replace(linter, 'lint', sinon.fake());
+      start();
+
+      request(connection, `${token} ${JSON.stringify(json)}`);
+
+      fs.stat.getCall(0).callback(null, { mtimeMs: 7 });
+      fs.stat.getCall(1).callback(null, { mtimeMs: 42 });
+      fs.stat.getCall(2).callback(null, { mtimeMs: 2 });
+      fs.stat.getCall(3).callback(null, { mtimeMs: 3 });
+
+      assert.calledOnceWith(linter.lint, json.cwd, json.args, json.text, 42);
+    });
   });
 
 });
