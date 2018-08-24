@@ -1,5 +1,20 @@
 # Changes
 
+## 7.1.0
+
+### Automatic cache flushing on common package manager file modification:
+
+When updating eslint or a plugin, like prettier, eslint\_d had to be restarted
+with `eslint_d restart` to pick up the changes. With this release, the internal
+cache is discarded and a new instance is created when one of these files is
+touched: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` or
+`yarn.lock`.
+
+- [`0176ec5`](https://github.com/mantoni/eslint_d.js/commit/0176ec55d08ebf7f4ac209ce402ea96a1b988e86)
+  Check mtime of common package manager files
+- [`39c56bc`](https://github.com/mantoni/eslint_d.js/commit/39c56bc1d7686aa5316cde34362bec30e57cf82d)
+  Document automatic cache flushing
+
 ## 7.0.0
 
 ### Highlights:
