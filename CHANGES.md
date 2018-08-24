@@ -79,10 +79,8 @@ touched: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` or
   Upgrade supports-color to v5
 - [`23cb9c2`](https://github.com/mantoni/eslint_d.js/commit/23cb9c248004c190e32bcdd291a14c737b5a74b5)
   Remove direct chalk dependency
-
     > Chalk is required relative to eslint, so the direct dependency is not
     > being used.
-
 - [`745e013`](https://github.com/mantoni/eslint_d.js/commit/745e013387beaf08dd0a98ab1cf84ed028aed329)
   Add commit hashes in changelog
 
@@ -97,16 +95,13 @@ touched: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` or
 ## 5.3.0
 
 - Use nanolru to limit the number of cached instances
-
     > This also enhances the status command to show the number of cached
     > instances.
-
 - Document cache eviction and link to nanolru
 
 ## 5.2.2
 
 - Connect to 127.0.0.1 instead of localhost (#84) (Joseph Frazier)
-
     > If `localhost` doesn't resolve to `127.0.0.1`, the client cannot connect
     > to the server. This issue arose in
     > https://github.com/josephfrazier/prettier_d/pull/7, and I ported the
@@ -119,12 +114,11 @@ touched: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` or
 ## 5.2.0
 
 - Force all open connections to close when the server is stopped (#79) (Aaron Jensen)
-
     > This is a less graceful approach to stopping the server, but it allows for
     > editors to hold a connection open to make for an even faster response time.
 
-   This was primarily implemented to allow [eslintd-fix][] to hold a connection
-   open to reduce latency when a fix is performed.
+ This was primarily implemented to allow [eslintd-fix][] to hold a connection
+ open to reduce latency when a fix is performed.
 
 [eslintd-fix]: https://github.com/aaronjensen/eslintd-fix
 
