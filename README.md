@@ -46,12 +46,16 @@ current working directories `node_modules` folder, then this version of eslint
 is going to be used. Otherwise, the version of eslint that ships with
 `eslint_d` is used as a fallback.
 
-Note that the performance gain comes at a small price: Some changes are only
-picked up after a server restart, so you will have to remember to run `eslint_d
-restart` after installing a plugin.
-
 To keep the memory footprint low, `eslint_d` keeps only the last 10 used
 instances in the internal [nanolru][] cache.
+
+## What if eslint or a plugin is updated?
+
+The cached version of eslint and the Node `require` cache for the current
+working directory are cleared whenever a change to one of these files is
+detected: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` and
+`yarn.lock`. If changes are not automatically detected, remember to run
+`eslint_d restart` to bounce the background server.
 
 ## Commands
 
