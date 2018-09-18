@@ -31,6 +31,7 @@ describe('launcher', () => {
   afterEach(() => {
     sinon.restore();
     delete process.exitCode;
+    delete global.eslint_d_launching;
   });
 
   it('launches child process', () => {
@@ -118,6 +119,68 @@ describe('launcher', () => {
 
     assert.calledTwice(portfile.read);
     assert.calledOnceWith(callback, 'Could not connect');
+  });
+
+  function connectRunning() {
+    sinon.replace(portfile, 'unlink', sinon.fake());
+    sinon.replace(portfile, 'read', sinon.fake.yields({ port: 7654, token }));
+    sinon.replace(net, 'connect', sinon.fake.returns(socket));
+    launcher.launch(callback);
+    clock.tick(100); // initial check
+  }
+
+  it('unlinks portfile and launches on ECONNREFUSED', () => {
+    connectRunning();
+
+    const err = new Error();
+    err.code = 'ECONNREFUSED';
+    socket.emit('error', err);
+
+    assert.calledOnce(portfile.unlink);
+    assert.calledOnceWith(child_process.spawn, 'node', [daemon]);
+  });
+
+  it('succeeds to connect after failed connect', () => {
+    connectRunning();
+
+    const err = new Error();
+    err.code = 'ECONNREFUSED';
+    socket.emit('error', err);
+
+    assert.calledOnce(child_process.spawn);
+
+    clock.tick(100); // initial check
+    net.connect.secondCall.callback();
+
+    assert.calledOnceWith(callback, null);
+  });
+
+  it('unlinks portfile, but does not launch again on second failure', () => {
+    connectRunning();
+
+    const err = new Error();
+    err.code = 'ECONNREFUSED';
+    socket.emit('error', err);
+
+    assert.calledOnce(child_process.spawn);
+
+    clock.tick(100); // initial check
+    socket.emit('error', err);
+
+    assert.calledTwice(portfile.unlink);
+    assert.calledOnceWith(callback, 'Could not connect');
+  });
+
+  it('throws when trying to launch second instance', () => {
+    sinon.stub(portfile, 'read').yields(null);
+    launcher.launch(() => {});
+
+    assert.exception(() => {
+      launcher.launch(callback);
+    }, {
+      name: 'Error',
+      message: 'Already launching'
+    });
   });
 
   it('prints message and does not invoke callback if already running', () => {
