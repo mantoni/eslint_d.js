@@ -89,21 +89,35 @@ describe('launcher', () => {
     refute.called(callback);
   });
 
-  it('retries every 100 milliseconds if connection fails', () => {
-    launch();
+  it('retries every 100 milliseconds if portfile is not written', () => {
+    sinon.replace(portfile, 'read', sinon.fake());
+    launcher.launch(callback);
     clock.tick(100); // initial check
 
-    socket.emit('error', new Error());
+    assert.calledOnce(portfile.read);
+
+    portfile.read.lastCall.callback(null);
+    clock.tick(100); // retry timeout
+
+    assert.calledTwice(portfile.read);
+    refute.called(callback);
+
+    portfile.read.lastCall.callback(null);
     clock.tick(100); // retry timeout
 
     assert.calledThrice(portfile.read);
     refute.called(callback);
+  });
+
+  it('does not retry if connection fails', () => {
+    launch();
+    clock.tick(100); // initial check
+    assert.calledTwice(portfile.read);
 
     socket.emit('error', new Error());
-    clock.tick(100); // retry timeout
 
-    assert.callCount(portfile.read, 4);
-    refute.called(callback);
+    assert.calledTwice(portfile.read);
+    assert.calledOnceWith(callback, 'Could not connect');
   });
 
   it('prints message and does not invoke callback if already running', () => {
