@@ -1,5 +1,27 @@
 # Changes
 
+## 7.1.1
+
+### Transparent relaunch on connection failure
+
+If the daemon process was killed or crashed and an orphaned `~/.eslint_d` file
+was present, the `eslint_d` command would repeatedly fail to connect. With this
+patch, the `~/.eslint_d` file is removed on `ECONNREFUSED` errors and a new
+instance is created transparently.
+
+- 🐛 [`ec25134`](https://github.com/mantoni/eslint_d.js/commit/ec251343992477663ad2d7a153168dc1429ba0fe)
+  Transparent relaunch on connection failure
+- 🐛 [`4abea7c`](https://github.com/mantoni/eslint_d.js/commit/4abea7c0df00083f83aca8fe7874d482b61fcb52)
+  Do not retry on connection failure
+- 📚 [`6eaf262`](https://github.com/mantoni/eslint_d.js/commit/6eaf26268f9681e81155306a5c459c2aa2776e3d)
+  Fix list formatting in changelog
+- 📚 [`2fb112b`](https://github.com/mantoni/eslint_d.js/commit/2fb112bca2649c84e5fd4ad15651d55c0aa99e86)
+  Fix changelog formatting
+- 📚 [`436b45f`](https://github.com/mantoni/eslint_d.js/commit/436b45f5a6564b28c973dc3eb04a0223b93ad8c4)
+  Update Studio Changes for `--footer` support
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2018-09-18._
+
 ## 7.1.0
 
 ### Automatic cache flushing on common package manager file modification:
