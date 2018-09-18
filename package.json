@@ -31,7 +31,7 @@
     "lint": "eslint .",
     "posttest": "npm run lint",
     "preversion": "npm test",
-    "version": "changes --commits",
+    "version": "changes --commits --footer",
     "postversion": "git push --follow-tags && npm publish"
   },
   "repository": {
@@ -54,7 +54,7 @@
   "license": "MIT",
   "devDependencies": {
     "@sinonjs/referee-sinon": "^4.1.0",
-    "@studio/changes": "^1.6.0",
+    "@studio/changes": "^1.7.0",
     "@studio/eslint-config": "^1.0.2",
     "mocha": "^5.2.0"
   }
