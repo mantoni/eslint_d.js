@@ -39,7 +39,6 @@
     "url": "https://github.com/mantoni/eslint_d.js.git"
   },
   "dependencies": {
-    "eslint": "^5.4.0",
     "nanolru": "^1.0.0",
     "optionator": "^0.8.1",
     "resolve": "^1.8.1",
@@ -57,5 +56,8 @@
     "@studio/changes": "^1.7.0",
     "@studio/eslint-config": "^1.0.2",
     "mocha": "^5.2.0"
+  },
+  "peerDependencies": {
+    "eslint": "^5.4.0"
   }
 }
