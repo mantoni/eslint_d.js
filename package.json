@@ -55,6 +55,7 @@
     "@sinonjs/referee-sinon": "^4.1.0",
     "@studio/changes": "^1.7.0",
     "@studio/eslint-config": "^1.0.2",
+    "eslint": "^5.4.0",
     "mocha": "^5.2.0"
   },
   "peerDependencies": {
