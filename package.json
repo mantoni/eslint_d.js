@@ -28,8 +28,9 @@
   "scripts": {
     "test": "mocha",
     "watch": "mocha --watch",
-    "lint": "eslint .",
+    "lint": "eslint . --ignore-pattern '**/node_modules/**'",
     "posttest": "npm run lint",
+    "prepare": "cd test/fixture/v4.0.x && npm i && cd ../v5.0.x && npm i",
     "preversion": "npm test",
     "version": "changes --commits --footer",
     "postversion": "git push --follow-tags && npm publish"
