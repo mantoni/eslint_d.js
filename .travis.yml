@@ -3,3 +3,7 @@ node_js:
   - "6"
   - "8"
   - "10"
+
+before_install:
+  # Update npm for "prepare" script to be recognized:
+  - if [ "x$TRAVIS_NODE_VERSION" == "x6" ]; then npm i -g npm; fi
