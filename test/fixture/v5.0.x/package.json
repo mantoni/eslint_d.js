@@ -1,0 +1,8 @@
+{
+  "name": "eslint_d-v5.0.x-test",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "eslint": "v5.0.x"
+  }
+}
