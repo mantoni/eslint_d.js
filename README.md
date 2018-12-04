@@ -57,6 +57,11 @@ detected: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` and
 `yarn.lock`. If changes are not automatically detected, remember to run
 `eslint_d restart` to bounce the background server.
 
+## Which versions of eslint are supported?
+
+As of `v7.2.0`, you can use `eslint_d` with multiple projects depending on
+different versions of eslint. Supported versions are 4.0+ and 5.0+.
+
 ## Commands
 
 Control the server like this:
@@ -157,6 +162,7 @@ $ eslint_d . --cache
 
 ## Compatibility
 
+- `7.2.0`: eslint 4.0+ and 5.0+, node 6, 8 and 10
 - `7.0.0`: eslint 5.4+, node 6, 8 and 10
 - `6.0.0`: eslint 5.0+, node 6+ (eslint dropped node 4)
 - `5.0.0`: eslint 4.0+
