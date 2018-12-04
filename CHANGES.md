@@ -1,5 +1,24 @@
 # Changes
 
+## 7.2.0
+
+### Support for multiple major eslint versions
+
+Now you can have multiple projects with a mix of `eslint` 4.0+ and 5.0+
+dependencies. The test suite of `eslint_d` has been enhanced to run tests
+against all supported major versions.
+
+- 🍏 [`f00a097`](https://github.com/mantoni/eslint_d.js/commit/f00a097b96ca43df25faea8f3980b035a2ddcf7c)
+  Change eslint dependency version to `^4 || ^5`
+- 🍏 [`25dddb0`](https://github.com/mantoni/eslint_d.js/commit/25dddb05ee49b27509debfc9867191a1d25135a3)
+  Run tests against eslint v4.0 and v5.0
+- 🐛 [`91aa059`](https://github.com/mantoni/eslint_d.js/commit/91aa0592b6e5fb6fbef4cb6763edb6b1d4ceb270)
+  Update npm in Travis Node 6 build
+- 📚 [`3491f4f`](https://github.com/mantoni/eslint_d.js/commit/3491f4f1cb714b4e0ffd6689f34e60525aa877cc)
+  Add a note about eslint version compatibility
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2018-12-04._
+
 ## 7.1.1
 
 ### Transparent relaunch on connection failure
