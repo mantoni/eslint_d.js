@@ -33,7 +33,6 @@ describe('client', () => {
   });
 
   afterEach(() => {
-    sinon.restore();
     delete process.exitCode;
   });
 

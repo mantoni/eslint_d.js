@@ -34,10 +34,6 @@ describe('server', () => {
       sinon.fake.returns(Buffer.from(token, 'hex')));
   });
 
-  afterEach(() => {
-    sinon.restore();
-  });
-
   function start() {
     server.start();
     net_server.listen.callback();

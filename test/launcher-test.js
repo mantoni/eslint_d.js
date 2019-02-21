@@ -29,7 +29,6 @@ describe('launcher', () => {
   });
 
   afterEach(() => {
-    sinon.restore();
     delete process.exitCode;
     delete global.eslint_d_launching;
   });

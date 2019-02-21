@@ -12,10 +12,6 @@ const token = crypto.randomBytes(8).toString('hex');
 
 describe('portfile', () => {
 
-  afterEach(() => {
-    sinon.restore();
-  });
-
   describe('write', () => {
 
     it('writes port and token', () => {
