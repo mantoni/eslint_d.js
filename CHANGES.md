@@ -1,5 +1,29 @@
 # Changes
 
+## 7.3.0
+
+### Extract core\_d, a library for offloading work to a background server
+
+With this release, most of the code from this project was moved to
+[core_d](https://github.com/mantoni/core_d.js). This allows you to build your
+own projects using the same technique as `eslint_d` for Standard, Prettier and
+other tools.
+
+- 🍏 [`786d439`](https://github.com/mantoni/eslint_d.js/commit/786d4397128c340a6f5cf4ab300ac246ad802921)
+  Extract `core_d`
+- 📚 [`a1501ec`](https://github.com/mantoni/eslint_d.js/commit/a1501ec0645c7faa54be1e824b62ff6e0ada14fa)
+  Link to `core_d` in the docs
+- 🐛 [`48a95f5`](https://github.com/mantoni/eslint_d.js/commit/48a95f5e24c90d13819a82c51f2d84c62d2be779)
+  Reinstall dependencies
+- 🐛 [`1bf34a7`](https://github.com/mantoni/eslint_d.js/commit/1bf34a762069ca2a7e71de40924460a4fd814d8d)
+  Remove superfluous `sinon.restore()` calls
+- ✨ [`8f64205`](https://github.com/mantoni/eslint_d.js/commit/8f64205fe7578540cbf4ebec59075ad1aa2f0db8)
+  Use mocha-referee-sinon to verify all tests have assertions
+- ✨ [`ec24293`](https://github.com/mantoni/eslint_d.js/commit/ec24293f99f5f9e3dd37cc1e984e664c2bfd67ef)
+  Use @sinonjs/referee-sinon v5
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-02-26._
+
 ## 7.2.0
 
 ### Support for multiple major eslint versions
