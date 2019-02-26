@@ -160,6 +160,11 @@ have changed? This is a feature of normal `eslint`, but it also works from
 $ eslint_d . --cache
 ```
 
+## References
+
+If you're interested in building something similar to this: Most of the logic
+was extracted to [core_d][], a library that manages the background server.
+
 ## Compatibility
 
 - `7.2.0`: eslint 4.0+ and 5.0+, node 6, 8 and 10
@@ -183,3 +188,4 @@ MIT
 [change220]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220
 [change401]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#401
 [nanolru]: https://github.com/s3ththompson/nanolru
+[core_d]: https://github.com/mantoni/core_d.js
