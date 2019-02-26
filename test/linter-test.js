@@ -25,9 +25,9 @@ describe('linter', () => {
     });
 
     it('reuses instance from cache', () => {
-      linter.lint(cwd, ['--stdin'], '\'use strict\';', 1234);
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';', 1234);
       const cache1 = linter.cache.get(cwd);
-      linter.lint(cwd, ['--stdin'], '\'use strict\';', 1234);
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';', 1234);
       const cache2 = linter.cache.get(cwd);
 
       assert.equals(linter.cache.length, 1);
@@ -40,8 +40,8 @@ describe('linter', () => {
 
     it('uses new instance for different directory', () => {
       const cwd2 = path.join(cwd, 'test');
-      linter.lint(cwd, ['--stdin'], '\'use strict\';');
-      linter.lint(cwd2, ['--stdin'], '\'use strict\';');
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';');
+      linter.invoke(cwd2, ['--stdin'], '\'use strict\';');
 
       assert.equals(linter.cache.length, 2);
       assert.callCount(resolve.sync, 4);
@@ -52,11 +52,11 @@ describe('linter', () => {
     it('creates new instance if mtime is larger than first call', () => {
       const now = Date.now();
       const clock = sinon.useFakeTimers(now);
-      linter.lint(cwd, ['--stdin'], '\'use strict\';', now - 1000);
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';', now - 1000);
       const cache1 = linter.cache.get(cwd);
 
       clock.tick(1000);
-      linter.lint(cwd, ['--stdin'], '\'use strict\';', now + 500);
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';', now + 500);
       const cache2 = linter.cache.get(cwd);
 
       assert.equals(linter.cache.length, 1);
@@ -68,17 +68,17 @@ describe('linter', () => {
     it('does not create new instance if mtime is lower than last call', () => {
       const now = Date.now();
       const clock = sinon.useFakeTimers(now);
-      linter.lint(cwd, ['--stdin'], '\'use strict\';', now - 1000);
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';', now - 1000);
       const cache1 = linter.cache.get(cwd);
 
       clock.tick(1000);
-      linter.lint(cwd, ['--stdin'], '\'use strict\';', now - 1000);
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';', now - 1000);
       const cache2 = linter.cache.get(cwd);
 
       clock.tick(1000);
       // Newer than initial timestamp, but older than last run. Verifies the
       // timestamp in the cache was renewed.
-      linter.lint(cwd, ['--stdin'], '\'use strict\';', now + 500);
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';', now + 500);
       const cache3 = linter.cache.get(cwd);
 
       assert.equals(linter.cache.length, 1);
@@ -94,24 +94,24 @@ describe('linter', () => {
     it('has no instances', () => {
       const status = linter.getStatus();
 
-      assert.equals(status, 'Running, no instances cached');
+      assert.equals(status, 'No instances cached.');
     });
 
     it('has one instance', () => {
-      linter.lint(cwd, ['--stdin'], '\'use strict\';');
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';');
 
       const status = linter.getStatus();
 
-      assert.equals(status, 'Running, one instance cached');
+      assert.equals(status, 'One instance cached.');
     });
 
     it('has two instances', () => {
-      linter.lint(cwd, ['--stdin'], '\'use strict\';');
-      linter.lint(path.join(cwd, 'test'), ['--stdin'], '\'use strict\';');
+      linter.invoke(cwd, ['--stdin'], '\'use strict\';');
+      linter.invoke(path.join(cwd, 'test'), ['--stdin'], '\'use strict\';');
 
       const status = linter.getStatus();
 
-      assert.equals(status, 'Running, 2 instances cached');
+      assert.equals(status, '2 instances cached.');
     });
 
   });
@@ -141,13 +141,13 @@ describe('linter', () => {
       describe('single file', () => {
 
         it('succeeds on lib/linter.js', () => {
-          const out = linter.lint(cwd, [lib_linter]);
+          const out = linter.invoke(cwd, [lib_linter]);
 
           assert.equals(out, '');
         });
 
         it('fails on test/fixture/fail.txt', () => {
-          const out = linter.lint(cwd, [fixture_fail, '-f', 'unix']);
+          const out = linter.invoke(cwd, [fixture_fail, '-f', 'unix']);
 
           const space = out.indexOf(' ');
           const slash = out.lastIndexOf('/', space);
@@ -159,7 +159,7 @@ describe('linter', () => {
         });
 
         it('adds `# exit 1` on failure', () => {
-          const out = linter.lint(cwd, [fixture_fail, '-f', 'unix']);
+          const out = linter.invoke(cwd, [fixture_fail, '-f', 'unix']);
 
           assert.equals(out.split('\n').pop(), '# exit 1');
         });
@@ -169,7 +169,7 @@ describe('linter', () => {
       describe('--stdin', () => {
 
         it('runs on --stdin text', () => {
-          const out = linter.lint(cwd, ['--stdin', '-f', 'unix'],
+          const out = linter.invoke(cwd, ['--stdin', '-f', 'unix'],
             'console.log();');
 
           assert.equals(out.split('\n').shift(), '<text>:1:1: Use the global '
@@ -177,7 +177,7 @@ describe('linter', () => {
         });
 
         it('adds `# exit 1` on failure', () => {
-          const out = linter.lint(cwd, ['--stdin'], 'console.log();');
+          const out = linter.invoke(cwd, ['--stdin'], 'console.log();');
 
           assert.equals(out.split('\n').pop(), '# exit 1');
         });
@@ -187,21 +187,21 @@ describe('linter', () => {
       describe('--fix-to-stdout', () => {
 
         it('returns fixed script', () => {
-          const out = linter.lint(cwd, ['--stdin', '--fix-to-stdout'],
+          const out = linter.invoke(cwd, ['--stdin', '--fix-to-stdout'],
             'console.log( "!" )\n');
 
           assert.equals(out, 'console.log(\'!\');\n');
         });
 
         it('fails if --stdin is not given', () => {
-          const out = linter.lint(cwd, ['--fix-to-stdout', '.']);
+          const out = linter.invoke(cwd, ['--fix-to-stdout', '.']);
 
           assert.equals(out,
             'The --fix-to-stdout option must be used with --stdin.\n# exit 1');
         });
 
         it('returns input if nothing to fix', () => {
-          const out = linter.lint(cwd, ['--stdin', '--fix-to-stdout'],
+          const out = linter.invoke(cwd, ['--stdin', '--fix-to-stdout'],
             'console.log(\'!\');\n');
 
           assert.equals(out, 'console.log(\'!\');\n');
@@ -212,7 +212,7 @@ describe('linter', () => {
       describe('--print-config', () => {
 
         it('fails with --stdin', () => {
-          const out = linter.lint(cwd, ['--stdin', '--print-config'],
+          const out = linter.invoke(cwd, ['--stdin', '--print-config'],
             'console.log( "!" )\n');
 
           assert.equals(out, 'The --print-config option requires a single file '
@@ -220,7 +220,7 @@ describe('linter', () => {
         });
 
         it('fails with --stdin and positional argument', () => {
-          const out = linter.lint(cwd, ['--stdin', '--print-config', '.'],
+          const out = linter.invoke(cwd, ['--stdin', '--print-config', '.'],
             'console.log( "!" )\n');
 
           assert.equals(out, 'The --print-config option is not available for '
@@ -232,7 +232,7 @@ describe('linter', () => {
       describe('--quiet', () => {
 
         it('prints warnings by default', () => {
-          const out = linter.lint(cwd, [fixture_warn, '-f', 'unix']);
+          const out = linter.invoke(cwd, [fixture_warn, '-f', 'unix']);
 
           refute.equals(out, ''); // verify warn.txt prints warnings
           assert.match(out, 'Warning');
@@ -240,7 +240,7 @@ describe('linter', () => {
         });
 
         it('does not print warnings', () => {
-          const out = linter.lint(cwd, ['--quiet', fixture_warn]);
+          const out = linter.invoke(cwd, ['--quiet', fixture_warn]);
 
           assert.equals(out, '');
         });
@@ -250,13 +250,13 @@ describe('linter', () => {
       describe('--max-warnings', () => {
 
         it('adds `# exit 1` on failure', () => {
-          const out = linter.lint(cwd, [fixture_warn, '--max-warnings', '0']);
+          const out = linter.invoke(cwd, [fixture_warn, '--max-warnings', '0']);
 
           assert.equals(out.split('\n').pop(), '# exit 1');
         });
 
         it('does not add `# exit 1` if not exceeded', () => {
-          const out = linter.lint(cwd, [fixture_warn, '--max-warnings', '1']);
+          const out = linter.invoke(cwd, [fixture_warn, '--max-warnings', '1']);
 
           refute.equals(out.split('\n').pop(), '# exit 1');
         });
@@ -266,13 +266,13 @@ describe('linter', () => {
       describe('--color', () => {
 
         it('enables color by default', () => {
-          linter.lint(cwd, ['--stdin'], '\'use strict\';');
+          linter.invoke(cwd, ['--stdin'], '\'use strict\';');
 
           assert.isTrue(linter.cache.get(cwd).chalk.enabled);
         });
 
         it('disables color if --no-color is passed', () => {
-          linter.lint(cwd, ['--stdin', '--no-color'], '\'use strict\';');
+          linter.invoke(cwd, ['--stdin', '--no-color'], '\'use strict\';');
 
           assert.isFalse(linter.cache.get(cwd).chalk.enabled);
         });
@@ -289,7 +289,7 @@ describe('linter', () => {
 
   it('lets eslint handle unknown formatter', () => {
     assert.exception(() => {
-      linter.lint(cwd, ['test/fixture/fail.txt', '-f', 'unknown']);
+      linter.invoke(cwd, ['test/fixture/fail.txt', '-f', 'unknown']);
     }, {
       name: 'Error',
       message: 'There was a problem loading formatter: ./formatters/unknown'

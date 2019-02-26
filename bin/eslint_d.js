@@ -16,13 +16,17 @@ if (cmd === '-h' || cmd === '--help') {
   return;
 }
 
-const client = require('../lib/client');
+process.env.CORE_D_TITLE = 'eslint_d';
+process.env.CORE_D_DOTFILE = '.eslint_d';
+process.env.CORE_D_SERVICE = require.resolve('../lib/linter');
+
+const core_d = require('core_d');
 
 if (cmd === 'start'
   || cmd === 'stop'
   || cmd === 'restart'
   || cmd === 'status') {
-  client[cmd]();
+  core_d[cmd]();
   return;
 }
 
@@ -34,9 +38,9 @@ if (args.indexOf('--stdin') > -1) {
     text += chunk;
   });
   process.stdin.on('end', () => {
-    client.lint(args, text);
+    core_d.invoke(args, text);
   });
   return;
 }
 
-client.lint(args);
+core_d.invoke(args);
