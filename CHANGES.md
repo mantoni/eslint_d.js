@@ -1,5 +1,47 @@
 # Changes
 
+## 8.0.0
+
+### Upgrade default eslint to v6
+
+This release retains compatibility with projects depending on eslint v4 and v5.
+
+- 💥 [`34a1012`](https://github.com/mantoni/eslint_d.js/commit/34a101291305d4263db5ae497159f3cbea006c69)
+  Upgrade default eslint to v6
+- 💥 [`dca7236`](https://github.com/mantoni/eslint_d.js/commit/dca72360a97a7e19825172d4bb55fc85da806ffa)
+  Drop Node 6 support, add Node 12 to test config
+- 📚 [`44e7bb1`](https://github.com/mantoni/eslint_d.js/commit/44e7bb132255689ad87ad0e3489d42072c664cf4)
+  v8 compatibility
+- 🐛 [`f72bea2`](https://github.com/mantoni/eslint_d.js/commit/f72bea2540356e59a87d7c5584d4e6ff3126c07c)
+  Bump js-yaml from 3.12.0 to 3.13.1 in /test/fixture/v5.0.x (dependabot[bot])
+    >
+    > Bumps [js-yaml](https://github.com/nodeca/js-yaml) from 3.12.0 to 3.13.1.
+    > - [Release notes](https://github.com/nodeca/js-yaml/releases)
+    > - [Changelog](https://github.com/nodeca/js-yaml/blob/master/CHANGELOG.md)
+    > - [Commits](https://github.com/nodeca/js-yaml/compare/3.12.0...3.13.1)
+    >
+    > Signed-off-by: dependabot[bot] <support@github.com>
+- 🐛 [`d1370e2`](https://github.com/mantoni/eslint_d.js/commit/d1370e2792c1f359c963c8d648c81ae34e10f972)
+  Bump js-yaml from 3.12.0 to 3.13.1 in /test/fixture/v4.0.x (dependabot[bot])
+    >
+    > Bumps [js-yaml](https://github.com/nodeca/js-yaml) from 3.12.0 to 3.13.1.
+    > - [Release notes](https://github.com/nodeca/js-yaml/releases)
+    > - [Changelog](https://github.com/nodeca/js-yaml/blob/master/CHANGELOG.md)
+    > - [Commits](https://github.com/nodeca/js-yaml/compare/3.12.0...3.13.1)
+    >
+    > Signed-off-by: dependabot[bot] <support@github.com>
+- 🐛 [`2e8b375`](https://github.com/mantoni/eslint_d.js/commit/2e8b375cdf45f7787d7b0e4fed0ec10dc0c37da7)
+  Bump js-yaml from 3.12.1 to 3.13.1 (dependabot[bot])
+    >
+    > Bumps [js-yaml](https://github.com/nodeca/js-yaml) from 3.12.1 to 3.13.1.
+    > - [Release notes](https://github.com/nodeca/js-yaml/releases)
+    > - [Changelog](https://github.com/nodeca/js-yaml/blob/master/CHANGELOG.md)
+    > - [Commits](https://github.com/nodeca/js-yaml/compare/3.12.1...3.13.1)
+- 🐛 [`72de52e`](https://github.com/mantoni/eslint_d.js/commit/72de52eed694ce25cc6bfd13f6be6a2e01a5d392)
+  Move `supports-color` dependency to `core_d`
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2019-06-24._
+
 ## 7.3.0
 
 ### Extract core\_d, a library for offloading work to a background server
