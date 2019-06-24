@@ -60,7 +60,7 @@ detected: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` and
 ## Which versions of eslint are supported?
 
 As of `v7.2.0`, you can use `eslint_d` with multiple projects depending on
-different versions of eslint. Supported versions are 4.0+ and 5.0+.
+different versions of eslint. Supported versions are 4.0+, 5.0+ and 6.0+.
 
 ## Commands
 
