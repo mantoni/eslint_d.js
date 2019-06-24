@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const resolve = require('resolve');
-const { assert, refute, sinon } = require('@sinonjs/referee-sinon');
+const { assert, refute, sinon, match } = require('@sinonjs/referee-sinon');
 const linter = require('../lib/linter');
 
 describe('linter', () => {
@@ -283,7 +283,8 @@ describe('linter', () => {
 
   }
 
-  withinDirectory('5', cwd);
+  withinDirectory('6', cwd);
+  withinDirectory('6.0', 'test/fixture/v6.0.x');
   withinDirectory('5.0', 'test/fixture/v5.0.x');
   withinDirectory('4.0', 'test/fixture/v4.0.x');
 
@@ -292,7 +293,8 @@ describe('linter', () => {
       linter.invoke(cwd, ['test/fixture/fail.txt', '-f', 'unknown']);
     }, {
       name: 'Error',
-      message: 'There was a problem loading formatter: ./formatters/unknown'
+      message: match('There was a problem loading formatter:')
+        .and(match('formatters/unknown'))
     });
   });
 

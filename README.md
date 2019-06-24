@@ -167,6 +167,7 @@ was extracted to [core_d][], a library that manages the background server.
 
 ## Compatibility
 
+- `8.0.0`: eslint 4.0+, 5.0+ and 6.0+, node 8, 10 and 12
 - `7.2.0`: eslint 4.0+ and 5.0+, node 6, 8 and 10
 - `7.0.0`: eslint 5.4+, node 6, 8 and 10
 - `6.0.0`: eslint 5.0+, node 6+ (eslint dropped node 4)
