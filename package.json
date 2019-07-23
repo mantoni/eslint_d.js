@@ -57,7 +57,7 @@
     "@sinonjs/referee-sinon": "^5.0.0",
     "@studio/changes": "^1.7.0",
     "@studio/eslint-config": "^1.0.2",
-    "mocha": "^5.2.0",
+    "mocha": "^6.2.0",
     "mocha-referee-sinon": "^1.0.0"
   }
 }
