@@ -1,0 +1,8 @@
+{
+  "name": "eslint_d-plugin-test",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "eslint-plugin-mocha": "^6.2.2"
+  }
+}
