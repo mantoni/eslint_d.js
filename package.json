@@ -19,7 +19,8 @@
     "Simen Bekkhus <sbekkhus91@gmail.com>",
     "Caleb Eby <calebeby@users.noreply.github.com>",
     "Huáng Jùnliàng <JLHwung@users.noreply.github.com>",
-    "Joseph Frazier <1212jtraceur@gmail.com>"
+    "Joseph Frazier <1212jtraceur@gmail.com>",
+    "Sergey Markov <Mar.Ser.DLX@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
@@ -58,6 +59,7 @@
     "@studio/changes": "^1.7.0",
     "@studio/eslint-config": "^1.0.2",
     "mocha": "^6.2.0",
-    "mocha-referee-sinon": "^1.0.0"
+    "mocha-referee-sinon": "^1.0.0",
+    "semver": "^7.1.3"
   }
 }

@@ -4,39 +4,9 @@
 const fs = require('fs');
 const path = require('path');
 const resolve = require('resolve');
+const semver = require('semver');
 const { assert, refute, sinon, match } = require('@sinonjs/referee-sinon');
 const linter = require('../lib/linter');
-
-function splitVersionToParts(version) {
-  return version.split('.').map((part) => parseInt(part, 10));
-}
-
-function checkVersion(currentVersion, requiredVersion) {
-  const partsOfCurrentVersion = splitVersionToParts(currentVersion);
-  const partsOfRequiredVersion = splitVersionToParts(requiredVersion);
-
-  let result = false;
-  for (let i = 0; i < 3; i++) {
-    if (isNaN(partsOfCurrentVersion[i]) || isNaN(partsOfRequiredVersion[i])) {
-      break;
-    }
-
-    if (partsOfCurrentVersion[i] < partsOfRequiredVersion[i]) {
-      return false;
-    }
-
-    if (partsOfCurrentVersion[i] === partsOfRequiredVersion[i]) {
-      result = true;
-      continue;
-    }
-
-    if (partsOfCurrentVersion[i] > partsOfRequiredVersion[i]) {
-      return true;
-    }
-  }
-
-  return result;
-}
 
 describe('linter', () => {
   const cwd = process.cwd();
@@ -243,18 +213,19 @@ describe('linter', () => {
         });
 
         describe('--fix-dry-run', () => {
+          before(function () {
+            if (semver.lte(semver.coerce(eslint_version), '4.9.0')) {
+              this.skip();
+            }
+          });
 
-          if (checkVersion(eslint_version, '4.9')) {
+          it('does not fail and does not return fixed script', () => {
+            const out = linter.invoke(cwd,
+              ['--fix-dry-run', '--stdin', '--fix-to-stdout'],
+              'console.log( "!" )\n');
 
-            it('does not fail and does not return fixed script', () => {
-              const out = linter.invoke(cwd,
-                ['--fix-dry-run', '--stdin', '--fix-to-stdout'],
-                'console.log( "!" )\n');
-
-              assert.equals(out, 'console.log( "!" )\n');
-            });
-
-          }
+            assert.equals(out, 'console.log( "!" )\n');
+          });
 
         });
       });
@@ -371,8 +342,7 @@ describe('linter', () => {
 
         });
 
-        if (checkVersion(eslint_version, '6.0')) {
-
+        if (semver.gte(semver.coerce(eslint_version), '6.0.0')) {
           it('pass well with plugin', () => {
             const out = linter.invoke(cwd, [
               '--resolve-plugins-relative-to', plugin_folder,
@@ -382,9 +352,7 @@ describe('linter', () => {
 
             assert.equals(out, '');
           });
-
         } else {
-
           it('fail because option is not supported yet', () => {
             try {
               linter.invoke(cwd, [
@@ -398,17 +366,14 @@ describe('linter', () => {
               assert.match(err.message, 'Failed to load plugin');
               assert.equals(err.messageTemplate, 'plugin-missing');
             }
-
           });
-
         }
 
       });
 
       describe('--report-unused-disable-directives', () => {
 
-        if (checkVersion(eslint_version, '4.8')) {
-
+        if (semver.gte(semver.coerce(eslint_version), '4.8.0')) {
           it('fail on useless eslint-disable', () => {
             const out = linter.invoke(cwd, [
               '--report-unused-disable-directives',
@@ -424,9 +389,7 @@ describe('linter', () => {
               'Unused eslint-disable directive '
               + '(no problems were reported from \'no-alert\'). [Error]');
           });
-
         } else {
-
           it('find nothing, because option is not supported yet', () => {
             const out = linter.invoke(cwd, [
               '--report-unused-disable-directives',
@@ -435,7 +398,6 @@ describe('linter', () => {
 
             assert.equals(out, '');
           });
-
         }
 
       });
