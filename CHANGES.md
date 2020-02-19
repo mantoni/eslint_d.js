@@ -1,5 +1,44 @@
 # Changes
 
+## 8.1.0
+
+- 🍏 [`501333a`](https://github.com/mantoni/eslint_d.js/commit/501333a2518c95ff7e71051631490026b3b91984)
+  Reviewed existing CLI options. Added new ESLint CLI options. (MarS)
+    >
+    > Added next CLI options:
+    >
+    > 1) `--parser-options` - Specify parser options
+    > 2) `--resolve-plugins-relative-to` - A folder where plugins should be resolved from, CWD by default
+    > 3) `--fix-dry-run` - Automatically fix problems without saving the changes to the file system
+    > 4) `--fix-type` - Specify the types of fixes to apply (problem, suggestion, layout)
+    > 5) `--report-unused-disable-directives` - Adds reported errors for unused eslint-disable directives
+    > 6) `--init` - Run config initialization wizard'
+    > 7) `--env-info` - Output execution environment information
+    > 8) `--error-on-unmatched-pattern` - Prevent errors when pattern is unmatched
+    >
+- 📚 [`8abbf0d`](https://github.com/mantoni/eslint_d.js/commit/8abbf0d56ef4bbfc0ef884d81b53c778ed71a887)
+  Add v6 to eslint version compatibility statement
+- ✨ [`a8ca530`](https://github.com/mantoni/eslint_d.js/commit/a8ca5301b3977db97c2f5ea4f69ffcf24d80371f)
+  Bump eslint-utils from 1.3.1 to 1.4.2 (dependabot[bot])
+    >
+    > Bumps [eslint-utils](https://github.com/mysticatea/eslint-utils) from 1.3.1 to 1.4.2.
+    > - [Release notes](https://github.com/mysticatea/eslint-utils/releases)
+    > - [Commits](https://github.com/mysticatea/eslint-utils/compare/v1.3.1...v1.4.2)
+    >
+    > Signed-off-by: dependabot[bot] <support@github.com>
+- ✨ [`ac8378b`](https://github.com/mantoni/eslint_d.js/commit/ac8378b44ae9b6059a297e9b2446041e57dbf298)
+  Upgrade mocha to v6
+- ✨ [`b922130`](https://github.com/mantoni/eslint_d.js/commit/b92213051d183137990b9774dcb2ce97a0b2323f)
+  Bump lodash from 4.17.11 to 4.17.14 (dependabot[bot])
+    >
+    > Bumps [lodash](https://github.com/lodash/lodash) from 4.17.11 to 4.17.14.
+    > - [Release notes](https://github.com/lodash/lodash/releases)
+    > - [Commits](https://github.com/lodash/lodash/compare/4.17.11...4.17.14)
+    >
+    > Signed-off-by: dependabot[bot] <support@github.com>
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-02-19._
+
 ## 8.0.0
 
 ### Upgrade default eslint to v6
