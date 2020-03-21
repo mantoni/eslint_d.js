@@ -1,5 +1,36 @@
 # Changes
 
+## 8.1.1
+
+Security patches.
+
+- 🛡 [`2f0c21e`](https://github.com/mantoni/eslint_d.js/commit/2f0c21e877cf355ba65bfce4073359ce4f90a7c1)
+  npm audit `v6.8.x` fixture
+- 🛡 [`912818c`](https://github.com/mantoni/eslint_d.js/commit/912818c61bf213d233d36b559e434422e4a3cbcd)
+  npm audit `v6.0.x` fixture
+- 🛡 [`72ad6f5`](https://github.com/mantoni/eslint_d.js/commit/72ad6f57ceb6034b86eb62c4a8e2da37f594ed81)
+  npm audit `v5.16.x` fixture
+- 🛡 [`706250e`](https://github.com/mantoni/eslint_d.js/commit/706250e10ec39d7a3515396d3dd2962eee2a6191)
+  npm audit `v5.0.x` fixture
+- 🛡 [`c609c3a`](https://github.com/mantoni/eslint_d.js/commit/c609c3a7f80fbd6f40eb89253ee7f2d364db960e)
+  npm audit `v4.19.x` fixture
+- 🛡 [`4983414`](https://github.com/mantoni/eslint_d.js/commit/498341461aa88b6865f1773cd801e79ca0d4911d)
+  npm audit `v4.0.x` fixture
+- 🛡 [`ffb150a`](https://github.com/mantoni/eslint_d.js/commit/ffb150a6b094bf16437d9882321fc0ad93ef3259)
+  npm audit
+- 🛡 [`6e0434e`](https://github.com/mantoni/eslint_d.js/commit/6e0434e8e868ee7105fc151d58f9a08aaf2f3810)
+  Bump acorn from 7.1.0 to 7.1.1 in /test/fixture/v6.8.x (dependabot[bot])
+- 🛡 [`30f87d3`](https://github.com/mantoni/eslint_d.js/commit/30f87d3ba7b5bb5f20b8a98a33e4e1ebe5e78198)
+  Bump acorn from 6.1.1 to 6.4.1 in /test/fixture/v6.0.x (dependabot[bot])
+- 🛡 [`414a697`](https://github.com/mantoni/eslint_d.js/commit/414a697abc0f6f13fa1ca5837eefedbd34c9ef05)
+  Bump acorn from 6.4.0 to 6.4.1 in /test/fixture/v5.16.x (dependabot[bot])
+- 🛡 [`6e2fc82`](https://github.com/mantoni/eslint_d.js/commit/6e2fc826a71ef3be9b3240eadf48940c1077a8ee)
+  Bump acorn from 6.1.1 to 6.4.1 in /test/fixture/v5.0.x (dependabot[bot])
+- 🛡 [`06a6144`](https://github.com/mantoni/eslint_d.js/commit/06a61443c42dec81a99f72fa692acc1660af2335)
+  Bump acorn from 6.1.1 to 6.4.1 (dependabot[bot])
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-03-21._
+
 ## 8.1.0
 
 - 🍏 [`501333a`](https://github.com/mantoni/eslint_d.js/commit/501333a2518c95ff7e71051631490026b3b91984)
