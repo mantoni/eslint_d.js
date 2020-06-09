@@ -57,7 +57,7 @@
   "devDependencies": {
     "@sinonjs/referee-sinon": "^5.0.0",
     "@studio/changes": "^1.7.0",
-    "@studio/eslint-config": "^1.0.2",
+    "@studio/eslint-config": "^1.1.1",
     "mocha": "^6.2.0",
     "mocha-referee-sinon": "^1.0.0",
     "semver": "^7.1.3"
