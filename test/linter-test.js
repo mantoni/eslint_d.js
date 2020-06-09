@@ -406,7 +406,8 @@ describe('linter', () => {
 
   }
 
-  withinDirectory('6', cwd);
+  withinDirectory('7', cwd);
+  withinDirectory('7.0', 'test/fixture/v7.0.x');
   withinDirectory('6.8', 'test/fixture/v6.8.x');
   withinDirectory('6.0', 'test/fixture/v6.0.x');
   withinDirectory('5.16', 'test/fixture/v5.16.x');
