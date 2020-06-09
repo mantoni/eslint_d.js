@@ -1,5 +1,31 @@
 # Changes
 
+## 9.0.0
+
+Now ships with eslint 7, drops Node 8 support, adds Node 14. Note that
+`eslint_d` continues to support older eslint versions down to v4.
+
+- 💥 [`5f14916`](https://github.com/mantoni/eslint_d.js/commit/5f14916e0391ccc958ca40b164a1ccd7a84d3d82)
+  Support eslint 7
+- 💥 [`e8fa144`](https://github.com/mantoni/eslint_d.js/commit/e8fa144aa9e85184876dc658612e4fab28ae828e)
+  Remove node 8 from travis config
+- 🍏 [`7e518b8`](https://github.com/mantoni/eslint_d.js/commit/7e518b88457d5ec2087673aa451d5167dc90c690)
+  Add node 12 to travis config
+- 🍏 [`71e140c`](https://github.com/mantoni/eslint_d.js/commit/71e140c7f7bfa10f9b868ce41595c9e45f4d6d2a)
+  Update optionator to `v0.9.1`
+- 📚 [`0b830e6`](https://github.com/mantoni/eslint_d.js/commit/0b830e640b15e8e843b80dd005d4174aa9602916)
+  Update compatibility notes for `v9.0.0`
+- ✨ [`c9512fc`](https://github.com/mantoni/eslint_d.js/commit/c9512fc80140cc4f8bbcfe374207e98ba86306d5)
+  Upgrade Studio Changes to v2
+- ✨ [`6825f70`](https://github.com/mantoni/eslint_d.js/commit/6825f7048940f8a46e7f85a4ff18df85b9b4c889)
+  Upgrade to referee-sinon 7
+- ✨ [`17e164f`](https://github.com/mantoni/eslint_d.js/commit/17e164f0a2726488b640e3e2cc9add11c615e583)
+  Upgrade to Mocha 7
+- ✨ [`875e004`](https://github.com/mantoni/eslint_d.js/commit/875e004954684df7c040f98310aaf5cb713e3340)
+  Update eslint config
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-06-09._
+
 ## 8.1.1
 
 Security patches.
