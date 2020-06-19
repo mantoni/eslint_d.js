@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const resolve = require('resolve');
+const resolver = require('../lib/resolver');
 const semver = require('semver');
 const { assert, refute, sinon, match } = require('@sinonjs/referee-sinon');
 const linter = require('../lib/linter');
@@ -22,7 +22,7 @@ describe('linter', () => {
   describe('instance caching', () => {
 
     beforeEach(() => {
-      sinon.spy(resolve, 'sync');
+      sinon.spy(resolver, 'resolve');
     });
 
     it('reuses instance from cache', () => {
@@ -34,9 +34,9 @@ describe('linter', () => {
       assert.equals(linter.cache.length, 1);
       assert.same(cache1, cache2, 'Cache recreated');
       assert.same(cache1.eslint, cache2.eslint);
-      assert.calledTwice(resolve.sync);
-      assert.calledWithMatch(resolve.sync, 'eslint', { basedir: cwd });
-      assert.calledWith(resolve.sync, 'chalk');
+      assert.calledTwice(resolver.resolve);
+      assert.calledWithMatch(resolver.resolve, 'eslint', { paths: [cwd] });
+      assert.calledWith(resolver.resolve, 'chalk');
     });
 
     it('uses new instance for different directory', () => {
@@ -45,9 +45,9 @@ describe('linter', () => {
       linter.invoke(cwd2, ['--stdin'], '\'use strict\';');
 
       assert.equals(linter.cache.length, 2);
-      assert.callCount(resolve.sync, 4);
-      assert.calledWithMatch(resolve.sync, 'eslint', { basedir: cwd });
-      assert.calledWithMatch(resolve.sync, 'eslint', { basedir: cwd2 });
+      assert.callCount(resolver.resolve, 4);
+      assert.calledWithMatch(resolver.resolve, 'eslint', { paths: [cwd] });
+      assert.calledWithMatch(resolver.resolve, 'eslint', { paths: [cwd2] });
     });
 
     it('creates new instance if mtime is larger than first call', () => {
@@ -63,7 +63,7 @@ describe('linter', () => {
       assert.equals(linter.cache.length, 1);
       refute.same(cache1, cache2);
       refute.same(cache1.eslint, cache2.eslint, 'require.cache cleared');
-      assert.callCount(resolve.sync, 4);
+      assert.callCount(resolver.resolve, 4);
     });
 
     it('does not create new instance if mtime is lower than last call', () => {
@@ -85,7 +85,7 @@ describe('linter', () => {
       assert.equals(linter.cache.length, 1);
       assert.same(cache1, cache2);
       assert.same(cache2, cache3);
-      assert.callCount(resolve.sync, 2);
+      assert.callCount(resolver.resolve, 2);
     });
 
   });
