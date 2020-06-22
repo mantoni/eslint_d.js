@@ -1,5 +1,20 @@
 # Changes
 
+## 9.1.0
+
+- 🍏 [`836912c`](https://github.com/mantoni/eslint_d.js/commit/836912cdfebbd3934661366b2c16969a28d7a101)
+  Update eslint to v7.3
+- 🍏 [`09c46d6`](https://github.com/mantoni/eslint_d.js/commit/09c46d6d3884834a07e16e862226456015823aac)
+  Upgrade `core_d` to v2
+- 📚 [`f4f1cd3`](https://github.com/mantoni/eslint_d.js/commit/f4f1cd337b03572908d27a87024bbd067f01bad0)
+  State pnpm compatibility
+- ✨ [`0cd4828`](https://github.com/mantoni/eslint_d.js/commit/0cd4828cbbb412037773998e5c69587ea11eadd7)
+  Upgrade Mocha to v8
+- ✨ [`8e2b18e`](https://github.com/mantoni/eslint_d.js/commit/8e2b18e86a25d76a5c549d60e625408953f6d763)
+  Update `@sinonjs/referee-sinon` to v7.1
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-06-22._
+
 ## 9.0.0
 
 Now ships with eslint 7, drops Node 8 support, adds Node 14. Note that
