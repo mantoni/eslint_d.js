@@ -58,7 +58,7 @@
     "@sinonjs/referee-sinon": "^7.1.0",
     "@studio/changes": "^2.0.1",
     "@studio/eslint-config": "^1.1.1",
-    "mocha": "^7.2.0",
+    "mocha": "^8.0.1",
     "mocha-referee-sinon": "^1.0.0",
     "semver": "^7.3.2"
   }
