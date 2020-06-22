@@ -53,9 +53,9 @@ instances in the internal [nanolru][] cache.
 
 The cached version of eslint and the Node `require` cache for the current
 working directory are cleared whenever a change to one of these files is
-detected: `package.json`, `package-lock.json`, `npm-shrinkwrap.json` and
-`yarn.lock`. If changes are not automatically detected, remember to run
-`eslint_d restart` to bounce the background server.
+detected: `package.json`, `package-lock.json`, `npm-shrinkwrap.json`,
+`yarn.lock` and `pnpm-lock.yaml`. If changes are not automatically detected,
+remember to run `eslint_d restart` to bounce the background server.
 
 ## Which versions of eslint are supported?
 
