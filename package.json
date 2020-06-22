@@ -55,7 +55,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@sinonjs/referee-sinon": "^7.0.2",
+    "@sinonjs/referee-sinon": "^7.1.0",
     "@studio/changes": "^2.0.1",
     "@studio/eslint-config": "^1.1.1",
     "mocha": "^7.2.0",
