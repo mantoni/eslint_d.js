@@ -1,5 +1,14 @@
 # Changes
 
+## 9.1.1
+
+Fixes an issue with pnpm being unable to resolve `chalk`.
+
+- 🐛 [`6f2f88d`](https://github.com/mantoni/eslint_d.js/commit/6f2f88d25a9109005f5acb45c80bfc76ed5caee9)
+  Fix issue #101 (Alexander Koltun)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-06-23._
+
 ## 9.1.0
 
 - 🍏 [`836912c`](https://github.com/mantoni/eslint_d.js/commit/836912cdfebbd3934661366b2c16969a28d7a101)
