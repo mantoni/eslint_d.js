@@ -60,7 +60,7 @@ remember to run `eslint_d restart` to bounce the background server.
 ## Which versions of eslint are supported?
 
 As of `v7.2.0`, you can use `eslint_d` with multiple projects depending on
-different versions of eslint. Supported versions are 4.0+, 5.0+ and 6.0+.
+different versions of eslint. Supported versions are 4.0+, 5.0+, 6.0+ and 7.0+.
 
 ## Commands
 
