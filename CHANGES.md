@@ -1,5 +1,34 @@
 # Changes
 
+## 9.1.2
+
+Fixes an issue with `--color` / `--no-color` not working correctly.
+
+- 🐛 [`17ae7bd`](https://github.com/mantoni/eslint_d.js/commit/17ae7bd2fbc902753fa00dea074186ebb6c5ed98)
+  Use level property instead of enabled for chalk (#139) (Ibuki)
+- 📚 [`c72869f`](https://github.com/mantoni/eslint_d.js/commit/c72869fd6098aa3acdbb53389e1970c44615f111)
+  Update eslint version compatibilty note
+- 🛡 [`646772c`](https://github.com/mantoni/eslint_d.js/commit/646772cfa30dfbd2ad284a04439f3619227c511d)
+  npm audit
+- 🛡 [`6d606db`](https://github.com/mantoni/eslint_d.js/commit/6d606dbf06be7bbeb7d72f089a2b801e45afb3a1)
+  Bump lodash from 4.17.15 to 4.17.19 in /test/fixture/v5.16.x (dependabot[bot])
+- 🛡 [`de3a6b9`](https://github.com/mantoni/eslint_d.js/commit/de3a6b9d5fc6cca80205c06e93f8487167523fdc)
+  Bump lodash from 4.17.15 to 4.17.19 in /test/fixture/v4.19.x (dependabot[bot])
+- 🛡 [`7380d79`](https://github.com/mantoni/eslint_d.js/commit/7380d79f28fe6766f88247abc90b7b7378d0ea6b)
+  Bump lodash from 4.17.15 to 4.17.19 (dependabot[bot])
+- 🛡 [`04d37b1`](https://github.com/mantoni/eslint_d.js/commit/04d37b17f8711ac55fafc213c16c1b208930158c)
+  Bump lodash from 4.17.15 to 4.17.19 in /test/fixture/v6.0.x (dependabot[bot])
+- 🛡 [`2816459`](https://github.com/mantoni/eslint_d.js/commit/2816459b0ad655d1a7f65ceb13bef86517f96989)
+  Bump lodash from 4.17.15 to 4.17.19 in /test/fixture/v7.0.x (dependabot[bot])
+- 🛡 [`f838505`](https://github.com/mantoni/eslint_d.js/commit/f838505ec30a60dbf32104994630ee78d71c5849)
+  Bump lodash from 4.17.15 to 4.17.19 in /test/fixture/v6.8.x (dependabot[bot])
+- 🛡 [`5a53f65`](https://github.com/mantoni/eslint_d.js/commit/5a53f65c4250409864e5df5f4e5e5bc826019b0f)
+  Bump lodash from 4.17.15 to 4.17.19 in /test/fixture/v4.0.x (dependabot[bot])
+- 🛡 [`195b19b`](https://github.com/mantoni/eslint_d.js/commit/195b19b950a8e49e2f5df19289f4d6ef1eecf333)
+  Bump lodash from 4.17.15 to 4.17.19 in /test/fixture/v5.0.x (dependabot[bot])
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2020-09-08._
+
 ## 9.1.1
 
 Fixes an issue with pnpm being unable to resolve `chalk`.
