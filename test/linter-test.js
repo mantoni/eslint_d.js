@@ -289,13 +289,17 @@ describe('linter', () => {
         it('enables color by default', () => {
           linter.invoke(cwd, ['--stdin'], '\'use strict\';');
 
-          assert.isTrue(linter.cache.get(cwd).chalk.enabled);
+          assert.isTrue(
+            linter.cache.get(cwd).chalk.enabled
+            && linter.cache.get(cwd).chalk.level !== 0);
         });
 
         it('disables color if --no-color is passed', () => {
           linter.invoke(cwd, ['--stdin', '--no-color'], '\'use strict\';');
 
-          assert.isFalse(linter.cache.get(cwd).chalk.enabled);
+          assert.isFalse(
+            linter.cache.get(cwd).chalk.enabled
+            && linter.cache.get(cwd).chalk.level !== 0);
         });
 
       });
