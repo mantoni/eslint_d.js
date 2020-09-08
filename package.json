@@ -20,7 +20,9 @@
     "Caleb Eby <calebeby@users.noreply.github.com>",
     "Huáng Jùnliàng <JLHwung@users.noreply.github.com>",
     "Joseph Frazier <1212jtraceur@gmail.com>",
-    "Sergey Markov <Mar.Ser.DLX@gmail.com>"
+    "Sergey Markov <Mar.Ser.DLX@gmail.com>",
+    "Alexander Koltun <alexander.koltun@gmail.com>",
+    "Ibuki <main@fuwa.dev>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
