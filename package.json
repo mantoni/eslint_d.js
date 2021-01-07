@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "mocha --file ./node_modules/mocha-referee-sinon",
-    "watch": "mocha --watch",
+    "watch": "npm run test -- --watch",
     "lint": "eslint . --ignore-pattern '**/node_modules/**'",
     "posttest": "npm run lint",
     "prepare": "sh prepare.sh",
