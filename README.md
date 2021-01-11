@@ -1,6 +1,6 @@
 # eslint\_d
 
-[![Build Status]](https://travis-ci.org/mantoni/eslint_d.js)
+![Build Status](https://github.com/mantoni/eslint_d.js/workflows/Build/badge.svg)
 [![SemVer]](http://semver.org)
 [![License]](https://github.com/mantoni/eslint\_d.js/blob/master/LICENSE)
 
@@ -181,7 +181,6 @@ was extracted to [core_d][], a library that manages the background server.
 
 MIT
 
-[Build Status]: https://img.shields.io/travis/mantoni/eslint_d.js/master.svg
 [SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [License]: https://img.shields.io/npm/l/eslint_d.svg
 [eslint]: https://eslint.org
