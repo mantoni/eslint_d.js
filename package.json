@@ -26,7 +26,10 @@
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
-    "extends": "@studio"
+    "extends": "@studio",
+    "parserOptions": {
+      "ecmaVersion": 2017
+    }
   },
   "scripts": {
     "test": "mocha --file ./node_modules/mocha-referee-sinon",
@@ -43,7 +46,7 @@
     "url": "https://github.com/mantoni/eslint_d.js.git"
   },
   "dependencies": {
-    "core_d": "^2.0.0",
+    "core_d": "^3.0.0",
     "eslint": "^7.3.0",
     "nanolru": "^1.0.0",
     "optionator": "^0.9.1"
