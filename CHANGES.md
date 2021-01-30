@@ -1,5 +1,33 @@
 # Changes
 
+## 10.0.0
+
+Switch to the new `ESLint` API, if available. The `CLIEngine` API has been
+deprecated.
+
+- 💥 [`ee74815`](https://github.com/mantoni/eslint_d.js/commit/ee7481526ab48f0328e02681cda6060cd5ff2085)
+  **BREAKING:** Use ESLint class if available
+- 📚 [`1d6227e`](https://github.com/mantoni/eslint_d.js/commit/1d6227e247562aa12207df5c092ff43ea8660279)
+  Add compatibility notes for v10
+- 📚 [`d67e203`](https://github.com/mantoni/eslint_d.js/commit/d67e203cf6c99dc2da5b1d9fda8fcdffcfdf435e)
+  Document ale integration and not sublime issue
+- 📚 [`68c4eec`](https://github.com/mantoni/eslint_d.js/commit/68c4eece628c3ba43214c651602acb10920e0cf6)
+  Change badge
+- ✨ [`93dba52`](https://github.com/mantoni/eslint_d.js/commit/93dba52f70f128539c3491146c189b421a3f11f8)
+  Remove Travis config
+- ✨ [`b8b9f3c`](https://github.com/mantoni/eslint_d.js/commit/b8b9f3cfc818cce156bd4662043ec125c2ba8be1)
+  Configure GitHub actions
+- ✨ [`d83c9b9`](https://github.com/mantoni/eslint_d.js/commit/d83c9b90b99bbee0d43c8d813827fc8891b771f1)
+  Fix watch script
+- ✨ [`e65fdb9`](https://github.com/mantoni/eslint_d.js/commit/e65fdb9771d1d87665f748d3d6eb5c08d56c35d1)
+  Update mocha
+- ✨ [`06d9b71`](https://github.com/mantoni/eslint_d.js/commit/06d9b71b5436aa341e695d8b03e3a164c8fd0cf0)
+  Upgrade referee-sinon
+- ✨ [`2b42e64`](https://github.com/mantoni/eslint_d.js/commit/2b42e64643bb9efe99b3cf5e803a0285785d254e)
+  Add contributors
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-01-30._
+
 ## 9.1.2
 
 Fixes an issue with `--color` / `--no-color` not working correctly.
