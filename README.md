@@ -89,27 +89,33 @@ along with an access token in `~/.eslint_d`.
 
 ### Linting
 
-- __Sublime__: Check out [SublimeLinter-contrib-eslint\_d][SublimeLinter].
-- __Vim__: Install the [syntastic][] plugin, then make sure this is in your
-  `.vimrc`:
+- __Vim__:
+    - With [syntastic][]:
+        ```vim
+        let g:syntastic_javascript_checkers = ['eslint']
+        let g:syntastic_javascript_eslint_exec = 'eslint_d'
+        ```
 
-    ```vim
-    let g:syntastic_javascript_checkers = ['eslint']
-    let g:syntastic_javascript_eslint_exec = 'eslint_d'
-    ```
+    - With [ale][]:
+        ```vim
+        let g:ale_javascript_eslint_executable = 'eslint_d'
+        let g:ale_javascript_eslint_use_global = 1
+        ```
 
 - __WebStorm__: Configure your IDE to point to the `eslint_d` package instead
   of `eslint`. In the ESLint configuration dialog, under 'ESLint package',
   select your `eslint_d` package.
-- __Atom__: You will not gain any performance from this module as it already
-  avoids starting a new node instance and uses the API directly (see [this
-  AtomLinter issue](https://github.com/AtomLinter/linter-eslint/issues/215)).
 - __Emacs__: Use [flycheck](http://www.flycheck.org/) with the
   `javascript-eslint` checker:
 
     ```elisp
     (setq flycheck-javascript-eslint-executable "eslint_d")
     ```
+- __Sublime__: Check out [SublimeLinter-contrib-eslint\_d][SublimeLinter].
+  ⚠️ Please help resolving [issue
+  #120](https://github.com/mantoni/eslint_d.js/issues/120).
+- __Atom__, __VSCode__: You will not gain any performance from this module as
+  these editors already cache eslint instances for you.
 
 If you're using `eslint_d` in any other editor, please let us know!
 
@@ -186,6 +192,7 @@ MIT
 [eslint]: https://eslint.org
 [SublimeLinter]: https://github.com/roadhump/SublimeLinter-contrib-eslint_d
 [syntastic]: https://github.com/scrooloose/syntastic
+[ale]: https://github.com/dense-analysis/ale
 [change220]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220
 [change401]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#401
 [nanolru]: https://github.com/s3ththompson/nanolru
