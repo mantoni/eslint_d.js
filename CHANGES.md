@@ -1,5 +1,18 @@
 # Changes
 
+## 10.0.2
+
+- 🐛 [`bc46363`](https://github.com/mantoni/eslint_d.js/commit/bc46363454d568f1895a142ed3abc34977d8eab8)
+  Generate correct help
+- ✨ [`058d662`](https://github.com/mantoni/eslint_d.js/commit/058d66288632c1b9a6eb2712651b90fbe41e534e)
+  Refactor eslint path resolution into own file
+- ✨ [`0df364d`](https://github.com/mantoni/eslint_d.js/commit/0df364dc5f32cf4ae1467e21a034b65aaa63f180)
+  Do not run builds twice on own branch PR
+- ✨ [`39ab052`](https://github.com/mantoni/eslint_d.js/commit/39ab0522f94c399a7a7e7fceb5ad565b3469744f)
+  Run build for PRs
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-02-10._
+
 ## 10.0.1
 
 - 🐛 [`f62713b`](https://github.com/mantoni/eslint_d.js/commit/f62713b79ed41de24cb7dcfacb8d6015011e90a7)
