@@ -11,7 +11,11 @@ if (cmd === '-v' || cmd === '--version') {
 }
 
 if (cmd === '-h' || cmd === '--help') {
-  const options = require('../lib/options-cliengine');
+  const eslint_path = require('../lib/eslint-path');
+  const eslint = require(eslint_path.resolve(process.cwd()));
+  const options = eslint.ESLint
+    ? require('../lib/options-eslint')
+    : require('../lib/options-cliengine');
   console.log(options.generateHelp());
   return;
 }
