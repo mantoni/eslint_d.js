@@ -11,7 +11,7 @@ if (cmd === '-v' || cmd === '--version') {
 }
 
 if (cmd === '-h' || cmd === '--help') {
-  const options = require('../lib/options');
+  const options = require('../lib/options-cliengine');
   console.log(options.generateHelp());
   return;
 }
