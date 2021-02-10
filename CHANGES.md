@@ -1,5 +1,12 @@
 # Changes
 
+## 10.0.1
+
+- 🐛 [`f62713b`](https://github.com/mantoni/eslint_d.js/commit/f62713b79ed41de24cb7dcfacb8d6015011e90a7)
+  Unbreak `eslint_d --help` (Christian Albrecht)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-02-10._
+
 ## 10.0.0
 
 Switch to the new `ESLint` API, if available. The `CLIEngine` API has been
