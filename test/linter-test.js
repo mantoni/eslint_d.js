@@ -251,18 +251,13 @@ describe('linter', () => {
         });
 
         it('does not fail with --print-config and a filename', async () => {
-          const configInString = (value) => {
-            try {
-              return !!JSON.parse(value).rules;
-            } catch (ex) {
-              return false;
-            }
-          };
           const args = ['--print-config', fixture_warn];
 
           await linter.invoke(dir, args, '', 0, callback);
 
-          assert.calledOnceWith(callback, null, sinon.match(configInString));
+          assert.matchJson(callback.firstCall.args[1], {
+            rules: match.defined
+          });
         });
 
       });
