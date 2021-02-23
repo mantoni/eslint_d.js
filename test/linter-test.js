@@ -250,6 +250,16 @@ describe('linter', () => {
             + 'not available for piped-in code.');
         });
 
+        it('does not fail with --print-config and a filename', async () => {
+          const args = ['--print-config', fixture_warn];
+
+          await linter.invoke(dir, args, '', 0, callback);
+
+          assert.matchJson(callback.firstCall.args[1], {
+            rules: match.defined
+          });
+        });
+
       });
 
       describe('--quiet', () => {
