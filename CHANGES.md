@@ -1,5 +1,16 @@
 # Changes
 
+## 10.0.3
+
+- 🐛 [`c732b77`](https://github.com/mantoni/eslint_d.js/commit/c732b774b7c08f735d48ba712c994ef978770364)
+  Fix `--print-config` for eslint 7+ (#153) (Dan Orzechowski)
+- 📚 [`25c2921`](https://github.com/mantoni/eslint_d.js/commit/25c2921901bff600bf4c9a17ee5e9caf260ac8b0)
+  Add contributors
+- ✨ [`3e4c1b2`](https://github.com/mantoni/eslint_d.js/commit/3e4c1b2ef11f57fc138f72eb62d2edbdb34edc1f)
+  Update Studio Changes
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-02-23._
+
 ## 10.0.2
 
 - 🐛 [`bc46363`](https://github.com/mantoni/eslint_d.js/commit/bc46363454d568f1895a142ed3abc34977d8eab8)
