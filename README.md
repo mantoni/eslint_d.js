@@ -137,6 +137,13 @@ used with `--stdin`.
     ```
 
 - __Emacs__: See [eslintd-fix](https://github.com/aaronjensen/eslintd-fix)
+- __If the above doesn't autofix__: [This can happen with .vue files](https://github.com/mantoni/eslint_d.js/issues/145#issuecomment-787119881)  
+  Change `eslint_d --stdin --fix-to-stdout` to `eslint_d --stdin --fix-to-stdout --stdin-filename %` (% = path to file you want to autofix)  
+  In Vim, the above mapping should be replaced with:
+  ```vim
+  nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
+  ```
+
 
 ## Moar speed
 
