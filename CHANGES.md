@@ -1,5 +1,14 @@
 # Changes
 
+## 10.0.4
+
+- 📚 [`b256c48`](https://github.com/mantoni/eslint_d.js/commit/b256c48acda89961b0f4408856bdcb216c8b624f)
+  Document fix for .vue files not autofixed (#154) (Artur Tagisow)
+- 📚 [`c63b44b`](https://github.com/mantoni/eslint_d.js/commit/c63b44b2aadada8c35d0992aa9fb1445ff4c107f)
+  Add contributor
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-02-28._
+
 ## 10.0.3
 
 - 🐛 [`c732b77`](https://github.com/mantoni/eslint_d.js/commit/c732b774b7c08f735d48ba712c994ef978770364)
