@@ -155,6 +155,35 @@ describe('linter', () => {
         }
       });
 
+      describe('exit code', () => {
+
+        if (semver.gte(semver.coerce(eslint_version), '6.0.0')) {
+          it('fails when linting nonexistent file and sets exit code to 2',
+            async () => {
+              await linter.invoke(dir, ['bad-filename'], '', 0, callback);
+
+              assert.calledOnceWith(callback, match({
+                exitCode: 2
+              }));
+            });
+        } else {
+          it('fails when using unspported option and sets exit code to 2',
+            async () => {
+              await linter.invoke(dir, [
+                '--resolve-plugins-relative-to', plugin_folder,
+                '-c', plugin_eslintrc,
+                fixture_es6, '-f', 'unix'
+              ], '', 0, callback);
+
+              assert.calledOnceWith(callback, match({
+                exitCode: 2
+              }));
+            });
+        }
+
+      });
+
+
       describe('single file', () => {
 
         it('succeeds on lib/linter.js', async () => {
