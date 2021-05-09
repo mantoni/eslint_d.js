@@ -1,5 +1,36 @@
 # Changes
 
+## 10.1.0
+
+- 🍏 [`48f1e1a`](https://github.com/mantoni/eslint_d.js/commit/48f1e1a6e45a753ec37d75a318365e227d29d9fd)
+  Implement exit codes (Jose Alvarez)
+- 🍏 [`a2f3a0e`](https://github.com/mantoni/eslint_d.js/commit/a2f3a0e69f3b14017dfb0c6bd015e04168e9faac)
+  Depend on core\_d `v3.1`
+- 🛡 [`fd332c2`](https://github.com/mantoni/eslint_d.js/commit/fd332c210a023cdaadd79c703d1bf40853b572cd)
+  Bump lodash from 4.17.19 to 4.17.21 in /test/fixture/v6.0.x (dependabot[bot])
+- 🛡 [`cd87b1f`](https://github.com/mantoni/eslint_d.js/commit/cd87b1f19c3838af9cd73cf3a6c4f85d43d25389)
+  Bump lodash from 4.17.19 to 4.17.21 in /test/fixture/v5.0.x (dependabot[bot])
+- 🛡 [`be57447`](https://github.com/mantoni/eslint_d.js/commit/be57447bc829a8f9707de9af4d02b1e7f2ff7c25)
+  Bump lodash from 4.17.19 to 4.17.21 in /test/fixture/v4.0.x (dependabot[bot])
+- 🛡 [`a37575d`](https://github.com/mantoni/eslint_d.js/commit/a37575d01ff424a965d809304289bcbb1b42e909)
+  Bump lodash from 4.17.19 to 4.17.21 (dependabot[bot])
+- ✨ [`2cf221b`](https://github.com/mantoni/eslint_d.js/commit/2cf221bc509cad4ab864a17883859dde1e8751b3)
+  Update Studio Changes
+- ✨ [`bbfc483`](https://github.com/mantoni/eslint_d.js/commit/bbfc483d6cffc9140b895f39a7ebb2746ec5e63f)
+  Update semver
+- ✨ [`48b94f9`](https://github.com/mantoni/eslint_d.js/commit/48b94f9c6ef7245323bf8606797c636aec8a2585)
+  Update eslint
+- ✨ [`10a536c`](https://github.com/mantoni/eslint_d.js/commit/10a536c1681a4e0e5c0bbed708e531c388df05e7)
+  Update mocha
+- ✨ [`2a468a0`](https://github.com/mantoni/eslint_d.js/commit/2a468a09eb221b68e6bfb3ca7817aba054823a74)
+  Upgrade referee-sinon to latest
+- ✨ [`6d1f4d0`](https://github.com/mantoni/eslint_d.js/commit/6d1f4d004025c8314ea5251e8a7f53c9ff1007fa)
+  Use npm 7
+- 📚 [`f47e45e`](https://github.com/mantoni/eslint_d.js/commit/f47e45edce1f20e2b7f78e4eb9d9663311dc2125)
+  Add contributor
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-09._
+
 ## 10.0.4
 
 - 📚 [`b256c48`](https://github.com/mantoni/eslint_d.js/commit/b256c48acda89961b0f4408856bdcb216c8b624f)
