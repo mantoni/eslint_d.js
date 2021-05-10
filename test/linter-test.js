@@ -224,6 +224,13 @@ describe('linter', () => {
           assert.calledOnceWith(callback, null, 'console.log(\'!\');\n');
         });
 
+        it('returns fixed script also with --quiet', async () => {
+          await linter.invoke(dir, ['--stdin', '--fix-to-stdout', '--quiet'],
+            'console.log( "!" )\n', 0, callback);
+
+          assert.calledOnceWith(callback, null, 'console.log(\'!\');\n');
+        });
+
         it('fails if --stdin is not given', async () => {
           await linter.invoke(dir, ['--fix-to-stdout', '.'], '', 0, callback);
 
