@@ -29,6 +29,10 @@
 - 📚 [`f47e45e`](https://github.com/mantoni/eslint_d.js/commit/f47e45edce1f20e2b7f78e4eb9d9663311dc2125)
   Add contributor
 
+Note: If you rely on the `.eslint_d` file, please note that its
+location has changed and that the `XDG_RUNTIME_DIR` is taken into
+account if it exists. See the README.md file for more information.
+
 _Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-09._
 
 ## 10.0.4
