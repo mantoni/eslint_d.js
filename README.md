@@ -37,8 +37,7 @@ is linted. Subsequent invocations are super fast.
 ## How does this work?
 
 The first time you use `eslint_d`, a little server is started in the background
-and bound to a random port. The port number is stored along with [a
-token][change401] in `~/.eslint_d`. You can then run `eslint_d` commands the
+and bound to a random port. You can then run `eslint_d` commands the
 same way you would use `eslint` and it will delegate to the background server.
 It will load a [separate instance][change220] of eslint for each working
 directory to make sure settings are kept local. If eslint is found in the
@@ -82,8 +81,13 @@ Available commands:
 
 Type `eslint_d --help` to see the supported `eslint` options.
 
-`eslint_d` will select a free port automatically and store the port number
-along with an access token in `~/.eslint_d`.
+When the server starts, `eslint_d` selects a free port automatically
+and decides on a random access token. Both the port and token are
+written to an `.eslint_d` file so that future usages of `eslint_d` can
+connect to the already running server. The `.eslint_d` file is stored
+under the `XDG_RUNTIME_DIR` directory if this environment variable is
+defined. If the variable is not defined then the file is stored in the
+user's home directory.
 
 ## Editor integration
 
@@ -151,9 +155,19 @@ If you're really into performance and want the lowest possible latency, talk to
 the `eslint_d` server with netcat. This will also eliminate the node.js startup
 time.
 
+You first need to extract the port and access token from the
+`.eslint_d` file. The location of this file may change depending on
+your system (see above). For example, if `XDG_RUNTIME_DIR` is
+specified, you can do this:
+
 ```bash
-$ PORT=`cat ~/.eslint_d | cut -d" " -f1`
-$ TOKEN=`cat ~/.eslint_d | cut -d" " -f2`
+$ PORT=`cat $XDG_RUNTIME_DIR/.eslint_d | cut -d" " -f1`
+$ TOKEN=`cat $XDG_RUNTIME_DIR/.eslint_d | cut -d" " -f2`
+```
+
+Then, you can do the following to run eslint on `file.js`:
+
+```session
 $ echo "$TOKEN $PWD file.js" | nc localhost $PORT
 ```
 
