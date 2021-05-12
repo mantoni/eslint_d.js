@@ -1,5 +1,16 @@
 # Changes
 
+## 10.1.1
+
+- 📚 [`1e4d696`](https://github.com/mantoni/eslint_d.js/commit/1e4d696b80cdc4f30f58b9081b54f005b6967cdc)
+  Clarify location of .eslint_d in README (Damien Cassou)
+- 📚 [`4f9bceb`](https://github.com/mantoni/eslint_d.js/commit/4f9bcebfae7aec43d401c61f440a44c98085cfa5)
+  Add a note to 10.1.0 regarding the location of .eslint_d (Damien Cassou)
+- 📚 [`9e43358`](https://github.com/mantoni/eslint_d.js/commit/9e43358898a30474d05e6e5913b9ca26b5c497ac)
+  Add contributor
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-12._
+
 ## 10.1.0
 
 - 🍏 [`48f1e1a`](https://github.com/mantoni/eslint_d.js/commit/48f1e1a6e45a753ec37d75a318365e227d29d9fd)
