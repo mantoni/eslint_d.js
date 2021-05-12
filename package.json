@@ -26,7 +26,8 @@
     "Christian Albrecht <christian.albrecht@mayflower.de>",
     "Dan Orzechowski <orzechod@gmail.com>",
     "Artur Tagisow <atagisow@protonmail.com>",
-    "Jose Alvarez <j.alvarez11@icloud.com>"
+    "Jose Alvarez <j.alvarez11@icloud.com>",
+    "Damien Cassou <damien@cassou.me>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
