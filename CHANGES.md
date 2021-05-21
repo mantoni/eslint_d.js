@@ -1,5 +1,12 @@
 # Changes
 
+## 10.1.2
+
+- 🐛 [`58088b9`](https://github.com/mantoni/eslint_d.js/commit/58088b94e26c70a7888353d31dce9e15e6087069)
+  Fix --fix to work with --quiet (Dani Pinyol)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-21._
+
 ## 10.1.1
 
 - 📚 [`1e4d696`](https://github.com/mantoni/eslint_d.js/commit/1e4d696b80cdc4f30f58b9081b54f005b6967cdc)
