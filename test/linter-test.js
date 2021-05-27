@@ -126,6 +126,7 @@ describe('linter', () => {
 
   const plugin_folder = `${cwd}/test/fixture/eslint-plugin`;
   const plugin_eslintrc = `${cwd}/test/plugin.eslintrc`;
+  const no_semi_eslintrc = `${cwd}/test/fixture/no-semi.eslintrc`;
 
   const fixture_fail = `${cwd}/test/fixture/fail.txt`;
   const fixture_warn = `${cwd}/test/fixture/warn.txt`;
@@ -294,6 +295,20 @@ describe('linter', () => {
           assert.matchJson(callback.firstCall.args[1], {
             rules: match.defined
           });
+        });
+
+      });
+
+      describe('--config', () => {
+
+        it('lints file based on rules in specified config file', async () => {
+          await linter.invoke(dir, [fixture_fail, '-f', 'unix',
+            '--config', no_semi_eslintrc], '', 0,
+          callback);
+
+          assert.calledWithMatch(callback, '/fail.txt:3:13:');
+          assert.calledWithMatch(callback,
+            'Extra semicolon. [Error/semi]');
         });
 
       });
