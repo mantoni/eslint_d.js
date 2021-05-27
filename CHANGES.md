@@ -1,5 +1,12 @@
 # Changes
 
+## 10.1.3
+
+- 🐛 [`163f6a7`](https://github.com/mantoni/eslint_d.js/commit/163f6a78880f7dee728f68f9a710283f68988138)
+  Fix `--config` flag (Jose Alvarez)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-05-27._
+
 ## 10.1.2
 
 - 🐛 [`58088b9`](https://github.com/mantoni/eslint_d.js/commit/58088b94e26c70a7888353d31dce9e15e6087069)
