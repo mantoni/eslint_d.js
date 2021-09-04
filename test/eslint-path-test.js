@@ -7,6 +7,10 @@ const eslint_path = require('../lib/eslint-path');
 
 describe('eslint-path', () => {
 
+  afterEach(() => {
+    sinon.restore();
+  });
+
   it('resolves eslint using the given cwd', () => {
     sinon.replace(resolver, 'resolve', sinon.fake.returns('/some/eslint'));
 

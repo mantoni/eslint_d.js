@@ -16,6 +16,7 @@ describe('linter', () => {
   });
 
   afterEach(() => {
+    sinon.restore();
     linter.cache.clear();
   });
 
