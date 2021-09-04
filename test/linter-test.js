@@ -147,7 +147,9 @@ describe('linter', () => {
         // eslint-disable-next-line no-sync
         const { version } = JSON.parse(fs.readFileSync(file, 'utf8'));
 
-        const m = version.match(/^([0-9]+)\.([0-9]+)\.([0-9]+)$/);
+        const m = version.match(
+          /^([0-9]+)\.([0-9]+)\.([0-9]+)(-beta.[0-9]+)?$/
+        );
 
         refute.isNull(m);
         const parts = eslint_version.split('.');
@@ -476,6 +478,7 @@ describe('linter', () => {
 
   }
 
+  withinDirectory('8.0', 'test/fixture/v8.0.x');
   withinDirectory('7', cwd);
   withinDirectory('7.0', path.resolve('test/fixture/v7.0.x'));
   withinDirectory('6.8', 'test/fixture/v6.8.x');
