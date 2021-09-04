@@ -1,5 +1,26 @@
 # Changes
 
+## 11.0.0
+
+- 💥 [`38d4c67`](https://github.com/mantoni/eslint_d.js/commit/38d4c67a0a2bcb241458b1183bb6efaf14e6117e)
+  Remove node 10 support
+- 🍏 [`05b7e17`](https://github.com/mantoni/eslint_d.js/commit/05b7e1729751b3d01c536bd01e6e852ec5238b16)
+  Add node 16 to GitHub action
+- 🍏 [`efbd072`](https://github.com/mantoni/eslint_d.js/commit/efbd072639591f8ea82237c50466911028bdca93)
+  Support eslint 8 beta
+- 📚 [`bf2dcf1`](https://github.com/mantoni/eslint_d.js/commit/bf2dcf1e55e86fc9d7c8c2bb766925571b3242ae)
+  Update compatibility notes
+- ✨ [`0e84c82`](https://github.com/mantoni/eslint_d.js/commit/0e84c829bb00d4eb3fe5c6b0b9072a84a0c8b0d4)
+  Upgrade mocha to v9
+- ✨ [`0e6da22`](https://github.com/mantoni/eslint_d.js/commit/0e6da22f57d5c640da19d1673148649d40c67dfa)
+  Remove `mocha-referee-sinon`
+- ✨ [`a78384d`](https://github.com/mantoni/eslint_d.js/commit/a78384dd5a7b83ab3da14e7daf6d23f4d3b703d2)
+  Upgrade `referee-sinon`
+- ✨ [`39ac4a7`](https://github.com/mantoni/eslint_d.js/commit/39ac4a7b0aa466452c16d6efc81ef7c5a44d5c20)
+  Update `core_d`
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-09-04._
+
 ## 10.1.3
 
 - 🐛 [`163f6a7`](https://github.com/mantoni/eslint_d.js/commit/163f6a78880f7dee728f68f9a710283f68988138)
