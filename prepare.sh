@@ -21,5 +21,8 @@ npm i
 cd ../v7.0.x
 npm i
 
+cd ../v8.0.x
+npm i
+
 cd ../eslint-plugin
 npm i
