@@ -194,12 +194,11 @@ was extracted to [core_d][], a library that manages the background server.
 
 ## Compatibility
 
-- `10.0.0`: eslint 4.0+, 5.0+, 6.0+ and 7.0+, node 10, 12 and 14 (using new
-  `ESLint` API if available)
-- `9.0.0`: eslint 4.0+, 5.0+, 6.0+ and 7.0+, node 10, 12 and 14 (using
-  `CLIEngine` API)
-- `8.0.0`: eslint 4.0+, 5.0+ and 6.0+, node 8, 10 and 12
-- `7.2.0`: eslint 4.0+ and 5.0+, node 6, 8 and 10
+- `11.0.0`: eslint 4 - 8.beta, node 12 - 16
+- `10.0.0`: eslint 4 - 7, node 10 - 14 (using new `ESLint` API if available)
+- `9.0.0`: eslint 4 - 7, node 10 - 14 (using `CLIEngine` API)
+- `8.0.0`: eslint 4 - 6, node 8 - 12
+- `7.2.0`: eslint 4 - 5, node 6 - 10
 - `7.0.0`: eslint 5.4+, node 6, 8 and 10
 - `6.0.0`: eslint 5.0+, node 6+ (eslint dropped node 4)
 - `5.0.0`: eslint 4.0+
