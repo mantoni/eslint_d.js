@@ -27,7 +27,8 @@
     "Dan Orzechowski <orzechod@gmail.com>",
     "Artur Tagisow <atagisow@protonmail.com>",
     "Jose Alvarez <j.alvarez11@icloud.com>",
-    "Damien Cassou <damien@cassou.me>"
+    "Damien Cassou <damien@cassou.me>",
+    "James Pulec <jpulec@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
