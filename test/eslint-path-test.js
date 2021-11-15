@@ -11,7 +11,7 @@ describe('eslint-path', () => {
     sinon.restore();
   });
 
-  describe('without eslintPath', () => {
+  describe('without eslint_path', () => {
 
     it('resolves eslint using the given cwd', () => {
       sinon.replace(resolver, 'resolve', sinon.fake.returns('/some/eslint'));
@@ -42,7 +42,7 @@ describe('eslint-path', () => {
 
   });
 
-  describe('with eslintPath', () => {
+  describe('with eslint_path', () => {
 
     it('resolves eslint using the given cwd', () => {
       sinon.replace(resolver, 'resolve',
