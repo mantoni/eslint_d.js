@@ -194,7 +194,7 @@ was extracted to [core_d][], a library that manages the background server.
 
 ## Compatibility
 
-- `11.0.0`: eslint 4 - 8.beta, node 12 - 16
+- `11.0.0`: eslint 4 - 8, node 12 - 16
 - `10.0.0`: eslint 4 - 7, node 10 - 14 (using new `ESLint` API if available)
 - `9.0.0`: eslint 4 - 7, node 10 - 14 (using `CLIEngine` API)
 - `8.0.0`: eslint 4 - 6, node 8 - 12
