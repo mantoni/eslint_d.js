@@ -1,5 +1,20 @@
 # Changes
 
+## 11.1.0
+
+- 🍏 [`33db423`](https://github.com/mantoni/eslint_d.js/commit/33db4232f115d1d418c4bbeb9f62501a5c99db31)
+  Support Passing Alternative Eslint Module Path (#175) (James Pulec)
+    >
+    > Allow passing an alternative path to an eslint module using the
+    > `--eslint-path` option. This makes it easier to support different
+    > module resolution schemes, such as Yarn PnP.
+- ✨ [`21d44b9`](https://github.com/mantoni/eslint_d.js/commit/21d44b90eb5bc0e111b1addb08f153f732aba825)
+  Use eslint v8.0.x instead of the beta in tests
+- 📚 [`bc77aff`](https://github.com/mantoni/eslint_d.js/commit/bc77aff0806df0cecf7b6a69d2edd12a5fc571aa)
+  Add contributor
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-11-15._
+
 ## 11.0.0
 
 - 💥 [`38d4c67`](https://github.com/mantoni/eslint_d.js/commit/38d4c67a0a2bcb241458b1183bb6efaf14e6117e)
