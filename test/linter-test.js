@@ -484,6 +484,15 @@ describe('linter', () => {
             assert.calledOnceWith(callback, null, '');
           });
 
+          it('uses the passed in binary with quotes', async () => {
+            await linter.invoke(dir, [
+              '--eslint-path="./node_modules/eslint"',
+              fixture_es6, '-f', 'unix'
+            ], '', 0, callback);
+
+            assert.calledOnceWith(callback, null, '');
+          });
+
         });
       });
 
