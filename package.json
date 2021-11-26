@@ -43,7 +43,7 @@
     "watch": "npm run test -- --watch",
     "lint": "eslint . --ignore-pattern '**/node_modules/**'",
     "posttest": "npm run lint",
-    "prepare": "sh prepare.sh",
+    "prepare": "sh scripts/install-fixture-deps.sh",
     "preversion": "npm test",
     "version": "changes --commits --footer",
     "postversion": "git push --follow-tags && npm publish"
