@@ -1,5 +1,14 @@
 # Changes
 
+## 11.1.1
+
+- 🐛 [`8e912e2`](https://github.com/mantoni/eslint_d.js/commit/8e912e2ff515ec4ff12d9df6d1451724de1cb8af)
+  Support quotes when parsing `--eslint-path` (Shannon Moeller)
+- 📚 [`2cf58e7`](https://github.com/mantoni/eslint_d.js/commit/2cf58e77da1d648b6ecc69bc81dac9a9645c5d6f)
+  Add contributor
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2021-11-26._
+
 ## 11.1.0
 
 - 🍏 [`33db423`](https://github.com/mantoni/eslint_d.js/commit/33db4232f115d1d418c4bbeb9f62501a5c99db31)

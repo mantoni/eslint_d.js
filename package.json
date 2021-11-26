@@ -1,6 +1,6 @@
 {
   "name": "eslint_d",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "description": "Makes eslint the fastest linter on the planet",
   "bin": "bin/eslint_d.js",
   "keywords": [
