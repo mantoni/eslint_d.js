@@ -45,6 +45,9 @@ current working directories `node_modules` folder, then this version of eslint
 is going to be used. Otherwise, the version of eslint that ships with
 `eslint_d` is used as a fallback.
 
+It's possible to force `eslint_d` to only resolve local `eslint` by setting the
+`ESLINT_D_LOCAL_ONLY` environment variable to a truthy value (ie. `true` or `1`).
+
 To keep the memory footprint low, `eslint_d` keeps only the last 10 used
 instances in the internal [nanolru][] cache.
 
