@@ -63,6 +63,22 @@ describe('linter', () => {
       refute.same(cache1.eslint, cache2.eslint, 'require.cache cleared');
       assert.callCount(resolver.resolve, 4);
     });
+
+    it('does not create cache and exits when not resolving eslint',
+      async () => {
+        sinon.replace(resolver, 'resolve', sinon.fake(() => undefined));
+
+        await linter.invoke(
+          cwd,
+          ['--stdin'],
+          '\'use strict\';', 1234, () => {}
+        );
+        const cache = linter.cache.get(cwd);
+
+        assert.equals(linter.cache.length, 0);
+        assert.isUndefined(cache);
+      }
+    );
   });
 
   describe('getStatus', () => {
