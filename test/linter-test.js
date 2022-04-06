@@ -27,9 +27,9 @@ describe('linter', () => {
     });
 
     it('reuses instance from cache', async () => {
-      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 1234, () => {});
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 'a', () => {});
       const cache1 = linter.cache.get(cwd);
-      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 1234, () => {});
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 'a', () => {});
       const cache2 = linter.cache.get(cwd);
 
       assert.equals(linter.cache.length, 1);
@@ -42,8 +42,8 @@ describe('linter', () => {
 
     it('uses new instance for different directory', async () => {
       const cwd2 = path.join(cwd, 'test');
-      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 0, () => {});
-      await linter.invoke(cwd2, ['--stdin'], '\'use strict\';', 0, () => {});
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 'a', () => {});
+      await linter.invoke(cwd2, ['--stdin'], '\'use strict\';', 'a', () => {});
 
       assert.equals(linter.cache.length, 2);
       assert.callCount(resolver.resolve, 4);
@@ -51,16 +51,11 @@ describe('linter', () => {
       assert.calledWithMatch(resolver.resolve, 'eslint', { paths: [cwd2] });
     });
 
-    it('creates new instance if mtime is larger than first call', async () => {
-      const now = Date.now();
-      const clock = sinon.useFakeTimers(now);
-      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', now - 1000,
-        () => {});
+    it('creates new instance if hash differs from first call', async () => {
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 'a', () => {});
       const cache1 = linter.cache.get(cwd);
 
-      clock.tick(1000);
-      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', now + 500,
-        () => {});
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 'b', () => {});
       const cache2 = linter.cache.get(cwd);
 
       assert.equals(linter.cache.length, 1);
@@ -68,33 +63,6 @@ describe('linter', () => {
       refute.same(cache1.eslint, cache2.eslint, 'require.cache cleared');
       assert.callCount(resolver.resolve, 4);
     });
-
-    it('does not create new instance if mtime is lower than last call',
-      async () => {
-        const now = Date.now();
-        const clock = sinon.useFakeTimers(now);
-        await linter.invoke(cwd, ['--stdin'], '\'use strict\';', now - 1000,
-          () => {});
-        const cache1 = linter.cache.get(cwd);
-
-        clock.tick(1000);
-        await linter.invoke(cwd, ['--stdin'], '\'use strict\';', now - 1000,
-          () => {});
-        const cache2 = linter.cache.get(cwd);
-
-        clock.tick(1000);
-        // Newer than initial timestamp, but older than last run. Verifies the
-        // timestamp in the cache was renewed.
-        await linter.invoke(cwd, ['--stdin'], '\'use strict\';', now + 500,
-          () => {});
-        const cache3 = linter.cache.get(cwd);
-
-        assert.equals(linter.cache.length, 1);
-        assert.same(cache1, cache2);
-        assert.same(cache2, cache3);
-        assert.callCount(resolver.resolve, 2);
-      });
-
   });
 
   describe('getStatus', () => {
@@ -106,7 +74,7 @@ describe('linter', () => {
     });
 
     it('has one instance', async () => {
-      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 0, () => {});
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 'a', () => {});
 
       const status = linter.getStatus();
 
@@ -114,9 +82,9 @@ describe('linter', () => {
     });
 
     it('has two instances', async () => {
-      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 0, () => {});
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', 'a', () => {});
       await linter.invoke(path.join(cwd, 'test'), ['--stdin'],
-        '\'use strict\';', 0, () => {});
+        '\'use strict\';', 'a', () => {});
 
       const status = linter.getStatus();
 
@@ -164,7 +132,7 @@ describe('linter', () => {
         if (semver.gte(semver.coerce(eslint_version), '6.0.0')) {
           it('fails when linting nonexistent file and sets exit code to 2',
             async () => {
-              await linter.invoke(dir, ['bad-filename'], '', 0, callback);
+              await linter.invoke(dir, ['bad-filename'], '', 'a', callback);
 
               assert.calledOnceWith(callback, match({
                 exitCode: 2
@@ -177,7 +145,7 @@ describe('linter', () => {
                 '--resolve-plugins-relative-to', plugin_folder,
                 '-c', plugin_eslintrc,
                 fixture_es6, '-f', 'unix'
-              ], '', 0, callback);
+              ], '', 'a', callback);
 
               assert.calledOnceWith(callback, match({
                 exitCode: 2
@@ -191,13 +159,13 @@ describe('linter', () => {
       describe('single file', () => {
 
         it('succeeds on lib/linter.js', async () => {
-          await linter.invoke(dir, [lib_linter], '', 0, callback);
+          await linter.invoke(dir, [lib_linter], '', 'a', callback);
 
           assert.calledOnceWith(callback, null, '');
         });
 
         it('fails on test/fixture/fail.txt', async () => {
-          await linter.invoke(dir, [fixture_fail, '-f', 'unix'], '', 0,
+          await linter.invoke(dir, [fixture_fail, '-f', 'unix'], '', 'a',
             callback);
 
           assert.calledWithMatch(callback, '/fail.txt:3:13:');
@@ -211,7 +179,7 @@ describe('linter', () => {
 
         it('runs on --stdin text', async () => {
           await linter.invoke(dir, ['--stdin', '-f', 'unix'],
-            'console.log();', 0, callback);
+            'console.log();', 'a', callback);
 
           assert.calledWithMatch(callback, '<text>:1:1: Use the global '
             + 'form of \'use strict\'. [Error/strict]');
@@ -223,20 +191,20 @@ describe('linter', () => {
 
         it('returns fixed script', async () => {
           await linter.invoke(dir, ['--stdin', '--fix-to-stdout'],
-            'console.log( "!" )\n', 0, callback);
+            'console.log( "!" )\n', 'a', callback);
 
           assert.calledOnceWith(callback, null, 'console.log(\'!\');\n');
         });
 
         it('returns fixed script also with --quiet', async () => {
           await linter.invoke(dir, ['--stdin', '--fix-to-stdout', '--quiet'],
-            'console.log( "!" )\n', 0, callback);
+            'console.log( "!" )\n', 'a', callback);
 
           assert.calledOnceWith(callback, null, 'console.log(\'!\');\n');
         });
 
         it('fails if --stdin is not given', async () => {
-          await linter.invoke(dir, ['--fix-to-stdout', '.'], '', 0, callback);
+          await linter.invoke(dir, ['--fix-to-stdout', '.'], '', 'a', callback);
 
           assert.calledOnceWith(callback,
             'The --fix-to-stdout option must be used with --stdin.');
@@ -244,7 +212,7 @@ describe('linter', () => {
 
         it('returns input if nothing to fix', async () => {
           await linter.invoke(dir, ['--stdin', '--fix-to-stdout'],
-            'console.log(\'!\');\n', 0, callback);
+            'console.log(\'!\');\n', 'a', callback);
 
           assert.calledOnceWith(callback, null, 'console.log(\'!\');\n');
         });
@@ -259,7 +227,7 @@ describe('linter', () => {
           it('does not fail and does not return fixed script', async () => {
             await linter.invoke(dir,
               ['--fix-dry-run', '--stdin', '--fix-to-stdout'],
-              'console.log( "!" )\n', 0, callback);
+              'console.log( "!" )\n', 'a', callback);
 
             assert.calledOnceWith(callback, null, 'console.log( "!" )\n');
           });
@@ -271,7 +239,7 @@ describe('linter', () => {
 
         it('fails with --stdin', async () => {
           await linter.invoke(dir, ['--stdin', '--print-config'],
-            'console.log( "!" )\n', 0, callback);
+            'console.log( "!" )\n', 'a', callback);
 
           const expected = semver.gte(semver.coerce(eslint_version), '7.0.0')
             ? 'The --print-config option must be used with exactly one '
@@ -284,7 +252,7 @@ describe('linter', () => {
 
         it('fails with --stdin and positional argument', async () => {
           await linter.invoke(dir, ['--stdin', '--print-config', '.'],
-            'console.log( "!" )\n', 0, callback);
+            'console.log( "!" )\n', 'a', callback);
 
           assert.calledOnceWith(callback, 'The --print-config option is '
             + 'not available for piped-in code.');
@@ -293,7 +261,7 @@ describe('linter', () => {
         it('does not fail with --print-config and a filename', async () => {
           const args = ['--print-config', fixture_warn];
 
-          await linter.invoke(dir, args, '', 0, callback);
+          await linter.invoke(dir, args, '', 'a', callback);
 
           assert.matchJson(callback.firstCall.args[1], {
             rules: match.defined
@@ -306,7 +274,7 @@ describe('linter', () => {
 
         it('lints file based on rules in specified config file', async () => {
           await linter.invoke(dir, [fixture_fail, '-f', 'unix',
-            '--config', no_semi_eslintrc], '', 0,
+            '--config', no_semi_eslintrc], '', 'a',
           callback);
 
           assert.calledWithMatch(callback, '/fail.txt:3:13:');
@@ -319,14 +287,15 @@ describe('linter', () => {
       describe('--quiet', () => {
 
         it('prints warnings by default', async () => {
-          await linter.invoke(dir, [fixture_warn, '-f', 'unix'], '', 0,
+          await linter.invoke(dir, [fixture_warn, '-f', 'unix'], '', 'a',
             callback);
 
           assert.calledOnceWith(callback, null, match('Warning'));
         });
 
         it('does not print warnings', async () => {
-          await linter.invoke(dir, ['--quiet', fixture_warn], '', 0, callback);
+          await linter.invoke(dir, ['--quiet', fixture_warn], '', 'a',
+            callback);
 
           assert.calledOnceWith(callback, null, '');
         });
@@ -337,14 +306,14 @@ describe('linter', () => {
 
         it('returns output as error on failure', async () => {
           await linter.invoke(dir,
-            [fixture_warn, '--max-warnings', '0'], '', 0, callback);
+            [fixture_warn, '--max-warnings', '0'], '', 'a', callback);
 
           assert.calledOnceWith(callback, match.string);
         });
 
         it('does not return output as error if not exceeded', async () => {
-          await linter.invoke(dir, [fixture_warn, '--max-warnings', '1'], '', 0,
-            callback);
+          await linter.invoke(dir, [fixture_warn, '--max-warnings', '1'], '',
+            'a', callback);
 
           assert.calledOnceWith(callback, null, match.string);
         });
@@ -354,7 +323,8 @@ describe('linter', () => {
       describe('--color', () => {
 
         it('enables color by default', async () => {
-          await linter.invoke(dir, ['--stdin'], '\'use strict\';', 0, () => {});
+          await linter.invoke(dir, ['--stdin'], '\'use strict\';', 'a',
+            () => {});
 
           assert.isTrue(
             linter.cache.get(dir).chalk.enabled
@@ -363,7 +333,7 @@ describe('linter', () => {
 
         it('disables color if --no-color is passed', async () => {
           await linter.invoke(dir, ['--stdin', '--no-color'],
-            '\'use strict\';', 0, () => {});
+            '\'use strict\';', 'a', () => {});
 
           assert.isFalse(
             linter.cache.get(dir).chalk.enabled
@@ -382,7 +352,7 @@ describe('linter', () => {
         it('fails with parse error on test/fixture/es6.txt', async () => {
           await linter.invoke(dir, [
             '--parser-options=ecmaVersion:5', fixture_es6, '-f', 'unix'
-          ], '', 0, callback);
+          ], '', 'a', callback);
 
           assert.calledOnce(callback);
           const out = callback.firstCall.args[0];
@@ -398,7 +368,7 @@ describe('linter', () => {
         it('pass on test/fixture/es6.txt', async () => {
           linter.invoke(dir, [
             '--parser-options=ecmaVersion:6', fixture_es6, '-f', 'unix'
-          ], '', 0, callback);
+          ], '', 'a', callback);
 
           assert.calledOnceWith(callback, null, '');
         });
@@ -412,7 +382,7 @@ describe('linter', () => {
             await linter.invoke(dir, [
               '-c', plugin_eslintrc,
               fixture_es6, '-f', 'unix'
-            ], '', 0, callback);
+            ], '', 'a', callback);
 
             assert.calledOnceWith(callback, match({
               message: match('Failed to load plugin'),
@@ -427,7 +397,7 @@ describe('linter', () => {
               '--resolve-plugins-relative-to', plugin_folder,
               '-c', plugin_eslintrc,
               fixture_es6, '-f', 'unix'
-            ], '', 0, callback);
+            ], '', 'a', callback);
 
             assert.calledOnceWith(callback, null, '');
           });
@@ -437,7 +407,7 @@ describe('linter', () => {
               '--resolve-plugins-relative-to', plugin_folder,
               '-c', plugin_eslintrc,
               fixture_es6, '-f', 'unix'
-            ], '', 0, callback);
+            ], '', 'a', callback);
 
             assert.calledOnceWith(callback, match({
               message: match('Failed to load plugin'),
@@ -455,7 +425,7 @@ describe('linter', () => {
             await linter.invoke(dir, [
               '--report-unused-disable-directives',
               fixture_es6, '-f', 'unix'
-            ], '', 0, callback);
+            ], '', 'a', callback);
 
             assert.calledOnceWithMatch(callback, '/es6.txt:10:1:');
             assert.calledOnceWithMatch(callback, 'Unused eslint-disable '
@@ -467,7 +437,7 @@ describe('linter', () => {
             await linter.invoke(dir, [
               '--report-unused-disable-directives',
               fixture_es6, '-f', 'unix'
-            ], '', 0, callback);
+            ], '', 'a', callback);
 
             assert.calledOnceWith(callback, null, '');
           });
@@ -479,7 +449,7 @@ describe('linter', () => {
             await linter.invoke(dir, [
               '--eslint-path', './node_modules/eslint',
               fixture_es6, '-f', 'unix'
-            ], '', 0, callback);
+            ], '', 'a', callback);
 
             assert.calledOnceWith(callback, null, '');
           });
@@ -488,7 +458,7 @@ describe('linter', () => {
             await linter.invoke(dir, [
               '--eslint-path="./node_modules/eslint"',
               fixture_es6, '-f', 'unix'
-            ], '', 0, callback);
+            ], '', 'a', callback);
 
             assert.calledOnceWith(callback, null, '');
           });
@@ -513,8 +483,8 @@ describe('linter', () => {
   it('lets eslint handle unknown formatter', async () => {
     const callback = sinon.fake();
 
-    await linter.invoke(cwd, ['test/fixture/fail.txt', '-f', 'unknown'], '', 0,
-      callback);
+    await linter.invoke(cwd, ['test/fixture/fail.txt', '-f', 'unknown'], '',
+      'a', callback);
 
     assert.calledOnceWithMatch(callback,
       'There was a problem loading formatter:');
