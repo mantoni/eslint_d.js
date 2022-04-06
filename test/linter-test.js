@@ -470,8 +470,8 @@ describe('linter', () => {
 
   }
 
+  withinDirectory('8', cwd);
   withinDirectory('8.0', 'test/fixture/v8.0.x');
-  withinDirectory('7', cwd);
   withinDirectory('7.0', path.resolve('test/fixture/v7.0.x'));
   withinDirectory('6.8', 'test/fixture/v6.8.x');
   withinDirectory('6.0', 'test/fixture/v6.0.x');
