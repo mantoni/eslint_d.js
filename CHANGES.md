@@ -1,5 +1,38 @@
 # Changes
 
+## 12.0.0
+
+- 💥 [`43d0a5f`](https://github.com/mantoni/eslint_d.js/commit/43d0a5f2dc0e3685f8fa12a1f1e4d8b324065bc7)
+  Upgrade default eslint to v8.12.0
+- 💥 [`a1d4197`](https://github.com/mantoni/eslint_d.js/commit/a1d4197bfbb7d47705a28030f71643f722cf0db5)
+  Invalidate cache based on content hash rather than modification time (#190) (Dara Dermody)
+- 📚 [`e5e9fb9`](https://github.com/mantoni/eslint_d.js/commit/e5e9fb9ebf2b644a84d943ada2f04938b9281725)
+  Add compatibility notes for v12
+- 📚 [`693f680`](https://github.com/mantoni/eslint_d.js/commit/693f680940b4faa351b833239a1aeee5bc749834)
+  Improve documentation about supported versions
+- 📚 [`e2a30c2`](https://github.com/mantoni/eslint_d.js/commit/e2a30c22bb8df48d684990ebac0b4a708e7e576b)
+  Add contributor
+- 🛡 [`db8dbae`](https://github.com/mantoni/eslint_d.js/commit/db8dbaeaefade4cbe31a4079b7fb4df5d30dfcac)
+  npm audit
+- 🛡 [`73c8f13`](https://github.com/mantoni/eslint_d.js/commit/73c8f1317bdc1590cee301cf9f4ca8da70ffc6d6)
+  Bump ajv from 6.11.0 to 6.12.6 in /test/fixture/v5.16.x (dependabot[bot])
+- 🛡 [`9004f87`](https://github.com/mantoni/eslint_d.js/commit/9004f8738ff17d090215f27af84833af12c8a44b)
+  Bump ajv from 6.12.2 to 6.12.6 in /test/fixture/v7.0.x (dependabot[bot])
+- 🛡 [`3e5550a`](https://github.com/mantoni/eslint_d.js/commit/3e5550a587009ea633ba4b10e69a0af6fa7cb3e8)
+  Bump ajv from 6.11.0 to 6.12.6 in /test/fixture/v6.8.x (dependabot[bot])
+- 🛡 [`16bfe5c`](https://github.com/mantoni/eslint_d.js/commit/16bfe5cec124111b2b3b9fb4109ea6c7891e141e)
+  Bump ajv from 6.10.0 to 6.12.6 in /test/fixture/v5.0.x (dependabot[bot])
+- 🛡 [`978dee0`](https://github.com/mantoni/eslint_d.js/commit/978dee04e9be949c1de1c42dd35d7673ffd71617)
+  Bump ajv from 6.10.0 to 6.12.6 in /test/fixture/v4.0.x (dependabot[bot])
+- 🛡 [`bcb6b1f`](https://github.com/mantoni/eslint_d.js/commit/bcb6b1f546fa6208835b521974adc08957640b44)
+  npm audit test fixtures
+- 🛡 [`b8a0b68`](https://github.com/mantoni/eslint_d.js/commit/b8a0b6849a10079184f869f014b051d16d81233d)
+  npm audit
+- ✨ [`734a22a`](https://github.com/mantoni/eslint_d.js/commit/734a22a8a5fb3bc851cd2a93ab7a796775f73235)
+  Move prepare.sh into scripts
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2022-04-06._
+
 ## 11.1.1
 
 - 🐛 [`8e912e2`](https://github.com/mantoni/eslint_d.js/commit/8e912e2ff515ec4ff12d9df6d1451724de1cb8af)
