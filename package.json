@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "core_d": "^4.0.0",
-    "eslint": "^7.3.0",
+    "eslint": "^8.12.0",
     "nanolru": "^1.0.0",
     "optionator": "^0.9.1"
   },
