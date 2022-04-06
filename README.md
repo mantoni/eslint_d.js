@@ -56,6 +56,8 @@ detected: `package.json`, `package-lock.json`, `npm-shrinkwrap.json`,
 `yarn.lock` and `pnpm-lock.yaml`. If changes are not automatically detected,
 remember to run `eslint_d restart` to bounce the background server.
 
+**Note:** Change detection was switched from mtime to content hash with v12.
+
 ## Which versions of eslint are supported?
 
 You can use `eslint_d` with multiple projects depending on different versions
@@ -195,7 +197,8 @@ was extracted to [core_d][], a library that manages the background server.
 
 ## Compatibility
 
-- `11.0.0`: eslint 4 - 8, node 12 - 16
+- `12.0.0`: eslint 4 - 8, node 12 - 16 (ships with eslint 8)
+- `11.0.0`: eslint 4 - 8, node 12 - 16 (ships with eslint 7)
 - `10.0.0`: eslint 4 - 7, node 10 - 14 (using new `ESLint` API if available)
 - `9.0.0`: eslint 4 - 7, node 10 - 14 (using `CLIEngine` API)
 - `8.0.0`: eslint 4 - 6, node 8 - 12
