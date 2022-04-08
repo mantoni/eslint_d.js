@@ -4,7 +4,6 @@
 const { assert, sinon } = require('@sinonjs/referee-sinon');
 const resolver = require('../lib/resolver');
 const eslint_path = require('../lib/eslint-path');
-const { describe } = require('eslint/lib/rule-tester/rule-tester');
 
 describe('eslint-path', () => {
 
@@ -47,14 +46,11 @@ describe('eslint-path', () => {
     });
 
     describe('when ESLINT_D_LOCAL_ESLINT_ONLY is enabled', () => {
-      it('should not resolve a global prettier version', () => {
+      it('should not resolve a global eslint version', () => {
         process.env.ESLINT_D_LOCAL_ESLINT_ONLY = 1;
 
-        sinon.replace(resolver, 'resolve', sinon.fake((_, options) => {
-          if (options) {
-            throw new Error('Module not found');
-          }
-          return '/some/eslint';
+        sinon.replace(resolver, 'resolve', sinon.fake(() => {
+          throw new Error('Module not found');
         }));
 
         const result = eslint_path.resolve('some/cwd');

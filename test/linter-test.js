@@ -66,15 +66,17 @@ describe('linter', () => {
 
     it('does not create cache and exits when not resolving eslint',
       async () => {
-        sinon.replace(resolver, 'resolve', sinon.fake(() => undefined));
+        const callback = sinon.fake();
+        sinon.replace(resolver, 'resolve', sinon.fake.returns(undefined));
 
         await linter.invoke(
           cwd,
           ['--stdin'],
-          '\'use strict\';', 1234, () => {}
+          '\'use strict\';', 1234, callback
         );
         const cache = linter.cache.get(cwd);
 
+        assert.calledOnce(callback);
         assert.equals(linter.cache.length, 0);
         assert.isUndefined(cache);
       }
