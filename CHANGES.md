@@ -1,5 +1,14 @@
 # Changes
 
+## 12.1.0
+
+- 🍏 [`151a4f5`](https://github.com/mantoni/eslint_d.js/commit/151a4f5df4442c73788e0ae4465a0fbcf56c7247)
+  Resolve local only env (#182) (Oskar Grunning)
+- 📚 [`13aef60`](https://github.com/mantoni/eslint_d.js/commit/13aef600f2d807c6d4b4a2af1dfcd9d537333db7)
+  Add contributor
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2022-04-21._
+
 ## 12.0.0
 
 - 💥 [`43d0a5f`](https://github.com/mantoni/eslint_d.js/commit/43d0a5f2dc0e3685f8fa12a1f1e4d8b324065bc7)
