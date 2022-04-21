@@ -30,7 +30,8 @@
     "Damien Cassou <damien@cassou.me>",
     "James Pulec <jpulec@gmail.com>",
     "Shannon Moeller <me@shannonmoeller.com>",
-    "Dara Dermody <daradermody@gmail.com>"
+    "Dara Dermody <daradermody@gmail.com>",
+    "Oskar Grunning <oskargrunning@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
