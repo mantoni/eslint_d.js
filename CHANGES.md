@@ -1,5 +1,14 @@
 # Changes
 
+## 12.2.0
+
+- 🍏 [`96e34ef`](https://github.com/mantoni/eslint_d.js/commit/96e34efe671d98c57dd82ada3b1e66d5a3d9bd50)
+  Migrate to `core_d` v5 and implement common package manager file checks
+- 🍏 [`a2331e3`](https://github.com/mantoni/eslint_d.js/commit/a2331e3b586669940ed71bd8ecb421dcec3a359d)
+  Implement files hash checker
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2022-05-26._
+
 ## 12.1.0
 
 - 🍏 [`151a4f5`](https://github.com/mantoni/eslint_d.js/commit/151a4f5df4442c73788e0ae4465a0fbcf56c7247)
