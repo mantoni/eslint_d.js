@@ -121,9 +121,10 @@ user's home directory.
     ```elisp
     (setq flycheck-javascript-eslint-executable "eslint_d")
     ```
-- __Sublime__: Check out [SublimeLinter-contrib-eslint\_d][SublimeLinter].
-  ⚠️ Please help resolving [issue
-  #120](https://github.com/mantoni/eslint_d.js/issues/120).
+- __Sublime Text__: Use [SublimeLinter-eslint][SublimeLinter-eslint] which by default automatically uses `eslint_d` when available:
+
+- [Installation guide](https://github.com/SublimeLinter/SublimeLinter-eslint/tree/4.3.0#installation);
+- see also notes on [Using `eslint_d`](https://github.com/SublimeLinter/SublimeLinter-eslint/tree/4.3.0#using-eslint_d).
 - __Atom__, __VSCode__: You will not gain any performance from this module as
   these editors already cache eslint instances for you.
 
@@ -147,8 +148,8 @@ used with `--stdin`.
     ```
 
 - __Emacs__: See [eslintd-fix](https://github.com/aaronjensen/eslintd-fix)
-- __If the above doesn't autofix__: [This can happen with .vue files](https://github.com/mantoni/eslint_d.js/issues/145#issuecomment-787119881)  
-  Change `eslint_d --stdin --fix-to-stdout` to `eslint_d --stdin --fix-to-stdout --stdin-filename %` (% = path to file you want to autofix)  
+- __If the above doesn't autofix__: [This can happen with .vue files](https://github.com/mantoni/eslint_d.js/issues/145#issuecomment-787119881)
+  Change `eslint_d --stdin --fix-to-stdout` to `eslint_d --stdin --fix-to-stdout --stdin-filename %` (% = path to file you want to autofix)
   In Vim, the above mapping should be replaced with:
   ```vim
   nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
@@ -220,7 +221,7 @@ MIT
 [SemVer]: https://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
 [License]: https://img.shields.io/npm/l/eslint_d.svg
 [eslint]: https://eslint.org
-[SublimeLinter]: https://github.com/roadhump/SublimeLinter-contrib-eslint_d
+[SublimeLinter-eslint]: https://github.com/SublimeLinter/SublimeLinter-eslint/releases/tag/4.3.0
 [syntastic]: https://github.com/scrooloose/syntastic
 [ale]: https://github.com/dense-analysis/ale
 [change220]: https://github.com/mantoni/eslint_d.js/blob/master/CHANGES.md#220
