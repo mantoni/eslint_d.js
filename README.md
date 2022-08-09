@@ -121,9 +121,8 @@ user's home directory.
     ```elisp
     (setq flycheck-javascript-eslint-executable "eslint_d")
     ```
-- __Sublime__: Check out [SublimeLinter-contrib-eslint\_d][SublimeLinter].
-  ⚠️ Please help resolving [issue
-  #120](https://github.com/mantoni/eslint_d.js/issues/120).
+- __Sublime__: The official [SublimeLinter-eslint](https://github.com/SublimeLinter/SublimeLinter-eslint) 
+  plugin automatically prefers `eslint_d` if it finds one.
 - __Atom__, __VSCode__: You will not gain any performance from this module as
   these editors already cache eslint instances for you.
 
