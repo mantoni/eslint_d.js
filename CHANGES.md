@@ -1,5 +1,16 @@
 # Changes
 
+## 12.2.1
+
+- 🐛 [`8e94a60`](https://github.com/mantoni/eslint_d.js/commit/8e94a6019d34ea897c1d4edb25c3348ace813f35)
+  Prevent unhandled promise exception (#215) (Christian Alfoni)
+- 🐛 [`15144a1`](https://github.com/mantoni/eslint_d.js/commit/15144a1fcba79c8e8c2218717261302b07b08c41)
+  Fix typo in options-eslint.js (Thorsten Ball)
+- 📚 [`92665f5`](https://github.com/mantoni/eslint_d.js/commit/92665f55a340f47ba081446f91cda5b2debed3b7)
+  Update Sublime Text information in README (herr kaste)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2022-09-27._
+
 ## 12.2.0
 
 - 🍏 [`96e34ef`](https://github.com/mantoni/eslint_d.js/commit/96e34efe671d98c57dd82ada3b1e66d5a3d9bd50)
