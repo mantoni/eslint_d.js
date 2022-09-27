@@ -24,14 +24,10 @@ describe('linter', () => {
 
   describe('instance caching', () => {
 
-    beforeEach(() => {
-      sinon.spy(resolver, 'resolve');
-    });
-
     it('checks hash of common package manager files', async () => {
       sinon.replace(files_hash, 'filesHash',
         sinon.fake.resolves(() => Promise.resolve(false)));
-
+      sinon.spy(resolver, 'resolve');
       await linter.invoke(cwd, ['--stdin'], '\'use strict\';', () => {});
 
       assert.calledOnceWith(files_hash.filesHash, cwd, [
@@ -46,6 +42,7 @@ describe('linter', () => {
     it('reuses instance from cache', async () => {
       sinon.replace(files_hash, 'filesHash',
         sinon.fake.resolves(() => Promise.resolve(false)));
+      sinon.spy(resolver, 'resolve');
       await linter.invoke(cwd, ['--stdin'], '\'use strict\';', () => {});
       const cache1 = caches.lru_cache.get(cwd);
       await linter.invoke(cwd, ['--stdin'], '\'use strict\';', () => {});
@@ -62,6 +59,7 @@ describe('linter', () => {
     it('uses new instance for different directory', async () => {
       sinon.replace(files_hash, 'filesHash',
         sinon.fake.resolves(() => Promise.resolve(false)));
+      sinon.spy(resolver, 'resolve');
       const cwd2 = path.join(cwd, 'test');
       await linter.invoke(cwd, ['--stdin'], '\'use strict\';', () => {});
       await linter.invoke(cwd2, ['--stdin'], '\'use strict\';', () => {});
@@ -75,6 +73,7 @@ describe('linter', () => {
     it('creates new instance if hash differs from first call', async () => {
       sinon.replace(files_hash, 'filesHash',
         sinon.fake.resolves(() => Promise.resolve(true)));
+      sinon.spy(resolver, 'resolve');
       await linter.invoke(cwd, ['--stdin'], '\'use strict\';', () => {});
       const cache1 = caches.lru_cache.get(cwd);
 
@@ -102,6 +101,29 @@ describe('linter', () => {
         refute.called(files_hash.filesHash);
       }
     );
+
+    it('does not crash when ESLint resolver throws', async () => {
+      sinon.replace(files_hash, 'filesHash', sinon.fake());
+      const callback = sinon.fake();
+      sinon.replace(resolver, 'resolve', sinon.fake.throws());
+
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', callback);
+      const cache = caches.lru_cache.get(cwd);
+
+      assert.calledOnce(callback);
+      assert.equals(caches.lru_cache.length, 0);
+      assert.isUndefined(cache);
+      refute.called(files_hash.filesHash);
+    });
+
+    it('does send error message when no ESLint found', async () => {
+      const callback = sinon.fake();
+      sinon.replace(resolver, 'resolve', sinon.fake.returns(undefined));
+
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', callback);
+
+      assert.calledOnceWith(callback, 'No ESLint found');
+    });
   });
 
   describe('getStatus', () => {
