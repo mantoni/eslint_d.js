@@ -115,6 +115,15 @@ describe('linter', () => {
       assert.isUndefined(cache);
       refute.called(files_hash.filesHash);
     });
+
+    it('does send error message when no ESLint found', async () => {
+      const callback = sinon.fake();
+      sinon.replace(resolver, 'resolve', sinon.fake.returns(undefined));
+
+      await linter.invoke(cwd, ['--stdin'], '\'use strict\';', callback);
+
+      assert.calledOnceWith(callback, 'No ESLint found');
+    });
   });
 
   describe('getStatus', () => {
