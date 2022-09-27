@@ -31,7 +31,10 @@
     "James Pulec <jpulec@gmail.com>",
     "Shannon Moeller <me@shannonmoeller.com>",
     "Dara Dermody <daradermody@gmail.com>",
-    "Oskar Grunning <oskargrunning@gmail.com>"
+    "Oskar Grunning <oskargrunning@gmail.com>",
+    "Thorsten Ball <mrnugget@gmail.com>",
+    "Herr Kaste <herr.kaste@gmail.com>",
+    "Christian Alfoni <christianalfoni@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
