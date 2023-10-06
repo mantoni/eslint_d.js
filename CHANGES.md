@@ -1,5 +1,30 @@
 # Changes
 
+## 13.0.0
+
+- 💥 [`e8380b4`](https://github.com/mantoni/eslint_d.js/commit/e8380b4c8580881d86fc6883190f09b3ccf31067)
+  Upgrade `core_d` to v6 which sends error messages to `stderr`
+- 🍏 [`a81af28`](https://github.com/mantoni/eslint_d.js/commit/a81af28aeb0c94de3cedb104378f0b504c60aa9d)
+  Update default eslint to v8.50.0
+- 📚 [`8a44986`](https://github.com/mantoni/eslint_d.js/commit/8a449864129594f46bc79c9e9f209188083f419b)
+  Add compatibility notes for v13
+- 📚 [`65bb02e`](https://github.com/mantoni/eslint_d.js/commit/65bb02ee668c84b15201956e2dcb11d207f5447c)
+  Add contributors
+- ✨ [`6fc629c`](https://github.com/mantoni/eslint_d.js/commit/6fc629c13bcf2c37b17ee4920caba68c941c9098)
+  Upgrade GitHub actions
+- ✨ [`1cd7458`](https://github.com/mantoni/eslint_d.js/commit/1cd745842e9ad16af087708cca07874eff0b2fd2)
+  Add node 18.x and 20.x to build matrix
+- ✨ [`7f908a3`](https://github.com/mantoni/eslint_d.js/commit/7f908a340c67950fa28267f5549fbfdf85fcf430)
+  Update semver
+- ✨ [`bb7c260`](https://github.com/mantoni/eslint_d.js/commit/bb7c26031029146927e5c0d9cb36aaa44912e2b5)
+  Update optionator
+- ✨ [`9abe9e4`](https://github.com/mantoni/eslint_d.js/commit/9abe9e4b0ac6e28e37c2fa108ce8f63cb6ff90a0)
+  Upgrade mocha to v10
+- ✨ [`1eebcde`](https://github.com/mantoni/eslint_d.js/commit/1eebcde774d5eaa4c1079f918fb8aa9f580577a4)
+  Upgrade referee-sinon
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2023-10-06._
+
 ## 12.2.1
 
 - 🐛 [`8e94a60`](https://github.com/mantoni/eslint_d.js/commit/8e94a6019d34ea897c1d4edb25c3348ace813f35)
