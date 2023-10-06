@@ -75,6 +75,6 @@
     "@studio/changes": "^2.1.0",
     "@studio/eslint-config": "^1.1.1",
     "mocha": "^10.2.0",
-    "semver": "^7.3.2"
+    "semver": "^7.5.4"
   }
 }
