@@ -58,7 +58,7 @@
     "url": "https://github.com/mantoni/eslint_d.js.git"
   },
   "dependencies": {
-    "core_d": "^5.0.1",
+    "core_d": "^6.0.0",
     "eslint": "^8.50.0",
     "nanolru": "^1.0.0",
     "optionator": "^0.9.3"
