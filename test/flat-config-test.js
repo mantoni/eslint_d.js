@@ -46,7 +46,13 @@ describe('flat-config', () => {
 
     it('runs lint with FlatESLint class', async () => {
       process.env.ESLINT_USE_FLAT_CONFIG = 'true';
-      await linter.invoke(process.cwd(), ['.'], undefined, () => null);
+
+      await linter.invoke(
+        process.cwd(),
+        ['-c', `${process.cwd()}/test/fixture/eslint.config.js`],
+        undefined,
+        () => null
+      );
     });
   });
 });
