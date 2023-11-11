@@ -5,6 +5,7 @@ const { assert } = require('@sinonjs/referee-sinon');
 const api = require('eslint');
 const unsupported = require('../node_modules/eslint/lib/unsupported-api');
 const caches = require('../lib/caches');
+const linter = require('../lib/linter');
 
 describe('flat-config', () => {
 
@@ -24,6 +25,10 @@ describe('flat-config', () => {
       assert.equals(typeof cache.eslint.ESLint, typeof api.ESLint);
       assert.isUndefined(cache.eslint.FlatESLint);
     });
+
+    it('runs lint with ESLint class', async () => {
+      await linter.invoke(process.cwd(), ['.'], undefined, () => null);
+    });
   });
 
   describe('with flat configV', () => {
@@ -37,6 +42,11 @@ describe('flat-config', () => {
         typeof unsupported.FlatESLint
       );
       assert.isUndefined(cache.eslint.ESLint);
+    });
+
+    it('runs lint with FlatESLint class', async () => {
+      process.env.ESLINT_USE_FLAT_CONFIG = 'true';
+      await linter.invoke(process.cwd(), ['.'], undefined, () => null);
     });
   });
 });
