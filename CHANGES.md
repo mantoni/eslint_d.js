@@ -1,5 +1,16 @@
 # Changes
 
+## 13.1.0
+
+- 🍏 [`399b462`](https://github.com/mantoni/eslint_d.js/commit/399b46268db1c3deaae26ffb2935336082c8e84a)
+  feat: adapt to new eslint flat config (#277) (Amrit Kahlon)
+- 📚 [`6fa5719`](https://github.com/mantoni/eslint_d.js/commit/6fa5719a35062dc5cd35a0984d0aa8bc83633858)
+  Document experimental support for flat config
+- 📚 [`0fc2f66`](https://github.com/mantoni/eslint_d.js/commit/0fc2f66d50b3349c7679d92c2eb96cb7e8ac45b3)
+  Add contributor
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2023-11-12._
+
 ## 13.0.0
 
 - 💥 [`e8380b4`](https://github.com/mantoni/eslint_d.js/commit/e8380b4c8580881d86fc6883190f09b3ccf31067)
