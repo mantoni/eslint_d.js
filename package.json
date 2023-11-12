@@ -34,7 +34,8 @@
     "Oskar Grunning <oskargrunning@gmail.com>",
     "Thorsten Ball <mrnugget@gmail.com>",
     "Herr Kaste <herr.kaste@gmail.com>",
-    "Christian Alfoni <christianalfoni@gmail.com>"
+    "Christian Alfoni <christianalfoni@gmail.com>",
+    "Amrit Kahlon <amritkahlon00@gmail.com>"
   ],
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "eslintConfig": {
