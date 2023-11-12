@@ -67,6 +67,9 @@ You can use `eslint_d` with multiple projects depending on different versions
 of eslint. If no local eslint is found, `eslint_d` falls back to the eslint
 version that ships with `eslint_d`.
 
+Experimental support for eslint flat config is available since `v13.1.0` if
+the `ESLINT_USE_FLAT_CONFIG` environment variable is defined.
+
 ## Commands
 
 Control the server like this:
