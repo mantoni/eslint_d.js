@@ -1,5 +1,16 @@
 # Changes
 
+## 13.1.1
+
+- 🐛 [`accdc41`](https://github.com/mantoni/eslint_d.js/commit/accdc41e3f132a4c96cff56eb456ef57e7bef136)
+  feat: support eslint flat config on windows (#280) (asasinmode)
+- 📚 [`3b71636`](https://github.com/mantoni/eslint_d.js/commit/3b716365fefa864d1d7c71f19280eab9afaf0366)
+  Add contributor
+- 🛡️ [`8357a59`](https://github.com/mantoni/eslint_d.js/commit/8357a5929dae7d2979680069107da308eab0a450)
+  Bump debug from 4.1.1 to 4.3.4 in /test/fixture/v6.0.x (dependabot[bot])
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2023-11-27._
+
 ## 13.1.0
 
 - 🍏 [`399b462`](https://github.com/mantoni/eslint_d.js/commit/399b46268db1c3deaae26ffb2935336082c8e84a)
