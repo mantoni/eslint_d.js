@@ -70,6 +70,10 @@ version that ships with `eslint_d`.
 Experimental support for eslint flat config is available since `v13.1.0` if
 the `ESLINT_USE_FLAT_CONFIG` environment variable is defined.
 
+Known flat config limitations:
+
+- [#281](https://github.com/mantoni/eslint_d.js/issues/281) - The background server process only evaluates the config format used at start time and not per invocation of eslint.  Multiple projects sharing the same background server but using different config formats will result in config errors for the projects that don't match the background server's set config format.  Editors that automatically start `eslint_d` will also result in config errors if the background server was not started with the correct config format for the project.  Restarting `eslint_d` with the desired config format can be used to work around the limitation: `ESLINT_USE_FLAT_CONFIG=true eslint_d restart` to enable flat configs or `ESLINT_USE_FLAT_CONFIG= eslint_d restart` to disable flat configs.
+
 ## Commands
 
 Control the server like this:
@@ -124,7 +128,7 @@ user's home directory.
     ```elisp
     (setq flycheck-javascript-eslint-executable "eslint_d")
     ```
-- __Sublime__: The official [SublimeLinter-eslint](https://github.com/SublimeLinter/SublimeLinter-eslint) 
+- __Sublime__: The official [SublimeLinter-eslint](https://github.com/SublimeLinter/SublimeLinter-eslint)
   plugin automatically prefers `eslint_d` if it finds one.
 - __Atom__, __VSCode__: You will not gain any performance from this module as
   these editors already cache eslint instances for you.
@@ -149,8 +153,8 @@ used with `--stdin`.
     ```
 
 - __Emacs__: See [eslintd-fix](https://github.com/aaronjensen/eslintd-fix)
-- __If the above doesn't autofix__: [This can happen with .vue files](https://github.com/mantoni/eslint_d.js/issues/145#issuecomment-787119881)  
-  Change `eslint_d --stdin --fix-to-stdout` to `eslint_d --stdin --fix-to-stdout --stdin-filename %` (% = path to file you want to autofix)  
+- __If the above doesn't autofix__: [This can happen with .vue files](https://github.com/mantoni/eslint_d.js/issues/145#issuecomment-787119881)
+  Change `eslint_d --stdin --fix-to-stdout` to `eslint_d --stdin --fix-to-stdout --stdin-filename %` (% = path to file you want to autofix)
   In Vim, the above mapping should be replaced with:
   ```vim
   nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
