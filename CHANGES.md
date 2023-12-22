@@ -1,5 +1,14 @@
 # Changes
 
+## 13.1.2
+
+- [`afb1114`](https://github.com/mantoni/eslint_d.js/commit/afb1114e43f2bf144c2b3b0373dc5be6e6a1d6df)
+  fix: adds ability to filter cli options before passing to eslint (#284) (Christopher Aubut)
+- [`5379fde`](https://github.com/mantoni/eslint_d.js/commit/5379fde4f10f4ae88ff330f2ddd09b4861a11eea)
+  docs: add known flat config limitations to README.md (#282) (Christopher Aubut)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2023-12-22._
+
 ## 13.1.1
 
 - 🐛 [`accdc41`](https://github.com/mantoni/eslint_d.js/commit/accdc41e3f132a4c96cff56eb456ef57e7bef136)
