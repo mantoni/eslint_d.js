@@ -49,7 +49,8 @@ It's possible to force `eslint_d` to only resolve local `eslint` by setting the
 `ESLINT_D_LOCAL_ESLINT_ONLY` environment variable to a truthy value (ie. `true` or `1`).
 
 To keep the memory footprint low, `eslint_d` keeps only the last 10 used
-instances in the internal [nanolru][] cache.
+instances in the internal [nanolru][] cache.  To change the number of cached instances 
+set the `ESLINT_D_MAX_INSTANCES` environment variable to a positive integer.
 
 ## What if eslint or a plugin is updated?
 
