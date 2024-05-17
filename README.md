@@ -102,6 +102,16 @@ under the `XDG_RUNTIME_DIR` directory if this environment variable is
 defined. If the variable is not defined then the file is stored in the
 user's home directory.
 
+## Environment Variables
+
+- `CORE_D_TITLE`: Can be used to set the daemon process title. Defaults to
+  `eslint_d`.
+- `CORE_D_DOTFILE`: Can be used to set the name of the dotfile that stores the
+  server information. Defaults to `.eslint_d`.
+
+Note: Different CORE_D_TITLE and CORE_D_DOTFILE values will result in separte daemon processes.
+This is can be leveraged to run multiple instances of `eslint_d` for different projects, with different configurations for example.
+
 ## Editor integration
 
 ### Linting

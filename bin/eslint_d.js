@@ -20,8 +20,8 @@ if (cmd === '-h' || cmd === '--help') {
   return;
 }
 
-process.env.CORE_D_TITLE = process.env.OVERRIDE_CORE_D_TITLE || 'eslint_d';
-process.env.CORE_D_DOTFILE = process.env.OVERRIDE_CORE_D_DOTFILE || '.eslint_d';
+process.env.CORE_D_TITLE = process.env.CORE_D_TITLE || 'eslint_d';
+process.env.CORE_D_DOTFILE = process.env.CORE_D_DOTFILE || '.eslint_d';
 process.env.CORE_D_SERVICE = require.resolve('../lib/linter');
 
 const core_d = require('core_d');
