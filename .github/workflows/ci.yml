@@ -26,6 +26,15 @@ jobs:
       - name: Install
         run: npm ci
       - name: Lint
+        if: matrix.node-version == '22.x'
         run: npm run lint
+      - name: Types
+        if: matrix.node-version == '22.x'
+        run: node_modules/.bin/tsc
+      - name: Prettier
+        if: matrix.node-version == '22.x'
+        run: npm run prettier:check
       - name: Test
         run: npm test
+      - name: Integration Tests
+        run: npm run test:integration
