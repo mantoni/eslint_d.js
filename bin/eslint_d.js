@@ -25,7 +25,10 @@ const command = process.argv[2];
   }
 
   // eslint-disable-next-line prefer-const
-  let [config, hash] = await Promise.all([loadConfig(resolver), filesHash()]);
+  let [config, hash] = await Promise.all([
+    loadConfig(resolver),
+    filesHash(resolver.base)
+  ]);
   switch (command) {
     case 'start':
       if (config) {
