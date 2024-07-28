@@ -6,6 +6,9 @@
   "bin": {
     "eslint_d": "./bin/eslint_d.js"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [
     "daemon",
     "eslint",
