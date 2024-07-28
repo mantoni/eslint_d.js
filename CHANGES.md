@@ -1,5 +1,22 @@
 # Changes
 
+## 14.0.0
+
+This is a complete rewrite of `eslint_d`. Please see the `README` for more details.
+
+- 💥 [`bb7c71c`](https://github.com/mantoni/eslint_d.js/commit/bb7c71c13b86668f9de4d5ace542907ba31a1493)
+  Drop node 12, 14 and 16, add node 22
+- 💥 [`a852373`](https://github.com/mantoni/eslint_d.js/commit/a8523736dbab390b129f13018c0fdcca37b26974)
+  Add new implementation
+- 💥 [`85b938c`](https://github.com/mantoni/eslint_d.js/commit/85b938c0c0213d4ebcea9ddeab8f80af76867789)
+  Remove all sources
+- 📚 [`7ce116f`](https://github.com/mantoni/eslint_d.js/commit/7ce116f50f263f9c33da55da1a5341e92975a576)
+  Rewrite README
+- ✨ [`71b35f9`](https://github.com/mantoni/eslint_d.js/commit/71b35f93649273df711ef41e25effc4937413083)
+  Add prettier, tsc and integration tests to build
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-07-28._
+
 ## 13.1.2
 
 - [`afb1114`](https://github.com/mantoni/eslint_d.js/commit/afb1114e43f2bf144c2b3b0373dc5be6e6a1d6df)
