@@ -1,5 +1,12 @@
 # Changes
 
+## 14.0.1
+
+- 🐛 [`0ae6f25`](https://github.com/mantoni/eslint_d.js/commit/0ae6f25cc91c0a8ab7f0774a0ff6562c803e7e83)
+  Fix hash when changing directories
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-07-28._
+
 ## 14.0.0
 
 This is a complete rewrite of `eslint_d`. Please see the `README` for more details.
