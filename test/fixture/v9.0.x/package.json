@@ -1,0 +1,9 @@
+{
+  "name": "eslint_d-v9.0.x-test",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "eslint": "v9.0.x"
+  }
+}

@@ -9,6 +9,3 @@ do
   npm i
   cd ..
 done
-
-cd eslint-plugin
-npm i

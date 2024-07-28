@@ -1,0 +1,4 @@
+package.json
+package-lock.json
+/CHANGES.md
+/test/fixture/fail.js
