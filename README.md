@@ -152,7 +152,7 @@ changed: `package.json`, `package-lock.json`, `npm-shrinkwrap.json`,
 
 ## Compatibility
 
-- `14.0.0`: eslint 4 - 8, node 18 - 22 (ships with eslint 9)
+- `14.0.0`: eslint 4 - 9, node 18 - 22 (ships with eslint 9)
 - `13.0.0`: eslint 4 - 8, node 12 - 20 (ships with eslint 8)
 - `12.0.0`: eslint 4 - 8, node 12 - 16 (ships with eslint 8)
 - `11.0.0`: eslint 4 - 8, node 12 - 16 (ships with eslint 7)
