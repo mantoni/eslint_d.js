@@ -67,7 +67,7 @@ describe('integration tests', () => {
     });
   });
 
-  [SUPPORTED_ESLINT_VERSIONS].forEach((fixture) => {
+  SUPPORTED_ESLINT_VERSIONS.forEach((fixture) => {
     context(fixture, () => {
       const cwd = path.resolve(`test/fixture/${fixture}`);
       const { version: eslint_version } = require(
@@ -173,6 +173,105 @@ describe('integration tests', () => {
         await assert.rejects(fs.stat(config));
         await new Promise((resolve) => setTimeout(resolve, 50));
         assert.exception(() => process.kill(Number(pid), 0));
+      });
+    });
+  });
+
+  context('--fix-to-stdout', () => {
+    SUPPORTED_ESLINT_VERSIONS.filter(
+      (fixture) => fixture !== 'v4.0.x' // v4 misses --fix-dry-run
+    ).forEach((fixture) => {
+      context(fixture, () => {
+        const cwd = path.resolve(`test/fixture/${fixture}`);
+        const config = `${cwd}/node_modules/eslint/.eslint_d`;
+
+        beforeEach(async () => {
+          await killDaemon();
+          await startDaemon();
+        });
+
+        afterEach(killDaemon);
+
+        const run_args = `--fix-to-stdout --stdin --stdin-filename ${cwd}/../foo.js`;
+
+        context('when file only contains fixable problems', () => {
+          it('prints input if no change is needed', async () => {
+            const stdin = `console.log('Hello eslint');`;
+            const { error, stdout, stderr } = await run(run_args, {
+              cwd,
+              stdin
+            });
+
+            assert.equals(stdout, stdin);
+            assert.equals(stderr, '');
+            assert.isNull(error);
+          });
+
+          it('prints fixed output if change is needed', async () => {
+            const { error, stdout, stderr } = await run(run_args, {
+              cwd,
+              stdin: `console.log("Hello eslint");`
+            });
+
+            assert.equals(stdout, `console.log('Hello eslint');`);
+            assert.equals(stderr, '');
+            assert.isNull(error);
+          });
+        });
+
+        context('when file contains non-fixable problems', () => {
+          it('prints input if no change is needed', async () => {
+            const stdin = `/* eslint radix: "error" */
+            console.log('Hello' + parseInt('087'))`;
+
+            const { error, stdout, stderr } = await run(run_args, {
+              cwd,
+              stdin
+            });
+
+            assert.equals(
+              stdout,
+              `/* eslint radix: "error" */
+            console.log('Hello' + parseInt('087'))`
+            );
+            assert.equals(stderr, '');
+            refute.isNull(error);
+            assert.equals(error?.['code'], 1);
+          });
+
+          it('prints fixed output if change is needed', async () => {
+            const stdin = `/* eslint radix: "error" */
+            console.log("Hello" + parseInt('087'))`;
+
+            const { error, stdout, stderr } = await run(run_args, {
+              cwd,
+              stdin
+            });
+
+            assert.equals(
+              stdout,
+              `/* eslint radix: "error" */
+            console.log('Hello' + parseInt('087'))`
+            );
+            assert.equals(stderr, '');
+            refute.isNull(error);
+            assert.equals(error?.['code'], 1);
+          });
+        });
+
+        async function killDaemon() {
+          try {
+            const raw = await fs.readFile(config, 'utf8');
+            const [, , pid] = raw.split(' ');
+            process.kill(Number(pid), 0);
+          } catch {
+            // nothing to kill
+          }
+        }
+
+        async function startDaemon() {
+          await run('start', { cwd });
+        }
       });
     });
   });
