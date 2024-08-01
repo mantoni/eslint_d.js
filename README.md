@@ -122,6 +122,29 @@ All arguments are passed to eslint, except for the following commands:
   bundled eslint (default). "fail" logs an error and exits with code 1.
   "ignore" silently exits with code 0.
 
+## Automatic fixing
+
+`eslint_d` has an additional option that `eslint` does not have,
+`--fix-to-stdout` which prints the fixed file to stdout. This allows editors to
+add before save hooks to automatically fix a file prior to saving. It must be
+used with `--stdin`.
+
+### Vim
+
+Add this to your `.vimrc` to lint the current buffer or visual selection on
+`<leader>f`:
+
+```vim
+" Autofix entire buffer with eslint_d:
+nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
+" Autofix visual selection with eslint_d:
+vnoremap <leader>f :!eslint_d --stdin --fix-to-stdout<CR>gv
+```
+
+### Emacs
+
+See [eslintd-fix](https://github.com/aaronjensen/eslintd-fix)
+
 ## How does this work?
 
 `eslint_d` starts a background server that runs `eslint` in a separate process.
