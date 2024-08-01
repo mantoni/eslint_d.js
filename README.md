@@ -108,6 +108,7 @@ All arguments are passed to eslint, except for the following commands:
   status          Show daemon status, process id and resolved eslint version
   --help, -h      Show this help
   --version, -v   Show version number of eslint_d and bundled eslint
+  --fix-to-stdout Print fixed file to stdout (requires --stdin)
 ```
 
 ## Environment variables
@@ -152,7 +153,7 @@ changed: `package.json`, `package-lock.json`, `npm-shrinkwrap.json`,
 
 ## Compatibility
 
-- `14.0.0`: eslint 4 - 9, node 18 - 22 (ships with eslint 9)
+- `14.0.0`: eslint 4 - 9, node 18 - 22 (ships with eslint 9) (see [^1])
 - `13.0.0`: eslint 4 - 8, node 12 - 20 (ships with eslint 8)
 - `12.0.0`: eslint 4 - 8, node 12 - 16 (ships with eslint 8)
 - `11.0.0`: eslint 4 - 8, node 12 - 16 (ships with eslint 7)
@@ -177,3 +178,5 @@ MIT
 [syntastic]: https://github.com/scrooloose/syntastic
 [flycheck]: http://www.flycheck.org/
 [SublimeLinter-eslint]: https://github.com/SublimeLinter/SublimeLinter-eslint
+
+[^1]: The support for `--fix-to-stdout` is only provided with eslint 5 and beyond.
