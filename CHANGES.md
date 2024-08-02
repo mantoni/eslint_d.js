@@ -1,5 +1,31 @@
 # Changes
 
+## 14.0.2
+
+Bring back `--fix-to-stdout` support (Damien Cassou), fix running on Windows
+and support paths with spaces (L2jLiga).
+
+- 🍏 [`1cbf8ae`](https://github.com/mantoni/eslint_d.js/commit/1cbf8ae461ca2e9e4ce8d5a33d13fd2a2d049ae3)
+  Add support for --fix-to-stdout (Damien Cassou)
+- 🐛 [`5b3b7c3`](https://github.com/mantoni/eslint_d.js/commit/5b3b7c312e70856cc89b39e1b08614b59676d14b)
+  fix: not working when paths in config contains spaces (L2jLiga)
+- 🐛 [`663dfa1`](https://github.com/mantoni/eslint_d.js/commit/663dfa1eafe9cac34927869064cb70f8f93458bd)
+  fix(resolver): eslint path detection not working on Windows (L2jLiga)
+- 🐛 [`72eb4f6`](https://github.com/mantoni/eslint_d.js/commit/72eb4f6f5dd565dfd86f56a8774665f669f79a4d)
+  Resolve timing issue with reading config
+- 📚 [`e24151d`](https://github.com/mantoni/eslint_d.js/commit/e24151d1ef140ff1de8ec4fcc4ef55aff1b3d2c2)
+  Bring back documentation for --fix-to-stdout
+- 📚 [`647e5d5`](https://github.com/mantoni/eslint_d.js/commit/647e5d52d96ceafd51dc45b966ca54a305a8a693)
+  Update README to indicate compatibility with eslint 9 (Damien Cassou)
+- ✨ [`f2c5880`](https://github.com/mantoni/eslint_d.js/commit/f2c5880655e5d89cd626cd8d50f87f9f9f268957)
+  Add tests for --fix-to-stdout and catch JSON errors
+- ✨ [`12f3afa`](https://github.com/mantoni/eslint_d.js/commit/12f3afa56ffad24d8a6826fe1eac3056b0d2f153)
+  Refactor forwarder to remove a limitation in the size of the error code (Damien Cassou)
+- ✨ [`fb110f0`](https://github.com/mantoni/eslint_d.js/commit/fb110f0ae71f09a32f7795af64b5567ad81832bf)
+  Add .editorconfig (Damien Cassou)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-08-02._
+
 ## 14.0.1
 
 - 🐛 [`0ae6f25`](https://github.com/mantoni/eslint_d.js/commit/0ae6f25cc91c0a8ab7f0774a0ff6562c803e7e83)
