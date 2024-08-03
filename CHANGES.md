@@ -1,5 +1,16 @@
 # Changes
 
+## 14.0.3
+
+- 🐛 [`a7adf39`](https://github.com/mantoni/eslint_d.js/commit/a7adf3940ec1152b75a92b3dedcf9abb1b427a11)
+  Ignore exit code from eslint if --fix-to-stdout
+- ✨ [`daa2a1a`](https://github.com/mantoni/eslint_d.js/commit/daa2a1a43c2fc659242987879a4e39bd26edb134)
+  chore: fix unit tests on Windows (L2jLiga)
+- ✨ [`a356ae0`](https://github.com/mantoni/eslint_d.js/commit/a356ae0920b38bfef1da5fabebd21537669ef430)
+  Setup husky and lint-staged
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-08-03._
+
 ## 14.0.2
 
 Bring back `--fix-to-stdout` support (Damien Cassou), fix running on Windows
