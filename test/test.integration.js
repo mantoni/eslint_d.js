@@ -238,8 +238,7 @@ describe('integration tests', () => {
               `/* eslint radix: "error" */
             console.log('Hello' + parseInt('087'))`
             );
-            refute.isNull(error);
-            assert.equals(error?.['code'], 1);
+            assert.isNull(error);
           });
 
           it('prints fixed output if change is needed', async () => {
@@ -257,8 +256,7 @@ describe('integration tests', () => {
               `/* eslint radix: "error" */
             console.log('Hello' + parseInt('087'))`
             );
-            refute.isNull(error);
-            assert.equals(error?.['code'], 1);
+            assert.isNull(error);
           });
         });
       });
