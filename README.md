@@ -28,6 +28,7 @@
 ```bash
 ❯ eslint file.js # ~500ms
 ❯ eslint_d file.js # ~115ms
+❯ eslint_d.sh file.js # ~65ms
 ```
 
 ## Features

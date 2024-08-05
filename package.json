@@ -4,7 +4,8 @@
   "description": "Speed up eslint to accelerate your development workflow",
   "type": "module",
   "bin": {
-    "eslint_d": "./bin/eslint_d.js"
+    "eslint_d": "./bin/eslint_d.js",
+    "eslint_d.sh": "./bin/eslint_d.sh"
   },
   "engines": {
     "node": ">=18"
