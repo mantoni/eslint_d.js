@@ -10,29 +10,30 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest]
         node-version: ['18.x', '20.x', '22.x']
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - name: Install
         run: npm ci
       - name: Lint
-        if: matrix.node-version == '22.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '22.x'
         run: npm run lint
       - name: Types
-        if: matrix.node-version == '22.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '22.x'
         run: node_modules/.bin/tsc
       - name: Prettier
-        if: matrix.node-version == '22.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '22.x'
         run: npm run prettier:check
       - name: Test
         run: npm test
