@@ -22,6 +22,7 @@
     "lint": "eslint .",
     "test": "mocha '**/*.test.js'",
     "test:integration": "mocha --bail --slow 1000 test/test.integration.js",
+    "test:coverage": "mcr --filter \"{'**/node_modules/**':false,'**/**':true}\" -r v8,console-details mocha '**/*.test.js'",
     "watch": "chokidar '**/*.js' -c 'npm t' --initial --silent",
     "prepare": "husky && sh scripts/install-fixture-deps.sh",
     "preversion": "npm run lint && npm run prettier:check && tsc && npm test && npm run test:integration",
@@ -49,6 +50,7 @@
     "husky": "^9.1.4",
     "lint-staged": "^15.2.8",
     "mocha": "^10.7.0",
+    "monocart-coverage-reports": "^2.10.9",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
   },
