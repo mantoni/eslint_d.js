@@ -1,5 +1,20 @@
 # Changes
 
+## 14.0.4
+
+Andrey Chalkin fixed the `stop` command on Windows OS 🙏.
+
+- 🐛 [`c10da7a`](https://github.com/mantoni/eslint_d.js/commit/c10da7a3c1be6918fd2d84c36d39db182c0486b5)
+  fix: stop command not working on Windows OS (#313) (Andrey Chalkin)
+- ✨ [`2892b45`](https://github.com/mantoni/eslint_d.js/commit/2892b45eeee234aa9aebcf3499ef13c36f11d272)
+  Add coverage-reports to eslint and tsc ignores
+- ✨ [`93771f4`](https://github.com/mantoni/eslint_d.js/commit/93771f48c9d82bb2dc53e5737ec761468c1c5238)
+  Run all tests for stopDaemon on all platforms
+- ✨ [`3188cde`](https://github.com/mantoni/eslint_d.js/commit/3188cdeb93d062926d2a51198a028cade1975ed7)
+  Add test:coverage script
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-09-19._
+
 ## 14.0.3
 
 - 🐛 [`a7adf39`](https://github.com/mantoni/eslint_d.js/commit/a7adf3940ec1152b75a92b3dedcf9abb1b427a11)
