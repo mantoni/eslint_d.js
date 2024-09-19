@@ -32,7 +32,7 @@ describe('integration tests', () => {
 
     return new Promise((resolve) => {
       const child = child_process.exec(
-        `${bin} ${args}`,
+        `"${process.argv0}" ${bin} ${args}`,
         { cwd },
         (error, stdout, stderr) => resolve({ error, stdout, stderr })
       );
@@ -151,7 +151,7 @@ describe('integration tests', () => {
       it('fail.js', async () => {
         const { error, stdout, stderr } = await run('../fail.js', { cwd });
 
-        assert.match(stdout, '/test/fixture/fail.js');
+        assert.match(stdout, path.normalize('/test/fixture/fail.js'));
         assert.match(stdout, 'Strings must use singlequote');
         refute.isNull(error);
         assert.equals(error?.['code'], 1);
