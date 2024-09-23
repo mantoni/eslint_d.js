@@ -60,7 +60,7 @@ const command = process.argv[2];
       (await import('../lib/status.js')).status(resolver, config);
       return;
     default:
-      if (config && (config.hash !== hash || !(await isAlive(config)))) {
+      if (config && config.hash !== hash) {
         await stopDaemon(resolver, config);
         config = null;
       }
