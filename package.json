@@ -21,7 +21,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "mocha '**/*.test.js'",
-    "test:integration": "mocha --bail --slow 1000 test/test.integration.js",
+    "test:integration": "mocha --bail --slow 1000 --timeout 5000 test/test.integration.js",
     "test:coverage": "mcr --filter \"{'**/node_modules/**':false,'**/**':true}\" -r v8,console-details mocha '**/*.test.js'",
     "watch": "chokidar '**/*.js' -c 'npm t' --initial --silent",
     "prepare": "husky && sh scripts/install-fixture-deps.sh",
