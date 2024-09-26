@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { loadConfig } from '../lib/config.js';
+import { loadConfig, removeConfig } from '../lib/config.js';
 import { createResolver } from '../lib/resolver.js';
-import { forwardToDaemon } from '../lib/forwarder.js';
+import { forwardToDaemon, isAlive } from '../lib/forwarder.js';
 import { launchDaemon, stopDaemon } from '../lib/launcher.js';
 import { filesHash } from '../lib/hash.js';
 
@@ -31,11 +31,17 @@ const command = process.argv[2];
   ]);
   switch (command) {
     case 'start':
-      if (config) {
+      if (await isAlive(config)) {
         console.log('eslint_d: Already running');
-      } else {
-        await launchDaemon(resolver, hash);
+        return;
       }
+
+      if (config) {
+        await removeConfig(resolver);
+      }
+
+      await launchDaemon(resolver, hash);
+
       return;
     case 'stop':
       if (config) {
