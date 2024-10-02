@@ -1,5 +1,18 @@
 # Changes
 
+## 14.1.0
+
+Reliability improvements:
+
+- 🍏 [`4b2df30`](https://github.com/mantoni/eslint_d.js/commit/4b2df30cb0ecf2c874a089511f99c4f656553c67)
+  feat: launch daemon on forward failure (#318) (Andrey Chalkin)
+- 🍏 [`a4b5570`](https://github.com/mantoni/eslint_d.js/commit/a4b557042eaf927b65e89d3d99d49092533c4827)
+  feat: implement isAlive check (Andrey Chalkin)
+- 🐛 [`fbe0137`](https://github.com/mantoni/eslint_d.js/commit/fbe0137570d630a5f2bc5188d14e60c6fe8e44e3)
+  fix: config file removed before watcher started (#316) (Andrey Chalkin)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-10-02._
+
 ## 14.0.4
 
 Andrey Chalkin fixed the `stop` command on Windows OS 🙏.
