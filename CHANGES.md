@@ -1,5 +1,12 @@
 # Changes
 
+## 14.1.1
+
+- 🐛 [`93064d0`](https://github.com/mantoni/eslint_d.js/commit/93064d073b0158ed3cfeca16b915a90ab331fd59)
+  fix: unhandled 'error' event (L2jLiga)
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-10-04._
+
 ## 14.1.0
 
 Reliability improvements:
