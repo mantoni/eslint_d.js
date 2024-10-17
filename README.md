@@ -174,6 +174,26 @@ The server is also automatically restarted if one of the following files
 changed: `package.json`, `package-lock.json`, `npm-shrinkwrap.json`,
 `yarn.lock`, `pnpm-lock.yaml`.
 
+## Debug mode
+
+> Added in `v14.2.0`.
+
+Pass the `--debug` flag to `eslint_d` to enable debug output. Use the `DEBUG`
+environment variable to limit debug output to `eslint_d`:
+
+```bash
+❯ DEBUG="eslint_d:*"
+```
+
+For server side debug output, restart with `--debug` in a separate terminal:
+
+```bash
+❯ eslint_d restart --debug # eslint and eslint_d logs
+❯ DEBUG="eslint_d:*" eslint_d restart --debug # eslint_d logs only
+```
+
+This will keep the process attached to the terminal and print debug output.
+
 ## Compatibility
 
 - `14.0.0`: eslint 4 - 9, node 18 - 22 (ships with eslint 9) (see [^1])
