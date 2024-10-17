@@ -1,10 +1,18 @@
 #!/usr/bin/env node
 
+import debug from 'debug';
 import { loadConfig, removeConfig } from '../lib/config.js';
 import { createResolver } from '../lib/resolver.js';
 import { forwardToDaemon, isAlive } from '../lib/forwarder.js';
 import { launchDaemon, stopDaemon } from '../lib/launcher.js';
 import { filesHash } from '../lib/hash.js';
+
+const is_debug_mode = process.argv.includes('--debug');
+if (is_debug_mode) {
+  debug.enable(
+    process.env.DEBUG || 'eslint_d:*,eslint:*,-eslint:code-path,eslintrc:*'
+  );
+}
 
 const command = process.argv[2];
 
@@ -40,7 +48,7 @@ const command = process.argv[2];
         await removeConfig(resolver);
       }
 
-      await launchDaemon(resolver, hash);
+      await launchDaemon(resolver, hash, is_debug_mode);
 
       return;
     case 'stop':
@@ -54,7 +62,7 @@ const command = process.argv[2];
       if (config) {
         await stopDaemon(resolver, config);
       }
-      await launchDaemon(resolver, hash);
+      await launchDaemon(resolver, hash, is_debug_mode);
       return;
     case 'status':
       (await import('../lib/status.js')).status(resolver, config);
@@ -65,7 +73,7 @@ const command = process.argv[2];
         config = null;
       }
       if (!config) {
-        config = await launchDaemon(resolver, hash);
+        config = await launchDaemon(resolver, hash, false);
         if (!config) {
           return;
         }
