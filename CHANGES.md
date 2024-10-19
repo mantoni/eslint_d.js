@@ -1,5 +1,16 @@
 # Changes
 
+## 14.2.0
+
+- 🍏 [`5e99a06`](https://github.com/mantoni/eslint_d.js/commit/5e99a064982bee5eef7439f8cb7cd251cee1ec74)
+  Add support for `--debug`
+- 📚 [`d522c67`](https://github.com/mantoni/eslint_d.js/commit/d522c67add2436dacde6c4ec1a27b9b900c4dc4c)
+  Add documentation for `--debug`
+- 📚 [`b792bd9`](https://github.com/mantoni/eslint_d.js/commit/b792bd915d02487d65a5349f51b824393b62a994)
+  Align help message option order with README
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-10-19._
+
 ## 14.1.1
 
 - 🐛 [`93064d0`](https://github.com/mantoni/eslint_d.js/commit/93064d073b0158ed3cfeca16b915a90ab331fd59)
