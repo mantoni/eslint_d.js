@@ -1,5 +1,20 @@
 # Changes
 
+## 14.2.1
+
+- 🐛 [`7de5596`](https://github.com/mantoni/eslint_d.js/commit/7de55968524027e85d737b3c60235aea8a6b9a1b)
+  Fix require chalk and debug relative to eslint
+- 🐛 [`a64924d`](https://github.com/mantoni/eslint_d.js/commit/a64924dd9bab5576785bddb5b8ca097b0de6d649)
+  Time out waiting for config
+- 🐛 [`e833e9e`](https://github.com/mantoni/eslint_d.js/commit/e833e9e8b3026c701670d2890385be5ead6843d2)
+  Fix process title debug log
+- ✨ [`9acaa84`](https://github.com/mantoni/eslint_d.js/commit/9acaa84d9ab9149b59a056ec637b5982aae82914)
+  Change branch name to main
+- 📚 [`df02009`](https://github.com/mantoni/eslint_d.js/commit/df020090106a9a887e32ed05645b020f15a04f00)
+  Add funding.yml
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-10-30._
+
 ## 14.2.0
 
 - 🍏 [`5e99a06`](https://github.com/mantoni/eslint_d.js/commit/5e99a064982bee5eef7439f8cb7cd251cee1ec74)
