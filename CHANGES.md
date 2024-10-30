@@ -1,5 +1,14 @@
 # Changes
 
+## 14.2.2
+
+- 🐛 [`472e81d`](https://github.com/mantoni/eslint_d.js/commit/472e81d984446dfbf3e57d481990c937c378ce62)
+  Downgrade supports-color to same version as eslint
+- ✨ [`5c8072a`](https://github.com/mantoni/eslint_d.js/commit/5c8072a85d671b7f42250b01e71b08eb7a7b45d5)
+  Add node 23 to build matrix
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-10-30._
+
 ## 14.2.1
 
 - 🐛 [`7de5596`](https://github.com/mantoni/eslint_d.js/commit/7de55968524027e85d737b3c60235aea8a6b9a1b)
