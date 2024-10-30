@@ -39,7 +39,7 @@
   "dependencies": {
     "debug": "^4.3.7",
     "eslint": "^9.8.0",
-    "supports-color": "^9.4.0"
+    "supports-color": "^7.2.0"
   },
   "devDependencies": {
     "@sinonjs/referee-sinon": "^12.0.0",
