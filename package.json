@@ -1,6 +1,6 @@
 {
   "name": "eslint_d",
-  "version": "14.2.2",
+  "version": "14.3.0",
   "description": "Speed up eslint to accelerate your development workflow",
   "type": "module",
   "bin": {

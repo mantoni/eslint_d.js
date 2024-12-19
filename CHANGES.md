@@ -1,5 +1,40 @@
 # Changes
 
+## 14.3.0
+
+[Introduce][#331] `ESLINT_D_ROOT` environment variable to override the location where
+`node_modules/eslint` is found. This is useful in monorepos where `node_modules`
+might be in a location other than the project root. Thanks Matthew!
+
+- 🍏 [`ba10df0`](https://github.com/mantoni/eslint_d.js/commit/ba10df0dd2b89158e1a47b7c6c39c8e634e4e923)
+  Allow overriding eslint path with environment var (#331) (Matthew Gramigna)
+- 📚 [`02448b1`](https://github.com/mantoni/eslint_d.js/commit/02448b1ac75bcb9d2e2430cc5c4d2e9cfe952d2d)
+  Add usage for Neovim
+- 📚 [`de63ca2`](https://github.com/mantoni/eslint_d.js/commit/de63ca285f8db7192682b180d7a506f3a2d34750)
+  Remove missleading WebStorm instructions
+- 📚 [`3f036d0`](https://github.com/mantoni/eslint_d.js/commit/3f036d0f11cf6d1de0041f6ccba165210602ce9b)
+  Fix help text formatting
+- ✨ [`cef465b`](https://github.com/mantoni/eslint_d.js/commit/cef465baaa6765d10b62915f1b140a8b7648294a)
+  Delete `ESLINT_D_ROOT` env in afterEach hook
+- ✨ [`4a06f9e`](https://github.com/mantoni/eslint_d.js/commit/4a06f9e6d94d20782c77164ab5d6a579b96b18a3)
+  Improve types
+- ✨ [`4182fbc`](https://github.com/mantoni/eslint_d.js/commit/4182fbcc82a16057abe82963468d75d0fd40dade)
+  Convert `isAlive` to async function
+- ✨ [`7a35046`](https://github.com/mantoni/eslint_d.js/commit/7a3504637229a94d44346bc9a7525df88b70bd7d)
+  Remove unnecessary await
+- ✨ [`ffeb7ed`](https://github.com/mantoni/eslint_d.js/commit/ffeb7ed105a3cd14b751d2a73829b4e96c843612)
+  Update typescript
+- ✨ [`a1ad288`](https://github.com/mantoni/eslint_d.js/commit/a1ad2887b2dae5442989e73f269be8e24e58d5fc)
+  Add missing `@studio/changes` dependency
+- 🛡️ [`9f3c61f`](https://github.com/mantoni/eslint_d.js/commit/9f3c61fb50925e02c09ef0d841585d7b4821a0cc)
+  Bump cross-spawn from 6.0.5 to 6.0.6 in /test/fixture/v5.0.x (dependabot[bot])
+- 🛡️ [`8166a3e`](https://github.com/mantoni/eslint_d.js/commit/8166a3e26264b279c20cea9c2a84a8c78dd9cfaa)
+  Bump cross-spawn from 6.0.5 to 6.0.6 in /test/fixture/v6.0.x (dependabot[bot])
+- 🛡️ [`0fb742c`](https://github.com/mantoni/eslint_d.js/commit/0fb742ce63f24f7f1ec879928c2fba9ee7f58db6)
+  Bump cross-spawn from 7.0.3 to 7.0.6 (dependabot[bot])
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2024-12-19._
+
 ## 14.2.2
 
 - 🐛 [`472e81d`](https://github.com/mantoni/eslint_d.js/commit/472e81d984446dfbf3e57d481990c937c378ce62)
