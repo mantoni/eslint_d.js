@@ -62,6 +62,18 @@
   let g:syntastic_javascript_eslint_exec = 'eslint_d'
   ```
 
+### Neovim
+
+- With [nvim-lint][]
+
+  ```lua
+  vim.env.ESLINT_D_PPID = vim.fn.getpid()
+  require('lint').linters_by_ft = {
+    javascript = {'eslint_d'},
+    typescript = {'eslint_d'},
+  }
+  ```
+
 ### Emacs
 
 Use [flycheck][] with the `javascript-eslint` checker:
@@ -216,6 +228,7 @@ MIT
 [eslint]: https://eslint.org
 [ale]: https://github.com/dense-analysis/ale
 [syntastic]: https://github.com/scrooloose/syntastic
+[nvim-lint]: https://github.com/mfussenegger/nvim-lint
 [flycheck]: http://www.flycheck.org/
 [SublimeLinter-eslint]: https://github.com/SublimeLinter/SublimeLinter-eslint
 
