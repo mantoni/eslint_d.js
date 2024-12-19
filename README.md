@@ -62,12 +62,6 @@
   let g:syntastic_javascript_eslint_exec = 'eslint_d'
   ```
 
-### WebStorm
-
-Configure your IDE to point to the `eslint_d` package instead of `eslint`. In
-the ESLint configuration dialog, under 'ESLint package', select your `eslint_d`
-package.
-
 ### Emacs
 
 Use [flycheck][] with the `javascript-eslint` checker:
@@ -81,7 +75,7 @@ Use [flycheck][] with the `javascript-eslint` checker:
 The official [SublimeLinter-eslint][] plugin automatically prefers `eslint_d`
 if it finds one.
 
-### Atom, VSCode
+### Atom, VSCode, WebStorm
 
 You will not gain any performance from this module as these editors already
 cache eslint instances for you.
