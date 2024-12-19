@@ -54,7 +54,7 @@
     "mocha": "^10.7.0",
     "monocart-coverage-reports": "^2.10.9",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.7.2"
   },
   "overrides": {
     "debug": "$debug"
