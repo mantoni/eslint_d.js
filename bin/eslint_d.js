@@ -26,7 +26,7 @@ const command = process.argv[2];
     return;
   }
 
-  const resolver = await createResolver();
+  const resolver = createResolver();
   if (resolver === 'ignore' || resolver === 'fail') {
     (await import('../lib/miss.js')).miss(resolver, command);
     return;
