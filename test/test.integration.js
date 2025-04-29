@@ -1,6 +1,8 @@
 import child_process from 'node:child_process';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import fs from 'node:fs/promises';
+import os from 'node:os';
 import { createRequire } from 'node:module';
 import { assert, refute } from '@sinonjs/referee-sinon';
 
@@ -87,7 +89,12 @@ describe('integration tests', () => {
       const { version: eslint_version } = require(
         require.resolve('eslint/package.json', { paths: [cwd] })
       );
-      const config = `${cwd}/node_modules/eslint/.eslint_d`;
+      const eslintPath = `${cwd}/node_modules/eslint`;
+      const hash = createHash('sha256');
+
+      hash.update(`${eslintPath}/.eslint_d`);
+
+      const config = path.join(os.tmpdir(), `.${hash.digest('hex')}.eslint_d`);
       let pid;
 
       after(unlinkHook(config));
@@ -191,7 +198,15 @@ describe('integration tests', () => {
     ).forEach((fixture) => {
       context(fixture, () => {
         const cwd = path.resolve(`test/fixture/${fixture}`);
-        const config = `${cwd}/node_modules/eslint/.eslint_d`;
+        const eslintPath = `${cwd}/node_modules/eslint`;
+        const hash = createHash('sha256');
+
+        hash.update(`${eslintPath}/.eslint_d`);
+
+        const config = path.join(
+          os.tmpdir(),
+          `.${hash.digest('hex')}.eslint_d`
+        );
 
         after(unlinkHook(config));
 
