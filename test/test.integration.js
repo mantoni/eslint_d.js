@@ -92,7 +92,7 @@ describe('integration tests', () => {
       const eslintPath = `${cwd}/node_modules/eslint`;
       const hash = createHash('sha256');
 
-      hash.update(`${eslintPath.replace('\\', '/')}/.eslint_d`);
+      hash.update(path.resolve(eslintPath).replace('\\', '/'));
 
       const config = path.join(os.tmpdir(), `${hash.digest('hex')}.eslint_d`);
       let pid;
@@ -201,7 +201,7 @@ describe('integration tests', () => {
         const eslintPath = `${cwd}/node_modules/eslint`;
         const hash = createHash('sha256');
 
-        hash.update(`${eslintPath.replace('\\', '/')}/.eslint_d`);
+        hash.update(path.resolve(eslintPath).replace('\\', '/'));
 
         const config = path.join(os.tmpdir(), `${hash.digest('hex')}.eslint_d`);
 
