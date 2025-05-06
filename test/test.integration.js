@@ -92,9 +92,9 @@ describe('integration tests', () => {
       const eslintPath = `${cwd}/node_modules/eslint`;
       const hash = createHash('sha256');
 
-      hash.update(`${eslintPath}/.eslint_d`);
+      hash.update(`${eslintPath.replace('\\', '/')}/.eslint_d`);
 
-      const config = path.join(os.tmpdir(), `.${hash.digest('hex')}.eslint_d`);
+      const config = path.join(os.tmpdir(), `${hash.digest('hex')}.eslint_d`);
       let pid;
 
       after(unlinkHook(config));
@@ -201,12 +201,9 @@ describe('integration tests', () => {
         const eslintPath = `${cwd}/node_modules/eslint`;
         const hash = createHash('sha256');
 
-        hash.update(`${eslintPath}/.eslint_d`);
+        hash.update(`${eslintPath.replace('\\', '/')}/.eslint_d`);
 
-        const config = path.join(
-          os.tmpdir(),
-          `.${hash.digest('hex')}.eslint_d`
-        );
+        const config = path.join(os.tmpdir(), `${hash.digest('hex')}.eslint_d`);
 
         after(unlinkHook(config));
 
