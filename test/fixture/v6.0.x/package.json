@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "eslint": "v6.0.x"
+    "eslint": "v9.32.x"
   }
 }
