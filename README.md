@@ -11,11 +11,11 @@
   <a href="https://semver.org">
     <img src="https://img.shields.io/:semver-%E2%9C%93-blue.svg" alt="SemVer">
   </a>
-  <a href="https://github.com/mantoni/eslint_d.js/actions">
-    <img src="https://github.com/mantoni/eslint_d.js/workflows/Build/badge.svg" alt="Build Status">
+  <a href="https://github.com/mantoni/eslint_d.js/actions/workflows/ci.yml?query=branch%3Amain">
+    <img src="https://github.com/mantoni/eslint_d.js/actions/workflows/ci.yml/badge.svg?query=branch%3Amain" alt="Build Status">
   </a>
   <a href="https://opensource.org/licenses/MIT">
-    <img src="https://img.shields.io/npm/l/eslint_d.svg" alt="License">
+    <img src="https://img.shields.io/npm/l/eslint_d.svg" alt="MIT License">
   </a>
   <br>
   <br>
