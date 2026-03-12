@@ -19,7 +19,7 @@
   "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de/)",
   "homepage": "https://github.com/mantoni/eslint_d.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint -c eslint.config.js .",
     "test": "mocha '**/*.test.js'",
     "test:integration": "mocha --bail --slow 1000 --timeout 5000 test/test.integration.js",
     "test:coverage": "mcr --filter \"{'**/node_modules/**':false,'**/**':true}\" -r v8,console-details mocha '**/*.test.js'",
@@ -38,13 +38,13 @@
   },
   "dependencies": {
     "debug": "^4.3.7",
-    "eslint": "^9.8.0",
+    "eslint": "^10.0.3",
     "supports-color": "^7.2.0"
   },
   "devDependencies": {
     "@sinonjs/referee-sinon": "^12.0.0",
     "@studio/changes": "^3.0.0",
-    "@studio/eslint-config": "^8.0.0",
+    "@studio/eslint-config": "^9.0.1",
     "@studio/related-tests": "^0.2.0",
     "@studio/tsconfig": "^1.3.0",
     "@types/debug": "^4.1.12",
