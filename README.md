@@ -205,6 +205,7 @@ This will keep the process attached to the terminal and print debug output.
 
 ## Compatibility
 
+- `15.0.0`: eslint 4 - 10, node 22 - 24 (ships with eslint 10)
 - `14.0.0`: eslint 4 - 9, node 18 - 22 (ships with eslint 9) (see [^1])
 - `13.0.0`: eslint 4 - 8, node 12 - 20 (ships with eslint 8)
 - `12.0.0`: eslint 4 - 8, node 12 - 16 (ships with eslint 8)
