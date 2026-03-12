@@ -37,7 +37,7 @@
     "ignore": "node_modules/**"
   },
   "dependencies": {
-    "debug": "^4.3.7",
+    "debug": "^4.4.3",
     "eslint": "^10.0.3",
     "supports-color": "^7.2.0"
   },
