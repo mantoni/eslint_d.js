@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node-version: ['18.x', '20.x', '22.x', '23.x']
+        node-version: ['22.x', '24.x', '25.x']
 
     steps:
       - name: Checkout
@@ -27,13 +27,13 @@ jobs:
       - name: Install
         run: npm ci
       - name: Lint
-        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '22.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '24.x'
         run: npm run lint
       - name: Types
-        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '22.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '24.x'
         run: node_modules/.bin/tsc
       - name: Prettier
-        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '22.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '24.x'
         run: npm run prettier:check
       - name: Test
         run: npm test

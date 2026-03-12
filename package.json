@@ -7,7 +7,7 @@
     "eslint_d": "bin/eslint_d.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "keywords": [
     "daemon",
