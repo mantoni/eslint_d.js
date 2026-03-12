@@ -4,7 +4,7 @@
   "description": "Speed up eslint to accelerate your development workflow",
   "type": "module",
   "bin": {
-    "eslint_d": "./bin/eslint_d.js"
+    "eslint_d": "bin/eslint_d.js"
   },
   "engines": {
     "node": ">=18"
@@ -69,7 +69,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mantoni/eslint_d.js.git"
+    "url": "git+https://github.com/mantoni/eslint_d.js.git"
   },
   "license": "MIT"
 }
