@@ -10,7 +10,8 @@ const SUPPORTED_ESLINT_VERSIONS = [
   'v6.0.x',
   'v7.0.x',
   'v8.0.x',
-  'v9.0.x'
+  'v9.0.x',
+  'v10.0.x'
 ];
 
 describe('integration tests', () => {
