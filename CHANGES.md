@@ -1,5 +1,38 @@
 # Changes
 
+## 15.0.0
+
+- 💥 [`8cc3b93`](https://github.com/mantoni/eslint_d.js/commit/8cc3b939ec58b9458c9bc60cae051ac10e926ecc)
+  Upgrade default eslint to v10
+- 💥 [`b68b01a`](https://github.com/mantoni/eslint_d.js/commit/b68b01ab148ec3a29f3429815486a93297f8eacd)
+  Require node 22
+- 🍏 [`320584c`](https://github.com/mantoni/eslint_d.js/commit/320584c3de9131ab5fa3c683d3b50fe4bf9f43ae)
+  Add eslint v10 test fixture
+- 🍏 [`251a03f`](https://github.com/mantoni/eslint_d.js/commit/251a03fdfd179f1bf291f6536ca610bba13ecbb1)
+  Upgrade support-color
+- 🐛 [`4c907c8`](https://github.com/mantoni/eslint_d.js/commit/4c907c8f919eedca1312699d4e965151b78d2797)
+  Fix eslint issues
+- 📚 [`6dc639f`](https://github.com/mantoni/eslint_d.js/commit/6dc639f70a6f5b55b9fd5c6081edd764489c1d24)
+  Update compatibility
+- 📚 [`239d9cc`](https://github.com/mantoni/eslint_d.js/commit/239d9cc8aa399248fbacfac18086aeb7992450c3)
+  Update performance
+- ✨ [`e19dfaf`](https://github.com/mantoni/eslint_d.js/commit/e19dfafbda5d8debe191e64f1c096c7c0383c6ac)
+  Update transient dependencies
+- ✨ [`818198f`](https://github.com/mantoni/eslint_d.js/commit/818198fd9b4818ef72a9b24556c277a725172f85)
+  Upgrade mocha and monocart-coverage-reports
+- ✨ [`3267c22`](https://github.com/mantoni/eslint_d.js/commit/3267c2237a6a0fe8bee9ec0d2074b89d06d32b9d)
+  Upgrade lint-staged and husky
+- ✨ [`caf814b`](https://github.com/mantoni/eslint_d.js/commit/caf814b8e67c35e670a648a399c4982148359901)
+  Update debug
+- ✨ [`dc98809`](https://github.com/mantoni/eslint_d.js/commit/dc988096dfa9b559be111f672e1dc21261b335c9)
+  Update prettier
+- ✨ [`5196dae`](https://github.com/mantoni/eslint_d.js/commit/5196daedb774b7e2907072202c13e763fe90aeb6)
+  Update typescript
+- ✨ [`9986c96`](https://github.com/mantoni/eslint_d.js/commit/9986c9629d20fcba53d04ffde1c6410b659ca590)
+  Fix bin path and repository url
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2026-03-12._
+
 ## 14.3.0
 
 [Introduce][#331] `ESLINT_D_ROOT` environment variable to override the location where
