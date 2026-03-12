@@ -23,11 +23,11 @@
 </div>
 
 > Runs [eslint][] in a background process to improve linting time while editing.
-> On a MacBook Air M1 with node.js v22.2.0 and eslint v9.8.0:
+> On a MacBook Air M4 with node.js v24.14.0 and eslint v10.0.3:
 
 ```bash
-❯ eslint file.js # ~500ms
-❯ eslint_d file.js # ~115ms
+❯ eslint file.js # ~300ms
+❯ eslint_d file.js # ~100ms
 ```
 
 ## Features
