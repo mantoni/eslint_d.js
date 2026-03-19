@@ -1,0 +1,10 @@
+{
+  "name": "eslint_d-v10.0.x-no-chalk-test",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "eslint": "v10.0.x",
+    "chalk": "file:../chalk-not-installed"
+  }
+}
