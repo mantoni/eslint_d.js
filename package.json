@@ -1,0 +1,75 @@
+{
+  "name": "eslint_d",
+  "version": "15.0.0",
+  "description": "Speed up eslint to accelerate your development workflow",
+  "type": "module",
+  "bin": {
+    "eslint_d": "bin/eslint_d.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "daemon",
+    "eslint",
+    "faster",
+    "lint",
+    "performance"
+  ],
+  "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de/)",
+  "homepage": "https://github.com/mantoni/eslint_d.js",
+  "scripts": {
+    "lint": "eslint -c eslint.config.js .",
+    "test": "mocha \"**/*.test.js\"",
+    "test:integration": "mocha --bail --slow 1000 --timeout 5000 test/test.integration.js",
+    "test:coverage": "mcr --filter \"{'**/node_modules/**':false,'**/**':true}\" -r v8,console-details mocha '**/*.test.js'",
+    "watch": "chokidar '**/*.js' -c 'npm t' --initial --silent",
+    "prepare": "husky && sh scripts/install-fixture-deps.sh",
+    "preversion": "npm run lint && npm run prettier:check && tsc && npm test && npm run test:integration",
+    "version": "changes --commits --footer",
+    "postversion": "git push --follow-tags && npm publish",
+    "prettier:check": "prettier --check '**/*.{js,json,md}'",
+    "prettier:write": "prettier --write '**/*.{js,json,md}'"
+  },
+  "mocha": {
+    "reporter": "dot",
+    "require": "test/hooks.js",
+    "ignore": "node_modules/**"
+  },
+  "dependencies": {
+    "debug": "^4.4.3",
+    "eslint": "^10.0.3",
+    "supports-color": "^10.2.2"
+  },
+  "devDependencies": {
+    "@sinonjs/referee-sinon": "^12.0.0",
+    "@studio/changes": "^3.0.0",
+    "@studio/eslint-config": "^9.0.1",
+    "@studio/related-tests": "^0.2.0",
+    "@studio/tsconfig": "^1.3.0",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^22.19.15",
+    "@types/supports-color": "^8.1.3",
+    "chokidar-cli": "^3.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.3",
+    "mocha": "^11.7.5",
+    "monocart-coverage-reports": "^2.12.9",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "debug": "$debug"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mantoni/eslint_d.js.git"
+  },
+  "license": "MIT"
+}
