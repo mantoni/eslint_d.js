@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "eslint": "v10.0.x",
-    "chalk": "file:../chalk-not-installed"
+    "eslint": "v10.0.x"
   }
 }

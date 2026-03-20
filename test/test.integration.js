@@ -16,6 +16,18 @@ const SUPPORTED_ESLINT_VERSIONS = [
   'v10.0.x-no-chalk'
 ];
 
+const NO_CHALK_FIXTURE = 'v10.0.x-no-chalk';
+const root_chalk = path.resolve('node_modules/chalk');
+const root_chalk_hidden = path.resolve('node_modules/.chalk-hidden');
+
+async function hideRootChalk() {
+  await fs.rename(root_chalk, root_chalk_hidden);
+}
+
+async function restoreRootChalk() {
+  await fs.rename(root_chalk_hidden, root_chalk);
+}
+
 describe('integration tests', () => {
   const eslint_d = path.resolve('bin/eslint_d.js');
   const require = createRequire(import.meta.url);
@@ -94,6 +106,11 @@ describe('integration tests', () => {
       let pid;
 
       after(unlinkHook(config));
+
+      if (fixture === NO_CHALK_FIXTURE) {
+        before(hideRootChalk);
+        after(restoreRootChalk);
+      }
 
       it('--version', async () => {
         const { error, stdout, stderr } = await run('--version', { cwd });
@@ -197,6 +214,11 @@ describe('integration tests', () => {
         const config = `${cwd}/node_modules/eslint/.eslint_d`;
 
         after(unlinkHook(config));
+
+        if (fixture === NO_CHALK_FIXTURE) {
+          before(hideRootChalk);
+          after(restoreRootChalk);
+        }
 
         const run_args = `--fix-to-stdout --stdin --stdin-filename ${cwd}/../foo.js`;
 
