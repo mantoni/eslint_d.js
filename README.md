@@ -32,7 +32,7 @@
 
 ## Features
 
-- Supports all eslint versions from v4 to v9.
+- Supports all eslint versions from v4 to v10.
 - Supports all LTS versions of node.js.
 - Automatically starts, stops and restarts the background server.
 - Binds to parent process, editor process or exits after IDLE time.
