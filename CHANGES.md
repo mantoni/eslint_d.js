@@ -1,5 +1,14 @@
 # Changes
 
+## 15.0.1
+
+- 🐛 [`eacfc97`](https://github.com/mantoni/eslint_d.js/commit/eacfc97a51a0b1b5edd98136c581a940e5133208)
+  Fix crash with chalk v5 (#374) (AJ Slater)
+- ✨ [`455b751`](https://github.com/mantoni/eslint_d.js/commit/455b751ab0f1cb648648144eff114c30000aefbb)
+  Add "all" script
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2026-03-21._
+
 ## 15.0.0
 
 - 💥 [`8cc3b93`](https://github.com/mantoni/eslint_d.js/commit/8cc3b939ec58b9458c9bc60cae051ac10e926ecc)
