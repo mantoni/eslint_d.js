@@ -1,5 +1,12 @@
 # Changes
 
+## 15.0.2
+
+- 📚 [`e1449d3`](https://github.com/mantoni/eslint_d.js/commit/e1449d3cb0f14973af55aa5b7103c5f084c0b59f)
+  Update supported eslint versions
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2026-03-21._
+
 ## 15.0.1
 
 - 🐛 [`eacfc97`](https://github.com/mantoni/eslint_d.js/commit/eacfc97a51a0b1b5edd98136c581a940e5133208)
