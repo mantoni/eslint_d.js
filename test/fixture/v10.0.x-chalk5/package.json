@@ -1,9 +1,10 @@
 {
-  "name": "eslint_d-v10.0.x-test",
+  "name": "eslint_d-v10.0.x-chalk5-test",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "dependencies": {
-    "eslint": "v10.0.x"
+    "eslint": "v10.0.x",
+    "chalk": "^5"
   }
 }
