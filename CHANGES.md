@@ -1,5 +1,19 @@
 # Changes
 
+## 15.0.3
+
+- 🐛 [`d0f7794`](https://github.com/mantoni/eslint_d.js/commit/d0f77949393d93fdd5e1a6357d2e1bac88397aa9)
+  Serialize lint requests (Mason Hunt)
+    >
+    > Run one lint request at a time to keep its output on the correct socket.
+    > Handle control commands outside the queue and close failed requests. Add
+    > tests for concurrent requests and request failures.
+    >
+- ✨ [`622f959`](https://github.com/mantoni/eslint_d.js/commit/622f9597678494d97618b545f99fd1a87aaff9fb)
+  Bump picomatch (#379) (dependabot[bot])
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2026-07-31._
+
 ## 15.0.2
 
 - 📚 [`e1449d3`](https://github.com/mantoni/eslint_d.js/commit/e1449d3cb0f14973af55aa5b7103c5f084c0b59f)
