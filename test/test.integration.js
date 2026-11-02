@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { assert, refute } from '@sinonjs/referee-sinon';
 import { configFile } from '../lib/config.js';
+import { environmentHash } from '../lib/hash.js';
 
 const SUPPORTED_ESLINT_VERSIONS = [
   'v4.0.x',
@@ -37,23 +38,28 @@ describe('integration tests', () => {
   const bundled_version = packages['node_modules/eslint'].version;
 
   /**
-   * @param {string} args
+   * @param {string[]} args
    * @param {Object} [options]
    * @param {string} [options.cwd]
    * @param {string | null} [options.stdin]
    * @param {string} [options.bin]
+   * @param {typeof process.env} [options.env]
    * @returns {Promise<{ error: Error | null, stdout: string, stderr: string }>}
    */
   function run(
     args,
-    { cwd = process.cwd(), stdin = null, bin = eslint_d } = {}
+    {
+      cwd = process.cwd(),
+      stdin = null,
+      bin = eslint_d,
+      env = process.env
+    } = {}
   ) {
-    const executable = path.relative(cwd, bin);
-
     return new Promise((resolve) => {
-      const child = child_process.exec(
-        `"${process.argv0}" ${executable} ${args}`,
-        { cwd },
+      const child = child_process.execFile(
+        process.argv0,
+        [bin, ...args],
+        { cwd, env },
         (error, stdout, stderr) => resolve({ error, stdout, stderr })
       );
       if (stdin && child.stdin) {
@@ -79,7 +85,7 @@ describe('integration tests', () => {
 
   context('--help', () => {
     it('prints help for --help', async () => {
-      const { error, stdout, stderr } = await run('--help');
+      const { error, stdout, stderr } = await run(['--help']);
 
       assert.equals(
         stdout.substring(0, stdout.indexOf('\n')),
@@ -90,7 +96,7 @@ describe('integration tests', () => {
     });
 
     it('prints help for -h', async () => {
-      const { error, stdout, stderr } = await run('-h');
+      const { error, stdout, stderr } = await run(['-h']);
 
       assert.equals(
         stdout.substring(0, stdout.indexOf('\n')),
@@ -110,7 +116,8 @@ describe('integration tests', () => {
       const config = configFile({
         base: `${cwd}/node_modules/eslint`,
         cwd,
-        eslint_config: ''
+        eslint_config: '',
+        environment: environmentHash()
       });
       let pid;
 
@@ -122,7 +129,7 @@ describe('integration tests', () => {
       }
 
       it('--version', async () => {
-        const { error, stdout, stderr } = await run('--version', { cwd });
+        const { error, stdout, stderr } = await run(['--version'], { cwd });
 
         assert.equals(
           stdout,
@@ -135,7 +142,7 @@ describe('integration tests', () => {
       it('status not running', async () => {
         await assert.rejects(fs.stat(config));
 
-        const { error, stdout, stderr } = await run('status', { cwd });
+        const { error, stdout, stderr } = await run(['status'], { cwd });
 
         assert.equals(
           stdout,
@@ -146,7 +153,7 @@ describe('integration tests', () => {
       });
 
       it('start', async () => {
-        const { error, stdout, stderr } = await run('start', { cwd });
+        const { error, stdout, stderr } = await run(['start'], { cwd });
 
         assert.equals(stdout, '');
         assert.equals(stderr, '');
@@ -158,7 +165,7 @@ describe('integration tests', () => {
         const raw = await fs.readFile(config, 'utf8');
         [, , pid] = raw.split(' ');
 
-        const { error, stdout, stderr } = await run('status', { cwd });
+        const { error, stdout, stderr } = await run(['status'], { cwd });
 
         assert.equals(
           stdout,
@@ -170,7 +177,7 @@ describe('integration tests', () => {
       });
 
       it('pass.js', async () => {
-        const { error, stdout, stderr } = await run('../pass.js', { cwd });
+        const { error, stdout, stderr } = await run(['../pass.js'], { cwd });
 
         assert.equals(stdout, '');
         assert.equals(stderr, '');
@@ -178,7 +185,7 @@ describe('integration tests', () => {
       });
 
       it('fail.js', async () => {
-        const { error, stdout, stderr } = await run('../fail.js', { cwd });
+        const { error, stdout, stderr } = await run(['../fail.js'], { cwd });
 
         assert.match(stdout, path.normalize('/test/fixture/fail.js'));
         assert.match(stdout, 'Strings must use singlequote');
@@ -188,7 +195,7 @@ describe('integration tests', () => {
       });
 
       it('--stdin', async () => {
-        const { error, stdout, stderr } = await run('--stdin', {
+        const { error, stdout, stderr } = await run(['--stdin'], {
           cwd,
           stdin: `/* eslint quotes: ["error", "single"] */
               console.log("hello");`
@@ -202,7 +209,7 @@ describe('integration tests', () => {
       });
 
       it('stop', async () => {
-        const { error, stdout, stderr } = await run('stop', { cwd });
+        const { error, stdout, stderr } = await run(['stop'], { cwd });
 
         assert.equals(stdout, '');
         assert.equals(stderr, '');
@@ -221,12 +228,12 @@ describe('integration tests', () => {
 
     afterEach(async () => {
       for (const project of projects) {
-        await run('stop', { cwd: path.join(fixture, project) });
+        await run(['stop'], { cwd: path.join(fixture, project) });
       }
-      await run('stop --config alternate.eslint.config.mjs', {
+      await run(['stop', '--config', 'alternate.eslint.config.mjs'], {
         cwd: path.join(fixture, 'project-a')
       });
-      await run('stop --config eslint.config.mjs', {
+      await run(['stop', '--config', 'eslint.config.mjs'], {
         cwd: path.join(fixture, 'project-a')
       });
     });
@@ -238,10 +245,10 @@ describe('integration tests', () => {
         ['project-a', 'a.config.ts']
       ]) {
         const cwd = path.join(fixture, project);
-        const plain = await run(file, { cwd, bin });
+        const plain = await run([file], { cwd, bin });
         assert.isNull(plain.error, plain.stdout + plain.stderr);
 
-        const daemon = await run(file, { cwd });
+        const daemon = await run([file], { cwd });
         assert.isNull(daemon.error, daemon.stdout + daemon.stderr);
         assert.equals(daemon.stdout, plain.stdout);
         assert.equals(daemon.stderr, plain.stderr);
@@ -250,8 +257,8 @@ describe('integration tests', () => {
 
     it('isolates project services when projects lint concurrently', async () => {
       const results = await Promise.all([
-        run('a.config.ts', { cwd: path.join(fixture, 'project-a') }),
-        run('b.config.ts', { cwd: path.join(fixture, 'project-b') })
+        run(['a.config.ts'], { cwd: path.join(fixture, 'project-a') }),
+        run(['b.config.ts'], { cwd: path.join(fixture, 'project-b') })
       ]);
 
       for (const { error, stdout, stderr } of results) {
@@ -264,11 +271,11 @@ describe('integration tests', () => {
     it('isolates explicit configurations within the same working directory', async () => {
       const cwd = path.join(fixture, 'project-a');
       for (const args of [
-        'a.config.ts',
-        '--config eslint.config.mjs a.config.ts',
-        '--config alternate.eslint.config.mjs alternate.config.ts',
-        '-c=./alternate.eslint.config.mjs alternate.config.ts',
-        'a.config.ts'
+        ['a.config.ts'],
+        ['--config', 'eslint.config.mjs', 'a.config.ts'],
+        ['--config', 'alternate.eslint.config.mjs', 'alternate.config.ts'],
+        ['-c=./alternate.eslint.config.mjs', 'alternate.config.ts'],
+        ['a.config.ts']
       ]) {
         const plain = await run(args, { cwd, bin });
         assert.isNull(plain.error, plain.stdout + plain.stderr);
@@ -282,30 +289,41 @@ describe('integration tests', () => {
 
     it('selects the same daemon for equivalent explicit configuration paths', async () => {
       const cwd = path.join(fixture, 'project-a');
-      await run('start', { cwd });
-      const default_config = await run('status', { cwd });
+      await run(['start'], { cwd });
+      const default_config = await run(['status'], { cwd });
       assert.match(default_config.stdout, 'eslint_d: Running (');
-      const start = await run('start --config alternate.eslint.config.mjs', {
-        cwd
-      });
+      const start = await run(
+        ['start', '--config', 'alternate.eslint.config.mjs'],
+        {
+          cwd
+        }
+      );
       assert.isNull(start.error, start.stdout + start.stderr);
-      const initial = await run('status -c ./alternate.eslint.config.mjs', {
-        cwd
-      });
+      const initial = await run(
+        ['status', '-c', './alternate.eslint.config.mjs'],
+        {
+          cwd
+        }
+      );
       assert.match(initial.stdout, 'eslint_d: Running (');
       const equivalent = await run(
-        `status --config="${path.join(cwd, 'alternate.eslint.config.mjs')}"`,
+        ['status', '--config', path.join(cwd, 'alternate.eslint.config.mjs')],
         { cwd }
       );
       assert.equals(equivalent.stdout, initial.stdout);
 
-      const stop = await run('stop -c=alternate.eslint.config.mjs', { cwd });
-      assert.isNull(stop.error, stop.stdout + stop.stderr);
-      const stopped = await run('status --config alternate.eslint.config.mjs', {
+      const stop = await run(['stop', '-c=alternate.eslint.config.mjs'], {
         cwd
       });
+      assert.isNull(stop.error, stop.stdout + stop.stderr);
+      const stopped = await run(
+        ['status', '--config', 'alternate.eslint.config.mjs'],
+        {
+          cwd
+        }
+      );
       assert.match(stopped.stdout, 'eslint_d: Not running');
-      const unchanged = await run('status', { cwd });
+      const unchanged = await run(['status'], { cwd });
       assert.equals(unchanged.stdout, default_config.stdout);
     });
 
@@ -313,34 +331,136 @@ describe('integration tests', () => {
       const cwd_a = path.join(fixture, 'project-a');
       const cwd_b = path.join(fixture, 'project-b');
       for (const cwd of [cwd_a, cwd_b]) {
-        const { error, stdout, stderr } = await run('start', { cwd });
+        const { error, stdout, stderr } = await run(['start'], { cwd });
         assert.isNull(error, stdout + stderr);
       }
-      const initial_a = await run('status', { cwd: cwd_a });
-      const initial_b = await run('status', { cwd: cwd_b });
+      const initial_a = await run(['status'], { cwd: cwd_a });
+      const initial_b = await run(['status'], { cwd: cwd_b });
       assert.match(initial_a.stdout, 'eslint_d: Running (');
       assert.match(initial_b.stdout, 'eslint_d: Running (');
       refute.equals(initial_a.stdout, initial_b.stdout);
 
-      const stop = await run('stop', { cwd: cwd_a });
+      const stop = await run(['stop'], { cwd: cwd_a });
       assert.isNull(stop.error, stop.stdout + stop.stderr);
-      const stopped_a = await run('status', { cwd: cwd_a });
+      const stopped_a = await run(['status'], { cwd: cwd_a });
       assert.match(stopped_a.stdout, 'eslint_d: Not running');
-      const running_b = await run('status', { cwd: cwd_b });
+      const running_b = await run(['status'], { cwd: cwd_b });
       assert.equals(running_b.stdout, initial_b.stdout);
 
-      const restart = await run('restart', { cwd: cwd_b });
+      const restart = await run(['restart'], { cwd: cwd_b });
       assert.isNull(restart.error, restart.stdout + restart.stderr);
-      const restarted_b = await run('status', { cwd: cwd_b });
+      const restarted_b = await run(['status'], { cwd: cwd_b });
       assert.match(restarted_b.stdout, 'eslint_d: Running (');
       refute.equals(restarted_b.stdout, initial_b.stdout);
-      const still_stopped_a = await run('status', { cwd: cwd_a });
+      const still_stopped_a = await run(['status'], { cwd: cwd_a });
       assert.equals(still_stopped_a.stdout, stopped_a.stdout);
 
-      const start = await run('start', { cwd: cwd_b });
+      const start = await run(['start'], { cwd: cwd_b });
       assert.equals(start.stdout, 'eslint_d: Already running\n');
-      const reused_b = await run('status', { cwd: cwd_b });
+      const reused_b = await run(['status'], { cwd: cwd_b });
       assert.equals(reused_b.stdout, restarted_b.stdout);
+    });
+  });
+
+  context('environments sharing a working directory', () => {
+    const cwd = path.resolve('test/fixture/v9.0.x/environment');
+    const bin = path.resolve(
+      'test/fixture/v9.0.x/node_modules/eslint/bin/eslint.js'
+    );
+    const development = {
+      ...process.env,
+      NODE_ENV: 'development',
+      ESLINT_D_TEST_RULE: ''
+    };
+    const production = { ...development, NODE_ENV: 'production' };
+    const custom = { ...development, ESLINT_D_TEST_RULE: 'enabled' };
+    const args = ['--stdin', '--stdin-filename', 'example.js'];
+
+    afterEach(async () => {
+      for (const env of [development, production, custom]) {
+        await run(['stop'], { cwd, env });
+      }
+    });
+
+    it('uses the current NODE_ENV when evaluating configuration', async () => {
+      for (const env of [development, production, development]) {
+        const stdin = "alert('hello');";
+        const plain = await run(args, { cwd, env, stdin, bin });
+        assert.equals(
+          plain.error?.['code'] ?? 0,
+          env.NODE_ENV === 'production' ? 1 : 0
+        );
+
+        const daemon = await run(args, { cwd, env, stdin });
+        assert.equals(
+          daemon.error?.['code'] ?? 0,
+          plain.error?.['code'] ?? 0,
+          daemon.stdout
+        );
+        assert.equals(daemon.stdout, plain.stdout);
+        assert.equals(daemon.stderr, plain.stderr);
+      }
+    });
+
+    it('isolates arbitrary variables read by configuration', async () => {
+      for (const env of [development, custom, development]) {
+        const stdin = 'debugger;';
+        const plain = await run(args, { cwd, env, stdin, bin });
+        assert.equals(
+          plain.error?.['code'] ?? 0,
+          env.ESLINT_D_TEST_RULE === 'enabled' ? 1 : 0
+        );
+
+        const daemon = await run(args, { cwd, env, stdin });
+        assert.equals(
+          daemon.error?.['code'] ?? 0,
+          plain.error?.['code'] ?? 0,
+          daemon.stdout
+        );
+        assert.equals(daemon.stdout, plain.stdout);
+        assert.equals(daemon.stderr, plain.stderr);
+      }
+    });
+
+    it('keeps concurrent environments independent', async () => {
+      const stdin = "alert('hello');";
+      const [dev, prod] = await Promise.all([
+        run(args, { cwd, env: development, stdin }),
+        run(args, { cwd, env: production, stdin })
+      ]);
+
+      assert.isNull(dev.error, dev.stdout + dev.stderr);
+      assert.equals(dev.stdout, '');
+      assert.equals(prod.error?.['code'], 1, prod.stdout + prod.stderr);
+      assert.match(prod.stdout, 'no-alert');
+      assert.equals(prod.stderr, '');
+    });
+
+    it('stops one environment without affecting another', async () => {
+      for (const env of [development, production]) {
+        const { error, stdout, stderr } = await run(['start'], { cwd, env });
+        assert.isNull(error, stdout + stderr);
+      }
+      const initial = await run(['status'], { cwd, env: production });
+      assert.match(initial.stdout, 'eslint_d: Running (');
+
+      await run(['stop'], { cwd, env: development });
+      const stopped = await run(['status'], { cwd, env: development });
+      assert.match(stopped.stdout, 'eslint_d: Not running');
+      const unchanged = await run(['status'], { cwd, env: production });
+      assert.equals(unchanged.stdout, initial.stdout);
+    });
+
+    it('reuses the same daemon when only DEBUG changes', async () => {
+      await run(['start'], { cwd, env: development });
+      const initial = await run(['status'], { cwd, env: development });
+      assert.match(initial.stdout, 'eslint_d: Running (');
+      const debug = await run(['status'], {
+        cwd,
+        env: { ...development, DEBUG: 'eslint_d:*' }
+      });
+      assert.isNull(debug.error, debug.stdout + debug.stderr);
+      assert.equals(debug.stdout, initial.stdout);
     });
   });
 
@@ -353,7 +473,8 @@ describe('integration tests', () => {
         const config = configFile({
           base: `${cwd}/node_modules/eslint`,
           cwd,
-          eslint_config: ''
+          eslint_config: '',
+          environment: environmentHash()
         });
 
         after(unlinkHook(config));
@@ -363,7 +484,12 @@ describe('integration tests', () => {
           after(restoreRootChalk);
         }
 
-        const run_args = `--fix-to-stdout --stdin --stdin-filename ${cwd}/../foo.js`;
+        const run_args = [
+          '--fix-to-stdout',
+          '--stdin',
+          '--stdin-filename',
+          `${cwd}/../foo.js`
+        ];
 
         context('when file only contains fixable problems', () => {
           it('prints input if no change is needed', async () => {
