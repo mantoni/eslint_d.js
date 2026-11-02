@@ -3,6 +3,7 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { assert, refute } from '@sinonjs/referee-sinon';
+import { configFile } from '../lib/config.js';
 
 const SUPPORTED_ESLINT_VERSIONS = [
   'v4.0.x',
@@ -40,14 +41,18 @@ describe('integration tests', () => {
    * @param {Object} [options]
    * @param {string} [options.cwd]
    * @param {string | null} [options.stdin]
+   * @param {string} [options.bin]
    * @returns {Promise<{ error: Error | null, stdout: string, stderr: string }>}
    */
-  function run(args, { cwd = process.cwd(), stdin = null } = {}) {
-    const bin = path.relative(cwd, eslint_d);
+  function run(
+    args,
+    { cwd = process.cwd(), stdin = null, bin = eslint_d } = {}
+  ) {
+    const executable = path.relative(cwd, bin);
 
     return new Promise((resolve) => {
       const child = child_process.exec(
-        `"${process.argv0}" ${bin} ${args}`,
+        `"${process.argv0}" ${executable} ${args}`,
         { cwd },
         (error, stdout, stderr) => resolve({ error, stdout, stderr })
       );
@@ -102,7 +107,7 @@ describe('integration tests', () => {
       const { version: eslint_version } = require(
         require.resolve('eslint/package.json', { paths: [cwd] })
       );
-      const config = `${cwd}/node_modules/eslint/.eslint_d`;
+      const config = configFile({ base: `${cwd}/node_modules/eslint`, cwd });
       let pid;
 
       after(unlinkHook(config));
@@ -205,13 +210,89 @@ describe('integration tests', () => {
     });
   });
 
+  context('projects sharing an eslint installation', () => {
+    const fixture = path.resolve('test/fixture/v9.0.x');
+    const projects = ['project-a', 'project-b'];
+    const bin = path.join(fixture, 'node_modules/eslint/bin/eslint.js');
+
+    afterEach(async () => {
+      for (const project of projects) {
+        await run('stop', { cwd: path.join(fixture, project) });
+      }
+    });
+
+    it('uses each project service configuration across successive requests', async () => {
+      for (const [project, file] of [
+        ['project-a', 'a.config.ts'],
+        ['project-b', 'b.config.ts'],
+        ['project-a', 'a.config.ts']
+      ]) {
+        const cwd = path.join(fixture, project);
+        const plain = await run(file, { cwd, bin });
+        assert.isNull(plain.error, plain.stdout + plain.stderr);
+
+        const daemon = await run(file, { cwd });
+        assert.isNull(daemon.error, daemon.stdout + daemon.stderr);
+        assert.equals(daemon.stdout, plain.stdout);
+        assert.equals(daemon.stderr, plain.stderr);
+      }
+    }).timeout(15000);
+
+    it('isolates project services when projects lint concurrently', async () => {
+      const results = await Promise.all([
+        run('a.config.ts', { cwd: path.join(fixture, 'project-a') }),
+        run('b.config.ts', { cwd: path.join(fixture, 'project-b') })
+      ]);
+
+      for (const { error, stdout, stderr } of results) {
+        assert.isNull(error, stdout + stderr);
+        assert.equals(stdout, '');
+        assert.equals(stderr, '');
+      }
+    }).timeout(15000);
+
+    it('stops and restarts one project without affecting the other', async () => {
+      const cwd_a = path.join(fixture, 'project-a');
+      const cwd_b = path.join(fixture, 'project-b');
+      for (const cwd of [cwd_a, cwd_b]) {
+        const { error, stdout, stderr } = await run('start', { cwd });
+        assert.isNull(error, stdout + stderr);
+      }
+      const initial_a = await run('status', { cwd: cwd_a });
+      const initial_b = await run('status', { cwd: cwd_b });
+      assert.match(initial_a.stdout, 'eslint_d: Running (');
+      assert.match(initial_b.stdout, 'eslint_d: Running (');
+      refute.equals(initial_a.stdout, initial_b.stdout);
+
+      const stop = await run('stop', { cwd: cwd_a });
+      assert.isNull(stop.error, stop.stdout + stop.stderr);
+      const stopped_a = await run('status', { cwd: cwd_a });
+      assert.match(stopped_a.stdout, 'eslint_d: Not running');
+      const running_b = await run('status', { cwd: cwd_b });
+      assert.equals(running_b.stdout, initial_b.stdout);
+
+      const restart = await run('restart', { cwd: cwd_b });
+      assert.isNull(restart.error, restart.stdout + restart.stderr);
+      const restarted_b = await run('status', { cwd: cwd_b });
+      assert.match(restarted_b.stdout, 'eslint_d: Running (');
+      refute.equals(restarted_b.stdout, initial_b.stdout);
+      const still_stopped_a = await run('status', { cwd: cwd_a });
+      assert.equals(still_stopped_a.stdout, stopped_a.stdout);
+
+      const start = await run('start', { cwd: cwd_b });
+      assert.equals(start.stdout, 'eslint_d: Already running\n');
+      const reused_b = await run('status', { cwd: cwd_b });
+      assert.equals(reused_b.stdout, restarted_b.stdout);
+    });
+  });
+
   context('--fix-to-stdout', () => {
     SUPPORTED_ESLINT_VERSIONS.filter(
       (fixture) => fixture !== 'v4.0.x' // v4 misses --fix-dry-run
     ).forEach((fixture) => {
       context(fixture, () => {
         const cwd = path.resolve(`test/fixture/${fixture}`);
-        const config = `${cwd}/node_modules/eslint/.eslint_d`;
+        const config = configFile({ base: `${cwd}/node_modules/eslint`, cwd });
 
         after(unlinkHook(config));
 

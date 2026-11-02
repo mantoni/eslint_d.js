@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "eslint": "v9.0.x"
+    "@typescript-eslint/parser": "^8.72.1",
+    "eslint": "v9.0.x",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "strict": true
+  },
+  "exclude": ["*.config.ts"]
+}
