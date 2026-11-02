@@ -107,7 +107,11 @@ describe('integration tests', () => {
       const { version: eslint_version } = require(
         require.resolve('eslint/package.json', { paths: [cwd] })
       );
-      const config = configFile({ base: `${cwd}/node_modules/eslint`, cwd });
+      const config = configFile({
+        base: `${cwd}/node_modules/eslint`,
+        cwd,
+        eslint_config: ''
+      });
       let pid;
 
       after(unlinkHook(config));
@@ -219,6 +223,12 @@ describe('integration tests', () => {
       for (const project of projects) {
         await run('stop', { cwd: path.join(fixture, project) });
       }
+      await run('stop --config alternate.eslint.config.mjs', {
+        cwd: path.join(fixture, 'project-a')
+      });
+      await run('stop --config eslint.config.mjs', {
+        cwd: path.join(fixture, 'project-a')
+      });
     });
 
     it('uses each project service configuration across successive requests', async () => {
@@ -250,6 +260,54 @@ describe('integration tests', () => {
         assert.equals(stderr, '');
       }
     }).timeout(15000);
+
+    it('isolates explicit configurations within the same working directory', async () => {
+      const cwd = path.join(fixture, 'project-a');
+      for (const args of [
+        'a.config.ts',
+        '--config eslint.config.mjs a.config.ts',
+        '--config alternate.eslint.config.mjs alternate.config.ts',
+        '-c=./alternate.eslint.config.mjs alternate.config.ts',
+        'a.config.ts'
+      ]) {
+        const plain = await run(args, { cwd, bin });
+        assert.isNull(plain.error, plain.stdout + plain.stderr);
+
+        const daemon = await run(args, { cwd });
+        assert.isNull(daemon.error, daemon.stdout + daemon.stderr);
+        assert.equals(daemon.stdout, plain.stdout);
+        assert.equals(daemon.stderr, plain.stderr);
+      }
+    }).timeout(20000);
+
+    it('selects the same daemon for equivalent explicit configuration paths', async () => {
+      const cwd = path.join(fixture, 'project-a');
+      await run('start', { cwd });
+      const default_config = await run('status', { cwd });
+      assert.match(default_config.stdout, 'eslint_d: Running (');
+      const start = await run('start --config alternate.eslint.config.mjs', {
+        cwd
+      });
+      assert.isNull(start.error, start.stdout + start.stderr);
+      const initial = await run('status -c ./alternate.eslint.config.mjs', {
+        cwd
+      });
+      assert.match(initial.stdout, 'eslint_d: Running (');
+      const equivalent = await run(
+        `status --config="${path.join(cwd, 'alternate.eslint.config.mjs')}"`,
+        { cwd }
+      );
+      assert.equals(equivalent.stdout, initial.stdout);
+
+      const stop = await run('stop -c=alternate.eslint.config.mjs', { cwd });
+      assert.isNull(stop.error, stop.stdout + stop.stderr);
+      const stopped = await run('status --config alternate.eslint.config.mjs', {
+        cwd
+      });
+      assert.match(stopped.stdout, 'eslint_d: Not running');
+      const unchanged = await run('status', { cwd });
+      assert.equals(unchanged.stdout, default_config.stdout);
+    });
 
     it('stops and restarts one project without affecting the other', async () => {
       const cwd_a = path.join(fixture, 'project-a');
@@ -292,7 +350,11 @@ describe('integration tests', () => {
     ).forEach((fixture) => {
       context(fixture, () => {
         const cwd = path.resolve(`test/fixture/${fixture}`);
-        const config = configFile({ base: `${cwd}/node_modules/eslint`, cwd });
+        const config = configFile({
+          base: `${cwd}/node_modules/eslint`,
+          cwd,
+          eslint_config: ''
+        });
 
         after(unlinkHook(config));
 

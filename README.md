@@ -170,11 +170,13 @@ status`.
 
 A `.eslint_d-<hash>` file is stored in the resolved eslint installation directory
 which stores a security token, the server port and process id, and the hash of
-the monitored files. The filename includes a hash of the working directory, so
-projects sharing an eslint installation use separate daemons. This isolates
-process-wide parser and plugin state between projects. If the file is removed,
-the server exits. The `start`, `stop`, `restart` and `status` commands apply to
-the daemon for the current working directory.
+the monitored files. The filename includes a hash of the working directory and
+the explicit `--config` / `-c` path, so projects and configurations sharing an
+eslint installation use separate daemons. This isolates process-wide parser and
+plugin state between them. If the file is removed, the server exits. The `start`,
+`stop`, `restart` and `status` commands apply to the daemon for the current working
+directory and configuration. Pass the same `--config` / `-c` option to these
+commands when using an explicit configuration.
 
 The server automatically stops after 15 minutes of inactivity. You can change
 this with the `ESLINT_D_IDLE` environment variable. Alternatively, you can bind
