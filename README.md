@@ -168,9 +168,13 @@ local `eslint` package is missing, `eslint_d` falls back to the bundled
 environment variable. To see which `eslint` package is used, run `eslint_d
 status`.
 
-A `.eslint_d` file is stored in the resolved eslint installation directory
+A `.eslint_d-<hash>` file is stored in the resolved eslint installation directory
 which stores a security token, the server port and process id, and the hash of
-the monitored files. If the file is removed, the server exits.
+the monitored files. The filename includes a hash of the working directory, so
+projects sharing an eslint installation use separate daemons. This isolates
+process-wide parser and plugin state between projects. If the file is removed,
+the server exits. The `start`, `stop`, `restart` and `status` commands apply to
+the daemon for the current working directory.
 
 The server automatically stops after 15 minutes of inactivity. You can change
 this with the `ESLINT_D_IDLE` environment variable. Alternatively, you can bind
