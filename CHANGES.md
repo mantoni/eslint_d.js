@@ -1,5 +1,18 @@
 # Changes
 
+## 15.1.0
+
+- 🐛 [`b6fd163`](https://github.com/mantoni/eslint_d.js/commit/b6fd1636cc569da183a517733ea259ad0010a859)
+  Isolate daemons by inherited environment (Mason Hunt)
+- 🐛 [`e1ccd74`](https://github.com/mantoni/eslint_d.js/commit/e1ccd74b9d6fb551b59097de24900ff0e9741a45)
+  Isolate daemons by explicit ESLint configuration (Mason Hunt)
+- 🐛 [`e102534`](https://github.com/mantoni/eslint_d.js/commit/e102534fb0955673cf75afee8d735b3da959fbbb)
+  Isolate daemons by working directory (Mason Hunt)
+- ✨ [`e467edd`](https://github.com/mantoni/eslint_d.js/commit/e467edd058258cb50335828852bdfd3d92645624)
+  Add allowScripts
+
+_Released by [Maximilian Antoni](https://github.com/mantoni) on 2026-11-04._
+
 ## 15.0.3
 
 - 🐛 [`d0f7794`](https://github.com/mantoni/eslint_d.js/commit/d0f77949393d93fdd5e1a6357d2e1bac88397aa9)
