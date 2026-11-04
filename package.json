@@ -72,5 +72,9 @@
     "type": "git",
     "url": "git+https://github.com/mantoni/eslint_d.js.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "allowScripts": {
+    "es5-ext@0.10.64": true,
+    "fsevents@2.3.3": true
+  }
 }
